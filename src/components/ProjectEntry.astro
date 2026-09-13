@@ -1,0 +1,22 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { ui, type Locale } from '../i18n/ui';
+import Datasheet from './Datasheet.astro';
+interface Props { project: CollectionEntry<'projects'>; lang: Locale; }
+const { project, lang } = Astro.props;
+const p = project.data[lang];
+---
+<article class="entry" aria-labelledby={`project-${project.id}`} data-reveal>
+  <div class="entry-meta mono">
+    <span>{p.date}</span>
+    <span class:list={['status', { running: project.data.running }]}>{p.status}</span>
+    <span>{p.role}</span>
+  </div>
+  <div class="entry-content">
+    <h3 id={`project-${project.id}`}>{p.title}</h3>
+    <p>{p.description}</p>
+    {project.data.measurements && <Datasheet lang={lang} />}
+    <p class="tech mono">{p.tech}</p>
+    {project.data.code && <a class="code-link" href={project.data.code}>{ui[lang].code} <span aria-hidden="true">↗</span></a>}
+  </div>
+</article>

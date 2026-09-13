@@ -1,0 +1,21 @@
+{
+  "order": 4,
+  "running": true,
+  "measurements": false,
+  "de": {
+    "title": "3D-Drucker: Düsen-Offset-Kalibrierung",
+    "description": "Ich kenne mich mit 3D-Druck gut aus und optimiere gerade zusammen mit KUKA einen Drucker. Dafür habe ich eine Kalibrierung des Düsen-Offsets selbst eingebaut.",
+    "date": "2026",
+    "status": "läuft",
+    "role": "mit KUKA",
+    "tech": "3D-Druck · Kalibrierung"
+  },
+  "en": {
+    "title": "3D printer: nozzle offset calibration",
+    "description": "I know my way around 3D printing and I'm currently optimizing a printer together with KUKA. For that I built a nozzle offset calibration myself.",
+    "date": "2026",
+    "status": "in progress",
+    "role": "With KUKA",
+    "tech": "3D printing · calibration"
+  }
+}

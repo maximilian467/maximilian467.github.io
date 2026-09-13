@@ -1,0 +1,85 @@
+# AGENTS.md
+
+Persönliche Website von Maximilian Köhlenbeck. Ein Lebenslauf zum Durchklicken, vor allem für Bewerbungen bei Hackathons und zum Netzwerken.
+
+## Pflichtlektüre vor jeder Änderung
+
+1. `DESIGN.md`: Design-System „Laborbuch" (verbindlich)
+2. `docs/CONTENT.md`: alle Texte und Fakten (einzige Quelle, nichts erfinden)
+3. `docs/legal/impressum.md` und `docs/legal/datenschutz.md`: Texte für die Rechtsseiten
+
+## Stack
+
+- **Astro 6**, komplett statisch (`output: 'static'`), Node ≥ 22
+- TypeScript strict
+- Styling: **reines CSS** mit Custom Properties aus `DESIGN.md` (kein Tailwind, keine UI-Library)
+- Schriften selbst gehostet: Instrument Serif, Geist, Geist Mono (Fontsource oder Astro Fonts API)
+- i18n: Astros eingebautes Routing, `defaultLocale: 'de'`, `locales: ['de', 'en']`, `prefixDefaultLocale: false` → `/` Deutsch, `/en/` Englisch
+- Rechtsseiten: `/impressum`, `/datenschutz`, `/en/legal-notice`, `/en/privacy`
+- Client-JavaScript nur für: CartPole-Figur, Einblend-Animation. Keine Frameworks (kein React), Vanilla TS in `<script>`.
+- Hosting: **GitHub Pages** unter `https://maximilian467.github.io` (Repo `maximilian467/maximilian467.github.io`), Deploy per GitHub Actions mit `withastro/action`. `site: 'https://maximilian467.github.io'`, kein `base`.
+
+## Struktur (Vorschlag)
+
+```
+src/
+  components/   Header, LangSwitch, ProjectEntry, Datasheet, CartPole, Footer …
+  i18n/         ui.ts (UI-Strings), utils.ts
+  content/      projects/ (je Projekt eine Datei mit de/en), now/ …
+  layouts/      Base.astro (Meta, hreflang, OG, Fonts)
+  pages/        index.astro, impressum.astro, datenschutz.astro, en/…
+  styles/       tokens.css, base.css
+public/
+  cv/           maximilian-koehlenbeck-lebenslauf.pdf
+  models/       cartpole-policy.json
+  favicon.svg, og.png, robots.txt
+```
+
+## Befehle
+
+```bash
+npm run dev       # lokal
+npm run build     # muss fehlerfrei durchlaufen
+npm run preview   # gebaute Seite testen
+```
+
+## Harte Regeln
+
+- **Kein Quellcode, keine Repos, keine Screenshots aus privaten Projekten.** Einziger Code-Link: `github.com/maximilian467/n8n-automation-portfolio`.
+- **Kein Foto.** `_private/` wird nie verwendet oder veröffentlicht.
+- **Nichts erfinden:** keine Zahlen, Platzierungen, Nutzerzahlen, Firmen oder Zeiträume, die nicht in `docs/CONTENT.md` stehen. Der 4. Platz beim Hackathon wird nicht erwähnt.
+- KUKA wird nur als Arbeitgeber im dualen Studium und beim 3D-Druck-Projekt genannt. Kein KUKA-Logo, keine KUKA-Farben, nichts, was nach offizieller KUKA-Seite aussieht. Keine Aussagen über Zukunftspläne bei KUKA.
+- Texte klingen wie ein Mensch: erste Person, kurze Sätze, keine Gedankenstriche als Stilmittel, keine Floskeln, keine Emojis. Englisch ist eine natürliche Übersetzung, keine wörtliche.
+- Keine Cookies, kein Tracking, keine externen Requests (Fonts, CDNs, Analytics). Sonst stimmt die Datenschutzerklärung nicht mehr.
+- Die Verbotsliste in `DESIGN.md` Abschnitt 8 gilt ausnahmslos.
+
+## CartPole-Figur
+
+- `public/models/cartpole-policy.json` enthält die echten Gewichte der PPO-Policy (Stable-Baselines3 MlpPolicy), die Maximilian trainiert hat. Forward-Pass: für jede Schicht in `hidden`: `h = tanh(W·h + b)`, dann `logits = action.W·h + action.b`, Aktion = argmax (0 = links, 1 = rechts). Eingabe: `[x, x_dot, theta, theta_dot]`, unnormalisiert.
+- Physik exakt wie Gymnasium CartPole-v1 (Euler, Werte in `physics` im JSON), 50 Schritte/s. Rendering mit `requestAnimationFrame` und festem Zeitschritt.
+- „Stupsen" addiert einen kleinen Impuls auf `theta_dot` (ca. ±0.6 rad/s, zufällige Richtung). Reset, wenn `|theta| > 0.2095` oder `|x| > 2.4`.
+- Geprüft (13.09.2026): Die JS-Umsetzung liefert dieselben Aktionen wie Python, und die Policy hält den Stab in 20 von 20 Läufen 10 Minuten lang, bei einem Stupser alle 5 Sekunden. Fällt der Stab in deiner Umsetzung trotzdem, ist die Umsetzung falsch. Reset trotzdem sauber mit kurzem Fade einbauen.
+- Ohne JS: statisches SVG-Standbild. Mit `prefers-reduced-motion`: angehalten mit Play-Button.
+
+## Skills (`.agents/skills/`)
+
+Reihenfolge der Gewichtung bei Konflikten: `DESIGN.md` > `minimalist-ui` > alles andere.
+
+| Skill | Einsatz |
+|---|---|
+| `image-to-code` | Phase „Entwurf": erst Design-Bilder generieren und analysieren, dann bauen |
+| `minimalist-ui` | Haupt-Stilregeln. Ausnahme: Icons und Pill-Tags laut `DESIGN.md` weglassen |
+| `gpt-taste` | **Nur** die Verbote und Checks (Meta-Labels, Headline-Zeilen, Button-Kontrast). GSAP, Bento, Marquee, picsum, AIDA ignorieren |
+| `high-end-visual-design` | Nur Performance-Guardrails. Glass, Pill-Nav, Doppelrand ignorieren |
+| `playwright-cli` | Screenshots und Browser-Checks (siehe unten) |
+| `web-design-guidelines` | Review am Ende jeder Phase. Lokale Kopie: `docs/guidelines/vercel-web-interface-guidelines.md` |
+| `redesign-existing-projects` | nur für spätere Überarbeitungsrunden |
+
+## Prüfen, bevor etwas „fertig" ist
+
+1. `npm run build` ohne Fehler und Warnungen.
+2. `npm run preview`, dann mit `playwright-cli` Screenshots von `/` und `/en/` in 390×844, 768×1024, 1366×768, 1440×900, jeweils hell und dunkel (`prefers-color-scheme`). Screenshots selbst anschauen und Fehler beheben: Überlauf, horizontales Scrollen, abgeschnittene Texte, Headline > 2 Zeilen im Hero, schlechte Abstände.
+3. Tastatur-Durchlauf: Tab durch die ganze Seite, Fokus immer sichtbar, Sprachumschalter und „Anstupsen" bedienbar.
+4. Review mit `web-design-guidelines` gegen alle geänderten Dateien, Findings beheben.
+5. Texte gegen `docs/CONTENT.md` abgleichen: keine erfundenen Fakten, keine Gedankenstriche, keine Emojis.
+6. Keine externen Requests im Netzwerk-Tab (außer Links, die man anklickt).

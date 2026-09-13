@@ -1,0 +1,21 @@
+{
+  "order": 3,
+  "running": false,
+  "measurements": false,
+  "de": {
+    "title": "Planen-Editor",
+    "description": "Wie spannt man eine Plane so, dass sie keine Falten wirft? Im Editor zeichnet man die Form, setzt Befestigungspunkte und startet die Simulation. Die Plane wird zu einem Feder-Masse-Netz, Falten erscheinen als Linien und werden über einen Faltenindex messbar. Ein Assistent schlägt dann Positionen für die Befestigungspunkte vor, bei denen die Plane glatter liegt.",
+    "date": "2026",
+    "status": "fertig",
+    "role": "Allein",
+    "tech": "JavaScript · Canvas · Feder-Masse-Simulation · eine einzige HTML-Datei"
+  },
+  "en": {
+    "title": "Tarp editor",
+    "description": "How do you mount a tarp so it doesn't wrinkle? In the editor you draw the shape, place mounting points and start the simulation. The tarp becomes a spring-mass mesh, wrinkles show up as lines and are measured with a wrinkle index. An assistant then suggests mounting point positions that make the tarp lie flatter.",
+    "date": "2026",
+    "status": "completed",
+    "role": "Solo",
+    "tech": "JavaScript · Canvas · spring-mass simulation · a single HTML file"
+  }
+}

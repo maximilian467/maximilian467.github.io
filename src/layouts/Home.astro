@@ -1,0 +1,42 @@
+---
+import { getCollection } from 'astro:content';
+import Base from './Base.astro';
+import Hero from '../components/Hero.astro';
+import NowEntry from '../components/NowEntry.astro';
+import ProjectEntry from '../components/ProjectEntry.astro';
+import SkillList from '../components/SkillList.astro';
+import Contact from '../components/Contact.astro';
+import { content } from '../i18n/content';
+import { ui, type Locale } from '../i18n/ui';
+interface Props { lang: Locale; }
+const { lang } = Astro.props;
+const c = content(lang);
+const t = ui[lang];
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+---
+<Base lang={lang}>
+  <Hero lang={lang} />
+  <section id="about" class="section wrap" aria-labelledby="about-title" data-reveal>
+    <div class="about-layout">
+      <div><h2 id="about-title" class="section-title">{t.about}</h2><p class="mono section-note">Bremen</p></div>
+      <div class="prose">{c.about.map(p => <p>{p}</p>)}</div>
+    </div>
+  </section>
+  <section id="now" class="section wrap" aria-labelledby="now-title" data-reveal>
+    <div class="section-heading"><h2 id="now-title" class="section-title">{t.now}</h2></div>
+    <div>{c.now.map(item => <NowEntry {...item} lang={lang} />)}</div>
+  </section>
+  <section id="projects" class="section wrap" aria-labelledby="projects-title" data-reveal>
+    <div class="section-heading"><h2 id="projects-title" class="section-title">{t.projects}</h2><p>{c.intro}</p></div>
+    <div>{projects.map(project => <ProjectEntry project={project} lang={lang} />)}</div>
+  </section>
+  <section id="hackathons" class="section wrap" aria-labelledby="hackathons-title" data-reveal>
+    <div class="section-heading"><h2 id="hackathons-title" class="section-title">{t.hackathons}</h2></div>
+    <article class="entry"><p class="mono">{lang === 'de' ? 'Mai 2026' : 'May 2026'}</p><div class="entry-content"><h3>Smart Region Hackathon Offenburg</h3><p>{lang === 'de' ? 'Daraus entstand Baulify.' : 'This is where Baulify started.'}</p></div></article>
+  </section>
+  <section id="skills" class="section wrap" aria-labelledby="skills-title" data-reveal>
+    <div class="section-heading"><h2 id="skills-title" class="section-title">{t.skills}</h2></div>
+    <SkillList items={c.skills} />
+  </section>
+  <Contact lang={lang} text={c.contact} />
+</Base>

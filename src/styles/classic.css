@@ -1,0 +1,13 @@
+/* Reversible alternative. Content, routes and simulation are shared with the experiment design. */
+[data-design='classic'] .hero h1 em { font-style: normal; color: var(--ink); }
+[data-design='classic'] .section-title { border-left: 0; padding-left: 0; }
+[data-design='classic'] .section-heading,
+[data-design='classic'] .about-layout { grid-template-columns: 180px minmax(0, 1fr); gap: 2.75rem; }
+[data-design='classic'] .datasheet { display: block; padding: 0; background: none; }
+[data-design='classic'] .measurement { display: none; }
+[data-design='classic'] .lab { --lab: var(--paper-2); --lab-ink: var(--ink); --lab-muted: var(--ink-muted); --lab-rule: var(--rule); --lab-accent: var(--accent); }
+[data-design='classic'] .lab-grid { opacity: 0; }
+@media (max-width: 899px) {
+  [data-design='classic'] .section-heading,
+  [data-design='classic'] .about-layout { grid-template-columns: 1fr; }
+}

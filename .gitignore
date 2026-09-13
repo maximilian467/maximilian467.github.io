@@ -1,0 +1,10 @@
+﻿node_modules/
+dist/
+dist-classic/
+.astro/
+_private/
+.env
+.env.*
+.playwright-cli/
+docs/qa/screenshots/
+

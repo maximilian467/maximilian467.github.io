@@ -1,0 +1,21 @@
+{
+  "order": 1,
+  "running": false,
+  "measurements": true,
+  "de": {
+    "title": "Wächter",
+    "description": "Ein Assistent, der durch eine Kamera sieht, zuhört und antwortet. Alles läuft offline auf meinem Laptop, ohne Grafikkarte, ohne Cloud. Eine Bewegungserkennung weckt die Personenerkennung erst, wenn sich etwas tut. Die Spracherkennung bekommt nur Abschnitte, in denen wirklich gesprochen wird, weil Whisper bei Stille sonst Sätze erfindet. Ziel war: Er fängt nach weniger als drei Sekunden an zu sprechen.",
+    "date": "2026",
+    "status": "fertig",
+    "role": "Allein",
+    "tech": "Python · faster-whisper · Piper TTS · lokales Sprachmodell · ONNX / DirectML"
+  },
+  "en": {
+    "title": "Wächter",
+    "description": "An assistant that sees through a camera, listens and talks back. Everything runs offline on my laptop, no GPU, no cloud. Motion detection only wakes the person detector when something actually happens. Speech recognition only gets segments where someone is really talking, because Whisper invents sentences when it hears silence. The goal: it starts speaking in under three seconds.",
+    "date": "2026",
+    "status": "completed",
+    "role": "Solo",
+    "tech": "Python · faster-whisper · Piper TTS · local language model · ONNX / DirectML"
+  }
+}

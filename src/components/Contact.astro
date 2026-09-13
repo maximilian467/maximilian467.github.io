@@ -1,0 +1,15 @@
+---
+import { links, ui, type Locale } from '../i18n/ui';
+interface Props { lang: Locale; text: string; }
+const { lang, text } = Astro.props;
+---
+<section id="contact" class="section wrap" aria-labelledby="contact-title" data-reveal>
+  <div class="about-layout">
+    <h2 class="section-title" id="contact-title">{ui[lang].contact}</h2>
+    <div><p>{text}</p><div class="contact-links">
+      <a href={links.linkedin}>LinkedIn <span aria-hidden="true">↗</span></a>
+      <a href={links.email}>{lang === 'de' ? 'E-Mail' : 'Email'}</a>
+      <a href={links.github}>GitHub <span aria-hidden="true">↗</span></a>
+    </div></div>
+  </div>
+</section>

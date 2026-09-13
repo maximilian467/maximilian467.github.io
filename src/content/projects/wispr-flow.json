@@ -1,0 +1,21 @@
+{
+  "order": 5,
+  "running": false,
+  "measurements": false,
+  "de": {
+    "title": "Mein Wispr-Flow-Klon",
+    "description": "Das Tool, das ich von allen hier am meisten benutze. Tastenkombination drücken, sprechen, nochmal drücken, und der Text steht da, wo der Cursor ist. In Word, im Browser, im Code-Editor. Nachgebaut nach dem Vorbild von Wispr Flow, nur dass alles lokal läuft, nichts kostet und nichts ins Internet schickt.",
+    "date": "2026",
+    "status": "täglich im Einsatz",
+    "role": "Allein",
+    "tech": "Python · faster-whisper (small, int8, CPU) · Windows"
+  },
+  "en": {
+    "title": "My Wispr Flow clone",
+    "description": "The tool I use most out of everything on this page. Press a hotkey, talk, press again, and the text appears wherever the cursor is. In Word, in the browser, in the code editor. Modeled after Wispr Flow, except everything runs locally, costs nothing and sends nothing to the internet.",
+    "date": "2026",
+    "status": "in daily use",
+    "role": "Solo",
+    "tech": "Python · faster-whisper (small, int8, CPU) · Windows"
+  }
+}

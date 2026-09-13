@@ -1,0 +1,21 @@
+---
+import Base from './Base.astro';
+import legal from '../../docs/legal/impressum.md?raw';
+import privacy from '../../docs/legal/datenschutz.md?raw';
+import { marked } from 'marked';
+import { ui, type Locale } from '../i18n/ui';
+import { routes } from '../i18n/utils';
+interface Props { lang: Locale; page: 'legal' | 'privacy'; }
+const { lang, page } = Astro.props;
+const t = ui[lang];
+const source = page === 'legal' ? legal : privacy;
+const localized = source.split(`## ${lang.toUpperCase()}: `)[1]!.split(/\n---/)[0]!;
+const title = localized.split('\n')[0]!.trim();
+const text = localized.slice(localized.indexOf('\n') + 1).trim()
+  .replace(/^### /gm, '## ')
+  .replace(/^\*\*(.+)\*\*\r?$/gm, '## $1');
+const html = await marked.parse(text, { breaks: true, gfm: true });
+---
+<Base lang={lang} page={page} title={title}>
+  <div class="legal-page wrap"><a href={routes[lang].home}>{t.home}</a><h1>{title}</h1><div class="legal-prose" set:html={html} /></div>
+</Base>

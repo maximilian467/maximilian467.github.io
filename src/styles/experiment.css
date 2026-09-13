@@ -1,0 +1,10 @@
+/* Visual decisions for the revised direction. Remove/disable without changing any content or behavior. */
+[data-design='experiment'] .hero h1 em { color: var(--accent-ink); font-style: italic; }
+[data-design='experiment'] .section-title { border-left: 2px solid var(--accent); padding-left: 1.25rem; }
+[data-design='experiment'] .lab {
+  --lab: #1c1b18;
+  --lab-ink: #ece8df;
+  --lab-muted: #bdb7ac;
+  --lab-rule: #34312b;
+  --lab-accent: #e0703f;
+}

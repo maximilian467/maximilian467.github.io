@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Lebenslauf Maximilian Köhlenbeck</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --ink: #1C1B18; --muted: #6A665E; --rule: #DEDAD1; --accent: #B4471D;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fff; }
+  body {
+    width: 210mm; height: 297mm; overflow: hidden; padding: 13mm 16mm 10mm;
+    font-family: "Segoe UI", system-ui, sans-serif; font-size: 9pt; line-height: 1.42; color: var(--ink);
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .serif { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
+  .mono { font-family: Consolas, "Cascadia Mono", ui-monospace, monospace; font-size: 8pt; color: var(--muted); }
+  header { display: flex; justify-content: space-between; align-items: flex-end; gap: 10mm; padding-bottom: 4mm; border-bottom: 1px solid var(--ink); }
+  header > div:first-child { flex: 1; min-width: 0; }
+  h1 { font-size: 26pt; line-height: 1; letter-spacing: -0.01em; }
+  .role { margin-top: 2mm; font-size: 10pt; }
+  .contact { flex: none; text-align: right; line-height: 1.6; }
+  .contact a { color: var(--ink); text-decoration: none; }
+  section { display: grid; grid-template-columns: 34mm 1fr; column-gap: 6mm; padding: 3.2mm 0; border-bottom: 1px solid var(--rule); }
+  section:last-of-type { border-bottom: 0; }
+  h2 { font-size: 12pt; line-height: 1.2; }
+  .entry { display: grid; grid-template-columns: 1fr auto; column-gap: 4mm; }
+  .entry + .entry { margin-top: 2mm; }
+  .entry h3 { font-size: 9.8pt; font-weight: 600; }
+  .entry .when { text-align: right; white-space: nowrap; }
+  .entry p, .entry .tech { grid-column: 1 / -1; }
+  .entry p { margin-top: 0.6mm; }
+  .entry .tech { margin-top: 0.4mm; }
+  .dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); margin-right: 4px; vertical-align: 1px; }
+  dl { display: grid; grid-template-columns: 38mm 1fr; row-gap: 1.2mm; }
+  dt { font-weight: 600; }
+  .intro { max-width: 125mm; }
+  .todo { background: #FBF3DB; color: #956400; padding: 0 3px; border-radius: 2px; }
+  footer { margin-top: 4mm; }
+</style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1 class="serif">Maximilian Köhlenbeck</h1>
+      <div class="role">Dualer Student Automatisierungstechnik · KUKA &amp; Hochschule Bremen</div>
+    </div>
+    <div class="contact mono">
+      Bremen<br>
+      <a href="mailto:m.koehlenbeck@koehlenbeck.com">m.koehlenbeck@koehlenbeck.com</a><br>
+      <a href="https://maximilian467.github.io">maximilian467.github.io</a><br>
+      <a href="https://github.com/maximilian467">github.com/maximilian467</a><br>
+      <a href="https://www.linkedin.com/in/maximilian-k%C3%B6hlenbeck">linkedin.com/in/maximilian-köhlenbeck</a>
+    </div>
+  </header>
+
+  <section>
+    <h2 class="serif">Profil</h2>
+    <p class="intro">Ich studiere dual Automatisierungstechnik und baue nebenbei Dinge mit KI-Agenten, meistens schnell und meistens, weil mich ein Problem nicht loslässt. Am meisten interessiert mich Robotik, Automatisierung und Physical AI. Gerade bringe ich mir bei, wie man Modelle selbst trainiert.</p>
+  </section>
+
+  <section>
+    <h2 class="serif">Ausbildung &amp; Praxis</h2>
+    <div>
+      <div class="entry">
+        <h3>Duales Studium Automatisierungstechnik</h3>
+        <span class="when mono">10/2024 bis 12/2027 (voraussichtlich)</span>
+        <p>Hochschule Bremen (Theorie) und KUKA (Praxisphasen)</p>
+      </div>
+      <div class="entry">
+        <h3>Abitur</h3>
+        <span class="when mono">2024</span>
+        <p>Gymnasium Vegesack, Bremen</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="serif">Projekte</h2>
+    <div>
+      <div class="entry">
+        <h3>Wächter: lokaler Sprach- und Vision-Assistent</h3>
+        <span class="when mono">2026</span>
+        <p>Sieht per Kamera, hört zu und antwortet, komplett offline auf einem Laptop ohne GPU. Beginnt nach ~2,6 s zu sprechen (Ziel &lt; 3 s), Personenerkennung 17 ms pro Bild.</p>
+        <div class="tech mono">Python · faster-whisper · Piper TTS · lokales LLM · ONNX/DirectML</div>
+      </div>
+      <div class="entry">
+        <h3>Baulify: Koordination von Tiefbaumaßnahmen (Team)</h3>
+        <span class="when mono">seit 05/2026</span>
+        <p>Entstanden beim Smart Region Hackathon Offenburg, danach weiterentwickelt: Konflikterkennung auf der Karte, KI-Erfassung aus PDFs und Freitext, Freigaben per Link ohne Account.</p>
+        <div class="tech mono">Next.js · TypeScript · PostgreSQL · Drizzle · MapLibre · LLM</div>
+      </div>
+      <div class="entry">
+        <h3>3D-Drucker: Düsen-Offset-Kalibrierung (mit KUKA)</h3>
+        <span class="when mono"><span class="dot"></span>läuft</span>
+        <p>Optimierung eines 3D-Druckers mit selbst eingebauter Kalibrierung des Düsen-Offsets.</p>
+      </div>
+      <div class="entry">
+        <h3>Planen-Editor: Faltensimulation</h3>
+        <span class="when mono">2026</span>
+        <p>Feder-Masse-Simulation einer Plane mit Faltenindex und Assistent, der Befestigungspunkte für eine glattere Plane vorschlägt.</p>
+        <div class="tech mono">JavaScript · Canvas</div>
+      </div>
+      <div class="entry">
+        <h3>Reinforcement Learning: CartPole bis Isaac Lab</h3>
+        <span class="when mono"><span class="dot"></span>läuft</span>
+        <p>PPO-Agenten für CartPole und das doppelte Pendel trainiert, jetzt Einstieg in NVIDIA Isaac Lab.</p>
+        <div class="tech mono">Python · Gymnasium · Stable-Baselines3 · Isaac Lab</div>
+      </div>
+      <div class="entry">
+        <h3>Lokale Spracheingabe (Wispr-Flow-Klon) und n8n-Automationen</h3>
+        <span class="when mono">2026</span>
+        <p>Diktat per Hotkey in jedes Programm, offline. KI-Automationen für Rechnungen, E-Mail-Triage und Preisbeobachtung mit eingebauter Prüfung.</p>
+        <div class="tech mono">faster-whisper · n8n · LLM-APIs</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="serif">Hackathons</h2>
+    <div class="entry">
+      <h3>Smart Region Hackathon Offenburg</h3>
+      <span class="when mono">05/2026</span>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="serif">Kenntnisse</h2>
+    <dl>
+      <dt>Sehr sicher</dt><dd>Agentisches Coding mit Claude Code und Codex</dd>
+      <dt>Damit gebaut</dt><dd>Python, TypeScript/Next.js, Astro, n8n, Ollama, faster-whisper</dd>
+      <dt>Robotik &amp; Simulation</dt><dd>Gymnasium, Stable-Baselines3, NVIDIA Isaac Lab (Einstieg)</dd>
+      <dt>Hardware</dt><dd>3D-Druck</dd>
+      <dt>Sprachen</dt><dd>Deutsch (Muttersprache), Englisch (C1)</dd>
+    </dl>
+  </section>
+
+  <footer class="mono">Stand: September 2026</footer>
+</body>
+</html>

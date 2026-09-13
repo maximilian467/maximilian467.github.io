@@ -1,0 +1,21 @@
+---
+import CartPole from './CartPole.astro';
+import { content } from '../i18n/content';
+import { links, ui, type Locale } from '../i18n/ui';
+interface Props { lang: Locale; }
+const { lang } = Astro.props;
+const c = content(lang);
+---
+<section class="hero wrap" aria-labelledby="name">
+  <div class="hero-copy">
+    <h1 id="name" translate="no"><span>Maximilian</span> <em>Köhlenbeck</em></h1>
+    <p class="intro">{c.hero}</p>
+    <p class="hero-meta mono">{c.meta}</p>
+    <div class="hero-links">
+      <a href={links.github}>GitHub <span aria-hidden="true">↗</span></a>
+      <a href={links.linkedin}>LinkedIn <span aria-hidden="true">↗</span></a>
+      <a class="cv-link" href={links.cv}>{ui[lang].cv}</a>
+    </div>
+  </div>
+  <CartPole lang={lang} caption={c.caption} />
+</section>

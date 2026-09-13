@@ -1,0 +1,24 @@
+---
+import { ui, type Locale } from '../i18n/ui';
+interface Props { lang: Locale; }
+const { lang } = Astro.props;
+const de = lang === 'de';
+const rows = de ? [
+  ['Zeit bis zum ersten gesprochenen Wort', '~2,6 s (Ziel < 3 s)'],
+  ['Personenerkennung', '17,3 ms pro Bild (58 fps)'],
+  ['Sprachmodell', '17–19 Token/s'],
+  ['Hardware', 'Intel i7-13700H, 32 GB RAM, keine dedizierte GPU'],
+] : [
+  ['Time to first spoken word', '~2.6 s (target < 3 s)'],
+  ['Person detection', '17.3 ms per frame (58 fps)'],
+  ['Language model', '17–19 tokens/s'],
+  ['Hardware', 'Intel i7-13700H, 32 GB RAM, no dedicated GPU'],
+];
+---
+<div class="datasheet">
+  <div class="measurement" aria-hidden="true"><strong>{de ? '~2,6 s' : '~2.6 s'}</strong><span class="mono">{ui[lang].firstWord}</span></div>
+  <table class="mono">
+    <caption class="sr-only">{ui[lang].datasheet}</caption>
+    <tbody>{rows.map(([label, value]) => <tr><th scope="row">{label}</th><td>{value}</td></tr>)}</tbody>
+  </table>
+</div>
