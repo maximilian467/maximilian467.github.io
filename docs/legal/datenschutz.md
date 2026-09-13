@@ -30,6 +30,8 @@ Dabei können Daten in die USA übertragen werden. GitHub ist nach dem EU-US Dat
 
 Alle Schriftarten sind lokal auf dieser Website eingebunden. Beim Aufruf wird keine Verbindung zu Google oder anderen Font-Anbietern hergestellt.
 
+Wenn du zwischen hellem und dunklem Design wechselst, wird nur diese Auswahl lokal in deinem Browser gespeichert (Local Storage, Schlüssel „portfolio-theme“). Sie wird nicht an mich oder Dritte übertragen. Du kannst sie über die Website-Daten deines Browsers löschen.
+
 ### 5. Links zu anderen Websites
 
 Diese Seite enthält Links zu GitHub und LinkedIn. Erst wenn du einen Link anklickst, verlässt du diese Website, und es gelten die Datenschutzbestimmungen des jeweiligen Anbieters.
@@ -71,6 +73,8 @@ Legal basis: Art. 6(1)(f) GDPR, based on my legitimate interest in providing the
 ### 4. Fonts
 
 All fonts are hosted locally. No connection to Google or other font providers is made.
+
+If you switch between light and dark themes, only that preference is saved locally in your browser (Local Storage, key “portfolio-theme”). It is not sent to me or third parties. You can delete it by clearing this website's data in your browser.
 
 ### 5. Links to other websites
 

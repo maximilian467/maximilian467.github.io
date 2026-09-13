@@ -15,7 +15,7 @@ Stand: 13. September 2026. Grundlage: Nutzerfeedback nach Phase 2. Der Nutzer ha
 | Native Ankersprünge | Vermeidet kurzzeitig nicht sichtbaren Tastaturfokus bei weichem Scrollen | `src/styles/base.css` |
 | Lokale Fontsource-Pakete und statische Seiten | Keine externen Ladeanfragen, kein Framework im Browser | `src/layouts/Base.astro`, `astro.config.mjs` |
 | Node 24 für Entwicklung und Deployment | Unterstützte lokale Version; mindestens Node 22.12 erforderlich | `package.json`, `.github/workflows/deploy.yml` |
-| GitHub-Pages-Workflow vorbereitet, kein Push | Entspricht dem Auftrag; Veröffentlichung bleibt beim Nutzer | README-Schritte ausführen |
+| GitHub Pages unter maximilian467.github.io | Veröffentlichung vom Nutzer inzwischen ausdrücklich gewünscht | Push auf `main` startet den Workflow; frühere Änderungen per Git-Revert zurücknehmen |
 
 ## Rückwechsel ohne Umbau
 
@@ -25,21 +25,19 @@ Die Variante ist eine Umsetzung der ursprünglichen Gestaltungsregeln, kein pixe
 
 Die Dateigrenzen sind absichtlich klein: UI-Strings und Routen unter `src/i18n/`, ein Projekt pro JSON-Datei, jede Sektion als Komponente, reine Simulationslogik unter `src/lib/cartpole.ts`, Darstellung getrennt davon in `CartPole.astro`.
 
-## Offen: Astro-Version
+## Freigegeben: Astro-Update und Farbschalter
 
-Der explizit vorgegebene Stand ist Astro 6. Installiert ist die letzte im Paketregister verfügbare 6er-Version, 6.4.8. `npm audit` meldet weiterhin ein betroffenes direktes Paket mit Einstufung „critical“. Darunter fallen mehrere Astro-Advisories. Es wurde nicht behauptet, der Paketstand sei frei von Sicherheitslücken.
+Der Nutzer hat das Sicherheitsupdate ausdrücklich freigegeben. Astro wurde von 6.4.8 auf 7.3.2 aktualisiert. `npm audit` meldet nun keine bekannten Sicherheitslücken. Build, Inhaltsvergleich, CartPole-Tests und Browserprüfungen bestehen nach dem Update. Grundlage: [offizielle Astro-7-Migration](https://docs.astro.build/en/guides/upgrade-to/v7/). Der aktuelle Audit-Snapshot steht in `docs/qa/npm-audit.json`.
 
-Die unabhängig aktualisierbaren Unterabhängigkeiten sharp und esbuild wurden auf korrigierte Versionen gesetzt. Das Audit empfiehlt für Astro einen Wechsel auf 7.3.2. Den Wechsel auf eine andere Hauptversion habe ich wegen der ausdrücklichen Astro-6-Vorgabe nicht still vorgenommen.
+Der Projekt-Introtext wurde auf ausdrücklichen Wunsch in beiden Sprachen entfernt. Der Farbschalter sitzt als kleiner Textbutton in der Kopfzeile. Die Beschriftung nennt das Ziel des nächsten Klicks. Ohne eigene Auswahl gilt das Systemfarbschema; eine eigene Auswahl bleibt über Seiten- und Sprachwechsel erhalten. Dafür wird genau ein Local-Storage-Wert `portfolio-theme` verwendet. Kein Cookie und keine Übertragung. Die Datenschutzerklärung beschreibt dies in beiden Sprachen. Ohne JavaScript bleibt der Button verborgen; ohne verfügbaren Speicher funktioniert das Umschalten weiterhin auf der aktuellen Seite.
 
-Diese Website liefert statische Dateien aus, verwendet keine serverseitigen Endpunkte, View Transitions, hydratisierten Framework-Komponenten, dynamischen Spread-Attributnamen oder Bild-Uploads. Das verringert die Relevanz der gemeldeten Angriffspfade für diese konkrete Website, ersetzt aber keinen korrigierten Paketstand. Empfehlung: Vor öffentlichem Deployment den Wechsel auf Astro 7 freigeben und anschließend Build und Browserprüfungen wiederholen.
-
-Primärquellen: [Astro-Advisory zum AVIF-Pfad](https://github.com/advisories/GHSA-26w7-cxv4-gfx2), [Spread-Attribut-Advisory](https://github.com/advisories/GHSA-f48w-9m4c-m7f5). Der lokale Audit-Snapshot steht in `docs/qa/npm-audit.json`.
+Die CartPole-Experimentfläche bleibt in beiden Farbschemata dunkel. Darstellung, Inhalte und Physik wurden ansonsten beibehalten. Theme-Komponente, Farbvariablen und Designvariante bleiben unabhängig austauschbar.
 
 ## Ehrliche Einschätzung und nächste sinnvolle Verbesserungen
 
 - Die neue Gestaltung hat mehr Charakter; nach dem Hero bleibt die Seite bewusst textbetont. Als nächste Designentscheidung würde ich zuerst den Rhythmus der sechs Projekteinträge mit dem Nutzer beurteilen, nicht weitere Effekte hinzufügen.
 - Auf Mobil folgt die vollständige Simulation unterhalb des ersten Bildschirms. Text und Links sind vorher lesbar. Das vermeidet zu kleine Schrift und einen zu flachen Simulationsbereich.
-- Keine offenen Platzhalter für Name, Kontakt, Lebenslauf, Projekttexte oder Rechtsseiten. Die Veröffentlichung auf GitHub steht noch aus.
+- Keine offenen Platzhalter für Name, Kontakt, Lebenslauf, Projekttexte oder Rechtsseiten. Repository und GitHub-Pages-Konfiguration sind eingerichtet.
 - Der Browser-Testbetrieb war Chromium-basiert. Ein echter Safari-/iOS-Durchlauf und ein echter Hintergrundtab-Test in einem sichtbaren Browser bleiben zusätzliche Geräteprüfungen. Die Reaktion auf das Visibility-Signal wurde separat erfolgreich geprüft.
 
 ## Entwürfe und technische Grundlage

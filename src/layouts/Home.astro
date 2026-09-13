@@ -27,7 +27,7 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
     <div>{c.now.map(item => <NowEntry {...item} lang={lang} />)}</div>
   </section>
   <section id="projects" class="section wrap" aria-labelledby="projects-title" data-reveal>
-    <div class="section-heading"><h2 id="projects-title" class="section-title">{t.projects}</h2><p>{c.intro}</p></div>
+    <div class="section-heading"><h2 id="projects-title" class="section-title">{t.projects}</h2></div>
     <div>{projects.map(project => <ProjectEntry project={project} lang={lang} />)}</div>
   </section>
   <section id="hackathons" class="section wrap" aria-labelledby="hackathons-title" data-reveal>

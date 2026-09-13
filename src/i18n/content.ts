@@ -29,12 +29,11 @@ export function content(lang: Locale) {
     const match = l.match(/^- \*\*(.+?):\*\* (.+)$/)!;
     return { title: match[1]!, body: match[2]! };
   });
-  const intro = section('Projekte').match(new RegExp(`\\*\\*Intro ${lang.toUpperCase()}:\\*\\* (.+)`))![1]!;
   const contact = section('Kontakt').match(new RegExp(`\\*\\*${lang.toUpperCase()}:\\*\\* (.+)`))![1]!;
   return {
     hero: field(hero, lang === 'de' ? 'Satz' : 'Sentence'),
     meta: field(hero, lang === 'de' ? 'Metazeile' : 'Meta line'),
     caption: field(hero, lang === 'de' ? 'Bildunterschrift CartPole' : 'Caption'),
-    about: localized(section('Über mich'), lang).split(/\n\s*\n/), now, skills, intro, contact,
+    about: localized(section('Über mich'), lang).split(/\n\s*\n/), now, skills, contact,
   };
 }

@@ -1,6 +1,6 @@
 # Maximilian Köhlenbeck
 
-Statische persönliche Website mit Astro 6, Deutsch und Englisch. Lokale Schriften, reines CSS, echte CartPole-Policy im Browser.
+Statische persönliche Website mit Astro 7, Deutsch und Englisch. Lokale Schriften, reines CSS, echte CartPole-Policy im Browser.
 
 ## Lokal starten
 
@@ -14,6 +14,8 @@ npm run dev
 Produktionsversion prüfen: `npm run build`, danach `npm run preview`. Simulation prüfen: `npm run test:policy`.
 
 ## Gestaltung schnell zurückwechseln
+
+Besucher können über den Textbutton in der Kopfzeile Hell oder Dunkel wählen. Ohne eigene Auswahl folgt die Website dem Betriebssystem. Die Auswahl wird ausschließlich lokal unter `portfolio-theme` gespeichert. Die dunkle CartPole-Fläche bleibt erhalten. Umsetzung: `src/components/ThemeSwitch.astro` und `src/styles/tokens.css`.
 
 Standard ist die überarbeitete Gestaltung `experiment`. In `src/config/design.ts` lässt sich die Standardauswahl ändern. Beide Varianten teilen sich Inhalte, Komponenten, Routen und Simulation.
 
@@ -47,18 +49,20 @@ OG-Bild und Favicon bei Bedarf mit `npm run assets` neu erzeugen. Die Glyphen si
 
 ## Deployment
 
-1. Auf GitHub das Repository `maximilian467/maximilian467.github.io` erstellen, ohne vorab eine README anzulegen.
-2. Unter **Settings → Pages → Build and deployment → Source** die Option **GitHub Actions** wählen.
-3. Lokal den Remote hinzufügen und den vorbereiteten Commit pushen:
+Das Repository `maximilian467/maximilian467.github.io` ist angelegt, der Remote `origin` gesetzt und GitHub Pages auf **GitHub Actions** eingestellt. Zieladresse: https://maximilian467.github.io/.
+
+Für spätere Änderungen lokal prüfen, committen und veröffentlichen:
 
 ```sh
-git remote add origin https://github.com/maximilian467/maximilian467.github.io.git
-git push -u origin main
+npm run build
+git add <geänderte-dateien>
+git commit -m "Describe the change"
+git push origin main
 ```
 
-Der Workflow `.github/workflows/deploy.yml` baut mit `withastro/action` und veröffentlicht auf GitHub Pages. Es ist kein `base` gesetzt. Dieser Arbeitsstand wurde lokal committed, nicht gepusht.
+Der Workflow `.github/workflows/deploy.yml` baut mit `withastro/action` und veröffentlicht auf GitHub Pages. Es ist kein `base` gesetzt. Den Fortschritt zeigt der Actions-Tab des Repositories. Eine eigene Domain oder ein zusätzlicher Hosting-Anbieter ist nicht nötig.
 
-Der festgelegte Astro-6-Stand hat einen verbleibenden npm-Audit-Befund. Details und Einordnung stehen in [docs/DECISIONS.md](docs/DECISIONS.md).
+Nach dem freigegebenen Update auf Astro 7.3.2 meldet `npm audit` keine bekannten Sicherheitslücken (13. September 2026).
 
 ## Prüfungen
 

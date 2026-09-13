@@ -15,6 +15,7 @@ Der Nutzer wünscht ausdrücklich mehr visuellen Charakter und einen professione
 - Der echte Wächter-Messwert ~2,6 s darf als typografischer Schwerpunkt neben der zugänglichen Datenblatt-Tabelle erscheinen. Die Messwertfläche verwendet --paper-2, ohne Kartenrand oder Rundung.
 - Keine erfundenen Zahlen, dekorativen Randtexte, Fotos, Karten-Grids, Pills, GSAP oder Effekthintergründe. Farbkontrast, gute Abstände und echte Interaktion tragen die Überarbeitung.
 - CONTENT.md enthält die überarbeiteten Texte in beiden Sprachen. Keine neuen biografischen Fakten.
+- Weiteres Nutzerfeedback: kein Introtext im Projektabschnitt. Ein Textbutton in der Kopfzeile wechselt zwischen Hell und Dunkel. Ohne gespeicherte Auswahl gilt das Systemfarbschema; eine ausdrücklich gewählte Darstellung wird lokal gespeichert. Die Experimentfläche bleibt in beiden Modi dunkel.
 
 ---
 

@@ -1,5 +1,7 @@
 # Abschlussprüfung
 
+Nachprüfung mit Astro 7.3.2 und Farbschalter: Build, Inhaltsvergleich und alle drei Policy-Tests bestanden. Alle 16 Bildschirm-/Sprach-/Farbkombinationen erneut aufgenommen und visuell geprüft, ohne Überlauf oder Accessibility-Findings. Beide Tastaturdurchläufe umfassen jetzt 20 Ziele. `theme-checks.json` bestätigt manuelle Auswahl, Tastatur, System-Fallback, Seiten-/Sprachwechsel, blockierten Speicher und Verhalten ohne JavaScript. Review der geänderten Komponenten gegen die lokalen Web-Interface-Guidelines: keine offenen Findings. `npm-audit.json` enthält jetzt null bekannte Sicherheitslücken. Der nachfolgende Lighthouse-Bericht dokumentiert den früheren Gestaltungsstand vor dem neuen Schalter.
+
 Stand: 13. September 2026. Geprüft wird die statisch gebaute Website, nicht der Entwicklungsserver.
 
 ## Build und Inhalt

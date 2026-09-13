@@ -83,10 +83,7 @@ I am particularly interested in AI systems that interact with their surroundings
 
 ## Projekte
 
-Alle Projekte sind mit KI-Agenten gebaut. Das darf und soll auf der Seite stehen (einmal im Abschnitt, nicht bei jedem Projekt wiederholen).
-
-**Intro DE:** Alles hier habe ich mit KI-Agenten gebaut. Den Quellcode gibt es nur, wo er öffentlich sein darf.
-**Intro EN:** I built everything here with AI agents. Source code is linked only where it can be public.
+Kein Intro im Projektabschnitt. Die Arbeitsweise mit KI-Agenten wird bereits unter „Über mich“ beschrieben. Quellcode wird weiterhin nur verlinkt, wenn er öffentlich sein darf.
 
 Reihenfolge wie unten.
 

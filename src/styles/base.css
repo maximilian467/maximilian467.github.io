@@ -89,7 +89,7 @@ tr:last-child > * { border-bottom: 0; }
   .site-header { flex-wrap: wrap; gap: .25rem; padding-top: .75rem; }
   .navigation { display: contents; }
   .language { order: 1; margin: 0; }
-  .anchors { order: 2; width: 100%; justify-content: space-between; gap: .75rem; }
+  .anchors { order: 2; width: calc(100% - 5.5rem); justify-content: space-between; gap: .75rem; }
   .hero { grid-template-columns: 1fr; gap: 2.5rem; padding-block: 3rem 4rem; }
   .hero-copy { max-width: 620px; }
   .hero h1 { font-size: clamp(3rem, 8.5vw, 4.5rem); }

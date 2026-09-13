@@ -1,5 +1,5 @@
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
   --paper: #f6f4ef; --paper-2: #efece5; --ink: #1c1b18;
   --ink-muted: #6a665e; --rule: #dedad1; --accent: #b4471d; --accent-ink: #8f3614;
   --lab: #1c1b18; --lab-ink: #ece8df; --lab-muted: #bdb7ac; --lab-rule: #34312b; --lab-accent: #e0703f;
@@ -10,5 +10,6 @@
   --section-space: clamp(5rem, 10vw, 8rem);
 }
 @media (prefers-color-scheme: dark) {
-  :root { --paper: #151412; --paper-2: #1c1b18; --ink: #ece8df; --ink-muted: #9c978c; --rule: #2e2c28; --accent: #e0703f; --accent-ink: #e88a5e; }
+  :root:not([data-theme='light']) { color-scheme: dark; --paper: #151412; --paper-2: #1c1b18; --ink: #ece8df; --ink-muted: #9c978c; --rule: #2e2c28; --accent: #e0703f; --accent-ink: #e88a5e; }
 }
+:root[data-theme='dark'] { color-scheme: dark; --paper: #151412; --paper-2: #1c1b18; --ink: #ece8df; --ink-muted: #9c978c; --rule: #2e2c28; --accent: #e0703f; --accent-ink: #e88a5e; }

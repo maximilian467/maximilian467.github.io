@@ -10,13 +10,13 @@ Persönliche Website von Maximilian Köhlenbeck. Ein Lebenslauf zum Durchklicken
 
 ## Stack
 
-- **Astro 6**, komplett statisch (`output: 'static'`), Node ≥ 22
+- **Astro 7** (Sicherheitsupdate vom Nutzer freigegeben), komplett statisch (`output: 'static'`), Node ≥ 22.12
 - TypeScript strict
 - Styling: **reines CSS** mit Custom Properties aus `DESIGN.md` (kein Tailwind, keine UI-Library)
 - Schriften selbst gehostet: Instrument Serif, Geist, Geist Mono (Fontsource oder Astro Fonts API)
 - i18n: Astros eingebautes Routing, `defaultLocale: 'de'`, `locales: ['de', 'en']`, `prefixDefaultLocale: false` → `/` Deutsch, `/en/` Englisch
 - Rechtsseiten: `/impressum`, `/datenschutz`, `/en/legal-notice`, `/en/privacy`
-- Client-JavaScript nur für: CartPole-Figur, Einblend-Animation. Keine Frameworks (kein React), Vanilla TS in `<script>`.
+- Client-JavaScript nur für: CartPole-Figur, Einblend-Animation und den vom Nutzer gewünschten Hell-/Dunkel-Schalter. Keine Frameworks (kein React), Vanilla TS in `<script>`.
 - Hosting: **GitHub Pages** unter `https://maximilian467.github.io` (Repo `maximilian467/maximilian467.github.io`), Deploy per GitHub Actions mit `withastro/action`. `site: 'https://maximilian467.github.io'`, kein `base`.
 
 ## Struktur (Vorschlag)

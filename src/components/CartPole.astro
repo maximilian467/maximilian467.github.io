@@ -169,6 +169,7 @@ const t = ui[lang];
       document.addEventListener('visibilitychange', sync);
       reduced.addEventListener('change', () => { if (reduced.matches) paused = true; sync(); });
       matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { colors(); draw(); });
+      window.addEventListener('themechange', () => { colors(); draw(); });
       new ResizeObserver(resize).observe(canvas);
       new IntersectionObserver(entries => { inView = entries[0]!.isIntersecting; sync(); }).observe(root);
       window.addEventListener('resize', resize);

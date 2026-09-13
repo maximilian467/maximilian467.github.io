@@ -1,0 +1,52 @@
+---
+import type { Locale } from '../i18n/ui';
+interface Props { lang: Locale; }
+const { lang } = Astro.props;
+---
+<button type="button" class="theme-switch" data-theme-switch
+  data-light={lang === 'de' ? 'Hell' : 'Light'}
+  data-dark={lang === 'de' ? 'Dunkel' : 'Dark'}
+  data-light-label={lang === 'de' ? 'Zum hellen Design wechseln' : 'Switch to light theme'}
+  data-dark-label={lang === 'de' ? 'Zum dunklen Design wechseln' : 'Switch to dark theme'} hidden>
+  {lang === 'de' ? 'Hell' : 'Light'}
+</button>
+<style>
+  .theme-switch { min-width: 4.5rem; min-height: 44px; padding: .5rem .6rem; border: 1px solid var(--rule); border-radius: 4px; background: transparent; font-size: .8125rem; }
+  .theme-switch:hover { color: var(--accent-ink); border-color: var(--accent-ink); }
+  @media (max-width: 899px) { .theme-switch { order: 3; margin-block: .25rem; } }
+</style>
+<script>
+  const button = document.querySelector<HTMLButtonElement>('[data-theme-switch]');
+  const system = matchMedia('(prefers-color-scheme: dark)');
+  const root = document.documentElement;
+  function currentTheme() {
+    return root.dataset.theme ?? (system.matches ? 'dark' : 'light');
+  }
+  function update() {
+    if (!button) return;
+    const dark = currentTheme() === 'dark';
+    button.textContent = (dark ? button.dataset.light : button.dataset.dark)!;
+    button.setAttribute('aria-label', (dark ? button.dataset.lightLabel : button.dataset.darkLabel)!);
+    for (const meta of document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]')) {
+      meta.content = dark ? '#151412' : '#F6F4EF';
+    }
+    window.dispatchEvent(new Event('themechange'));
+  }
+  if (button) {
+    update();
+    button.hidden = false;
+    button.addEventListener('click', () => {
+      const theme = currentTheme() === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = theme;
+      try { localStorage.setItem('portfolio-theme', theme); } catch { /* Still works when storage is unavailable. */ }
+      update();
+    });
+    system.addEventListener('change', update);
+    window.addEventListener('storage', event => {
+      if (event.key !== 'portfolio-theme' && event.key !== null) return;
+      if (event.newValue === 'light' || event.newValue === 'dark') root.dataset.theme = event.newValue;
+      else delete root.dataset.theme;
+      update();
+    });
+  }
+</script>
