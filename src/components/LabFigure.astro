@@ -1,7 +1,8 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 // Experiment surface for the hero demo. A demo supplies its static SVG, its live readouts and its own
-// script (canvas drawing, [data-nudge], [data-toggle], [data-message]). CartPole.astro is the reference.
+// script (canvas drawing, [data-nudge], [data-toggle], [data-message]) and optionally a selector row.
+// DoublePendulum.astro is the reference.
 interface Props extends HTMLAttributes<'figure'> {
   environment: string; algorithm: string; caption: string; label: string;
   nudge: string; nudgeLabel: string; pause: string; loading: string; staticText: string;
@@ -16,6 +17,7 @@ const { environment, algorithm, caption, label, nudge, nudgeLabel, pause, loadin
       <canvas width="960" height="720" aria-hidden="true" hidden></canvas>
       <button class="lab-hit" aria-label={nudgeLabel} title={nudgeLabel} hidden></button>
     </div>
+    <slot name="selector" />
     <div class="lab-bottom">
       <div class="readouts mono" aria-hidden="true" hidden><slot name="readouts" /></div>
       <div class="lab-controls" hidden><button data-nudge>{nudge}</button><button data-toggle>{pause}</button></div>

@@ -1,0 +1,282 @@
+---
+import LabFigure from './LabFigure.astro';
+import { ui, type Locale } from '../i18n/ui';
+interface Props { lang: Locale; caption: string; }
+const { lang, caption } = Astro.props;
+const t = ui[lang];
+// Shared geometry for the still image and the canvas: 480 × 360 units, 90 units per metre.
+const W = 480, S = 90, pivotY = 180, railY = pivotY + 16, L = .6 * S;
+const up = 0, down = Math.PI;
+const poses = [[up, up], [up, down], [down, up], [down, down]] as const;
+const point = (x: number, y: number, phi: number, length: number) => [x + length * Math.sin(phi), y - length * Math.cos(phi)] as const;
+const ticks = [-2, -1.5, -1, -.5, 0, .5, 1, 1.5, 2].map(m => `M${W / 2 + m * S} ${railY - 3}V${railY + 3}`).join('')
+  + [-2.3, 2.3].map(m => `M${W / 2 + m * S} ${railY - 7}V${railY + 7}`).join('');
+// Still image: up · up, slightly off target so the dashed target pose stays visible.
+const [s1x, s1y] = point(240, pivotY, .07, L), [s2x, s2y] = point(s1x, s1y, -.06, L);
+// Pictograms: tilted a little so the four poses stay distinguishable where the poles overlap.
+const icon = (phase: number) => {
+  const [a, b] = poses[phase]!;
+  const [jx, jy] = point(20, 20, a + .28, 9), [tx, ty] = point(jx, jy, b - .5, 9);
+  return { lower: `M20 20L${jx.toFixed(2)} ${jy.toFixed(2)}`, upper: `M${jx.toFixed(2)} ${jy.toFixed(2)}L${tx.toFixed(2)} ${ty.toFixed(2)}`, jx, jy };
+};
+---
+<LabFigure environment="Double CartPole" algorithm="TQC" caption={caption} label={t.figure}
+  nudge={t.nudge} nudgeLabel={t.nudgeLabel} pause={t.pause} loading={t.loading} staticText={t.staticFigure}
+  data-double-pendulum data-lang={lang} data-play={t.play} data-pause={t.pause} data-error={t.unavailable}
+  data-target={t.target} data-stable={t.stable} data-moving={t.moving} data-poses={JSON.stringify(t.poses)}>
+  <svg slot="still" viewBox="0 0 480 360" role="img" aria-label={t.figure}>
+    <defs><pattern id="lab-grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="var(--lab-rule)" stroke-width=".7" /></pattern></defs>
+    <rect class="lab-grid" width="480" height="360" fill="url(#lab-grid)" />
+    <path d={`M${W / 2 - 2.4 * S} ${railY}H${W / 2 + 2.4 * S}${ticks}`} stroke="var(--lab-muted)" fill="none" />
+    <path d={`M240 ${pivotY}V${pivotY - 2 * L}`} stroke="var(--lab-muted)" stroke-dasharray="4 4" />
+    <g fill="none" stroke="var(--lab-ink)" stroke-width="1.5"><rect x="218" y={pivotY - 8} width="44" height="16" /><circle cx="228" cy={pivotY + 12} r="4" /><circle cx="252" cy={pivotY + 12} r="4" /></g>
+    <path d={`M240 ${pivotY}L${s1x} ${s1y}`} stroke="var(--lab-accent)" stroke-width="3" />
+    <path d={`M${s1x} ${s1y}L${s2x} ${s2y}`} stroke="var(--lab-ink)" stroke-width="2" />
+    <circle cx="240" cy={pivotY} r="3" fill="var(--lab-ink)" /><circle cx={s1x} cy={s1y} r="2.5" fill="var(--lab-ink)" />
+  </svg>
+  <div slot="selector" class="poses" role="radiogroup" aria-label={t.poseGroup} data-pose-group hidden>
+    {t.poses.map((label, phase) => {
+      const shape = icon(phase);
+      return (
+        <button type="button" role="radio" aria-checked={phase === 3 ? 'true' : 'false'} tabindex={phase === 3 ? 0 : -1} data-pose={phase}>
+          <svg viewBox="0 0 40 40" aria-hidden="true">
+            <rect x="14.5" y="18" width="11" height="4" fill="none" stroke="currentColor" stroke-width="1" />
+            <path d={shape.lower} stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
+            <path d={shape.upper} stroke="currentColor" stroke-width="1.3" stroke-linecap="round" />
+            <circle cx={shape.jx} cy={shape.jy} r="1.5" fill="currentColor" />
+          </svg>
+          <span class="mono">{label}</span>
+        </button>
+      );
+    })}
+  </div>
+  <Fragment slot="readouts"><span data-target-readout></span><span data-status></span><span data-phi1></span><span data-phi2></span><span data-x></span></Fragment>
+</LabFigure>
+<style>
+  .poses { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: .35rem 1rem 0; border-top: 1px solid var(--lab-rule); }
+  .poses button { display: flex; flex-direction: column; align-items: center; gap: .1rem; min-height: 44px; padding: .45rem 0 .5rem; border: 0; background: none; color: var(--lab-muted); cursor: pointer; }
+  .poses svg { width: 2.25rem; height: 2.25rem; transition: color 150ms; }
+  /* Inherit the lab colour; the global .mono class would otherwise use the page's muted ink. */
+  .poses span { color: inherit; font-size: .6875rem; letter-spacing: 0; white-space: nowrap; text-underline-offset: .3em; transition: color 150ms; }
+  .poses button:hover, .poses button:hover span { color: var(--lab-accent); }
+  .poses [aria-checked='true'] svg { color: var(--lab-accent); }
+  .poses [aria-checked='true'] span { color: var(--lab-ink); text-decoration: underline 1px; }
+  @media (max-width: 479px) {
+    .poses { margin-inline: .5rem; }
+    .poses span { font-size: .625rem; letter-spacing: -.02em; }
+  }
+</style>
+<script>
+  import {
+    act, createNetwork, createSimulation, equilibriumStart, failed, nudge, observe, setTarget, stable, step, wrapAngle, type Policy,
+  } from '../lib/double-pendulum';
+  const root = document.querySelector<HTMLElement>('[data-double-pendulum]');
+  if (root) init(root);
+  async function init(root: HTMLElement) {
+    const canvas = root.querySelector('canvas')!;
+    const context = canvas.getContext('2d');
+    const message = root.querySelector<HTMLElement>('[data-message]')!;
+    if (!context) { message.textContent = root.dataset.error!; return; }
+    try {
+      const response = await fetch('/models/double-pendulum-policy.json');
+      if (!response.ok) throw new Error('Policy unavailable');
+      const policy: Policy = await response.json();
+      const network = createNetwork(policy);
+      const physics = policy.physics, dt = physics.timestep * physics.frameSkip;
+      const sim = createSimulation(policy), obs = new Float32Array(policy.observation.size);
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+      const toggle = root.querySelector<HTMLButtonElement>('[data-toggle]')!;
+      const hit = root.querySelector<HTMLButtonElement>('.lab-hit')!;
+      const group = root.querySelector<HTMLElement>('[data-pose-group]')!;
+      const radios = [...group.querySelectorAll<HTMLButtonElement>('[data-pose]')];
+      const lab = root.querySelector<HTMLElement>('.lab')!;
+      const readout = {
+        target: root.querySelector<HTMLElement>('[data-target-readout]')!, status: root.querySelector<HTMLElement>('[data-status]')!,
+        phi1: root.querySelector<HTMLElement>('[data-phi1]')!, phi2: root.querySelector<HTMLElement>('[data-phi2]')!, x: root.querySelector<HTMLElement>('[data-x]')!,
+      };
+      const poseNames: string[] = JSON.parse(root.dataset.poses!);
+      const classic = document.body.dataset.design === 'classic';
+      equilibriumStart(sim, 3); setTarget(sim, 3);
+      let paused = reduced.matches, autoSwitch = !reduced.matches;
+      let inView = false, frame = 0, last = 0, accumulator = 0, resetAge = -1;
+      let width = 480, height = 360, lastReadout = -1;
+      let arrowPole: 1 | 2 = 1, arrowDirection = 1, arrowUntil = 0;
+      let ink = '', muted = '', rule = '', accent = '';
+      const number = (digits: number) => new Intl.NumberFormat(root.dataset.lang, { minimumFractionDigits: digits, maximumFractionDigits: digits });
+      const angleFormat = number(2), positionFormat = number(2);
+      function colors() {
+        const css = getComputedStyle(lab);
+        ink = css.getPropertyValue(classic ? '--ink' : '--lab-ink').trim();
+        muted = css.getPropertyValue(classic ? '--ink-muted' : '--lab-muted').trim();
+        rule = css.getPropertyValue(classic ? '--rule' : '--lab-rule').trim();
+        accent = css.getPropertyValue(classic ? '--accent' : '--lab-accent').trim();
+      }
+      // Geometry in CSS pixels, matching the still SVG (480 × 360 units, 90 units per metre).
+      function geometry() {
+        const unit = width / 480, scale = 90 * unit, pivotY = 180 * unit, cartX = width / 2 + sim.qpos[0]! * scale;
+        const length = physics.poleLength * scale, phi1 = sim.qpos[1]!, phi2 = phi1 + sim.qpos[2]!;
+        const jointX = cartX + length * Math.sin(phi1), jointY = pivotY - length * Math.cos(phi1);
+        return { unit, scale, pivotY, cartX, length, jointX, jointY, tipX: jointX + length * Math.sin(phi2), tipY: jointY - length * Math.cos(phi2) };
+      }
+      function draw() {
+        const ctx = context!;
+        ctx.clearRect(0, 0, width, height);
+        const g = geometry(), u = g.unit, railY = g.pivotY + 16 * u;
+        if (!classic) {
+          ctx.strokeStyle = rule; ctx.lineWidth = .6;
+          ctx.beginPath();
+          for (let x = 0; x <= width; x += 24 * u) { ctx.moveTo(x, 0); ctx.lineTo(x, height); }
+          for (let y = 0; y <= height; y += 24 * u) { ctx.moveTo(0, y); ctx.lineTo(width, y); }
+          ctx.stroke();
+        }
+        ctx.strokeStyle = muted; ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(width / 2 - physics.railLimit * g.scale, railY); ctx.lineTo(width / 2 + physics.railLimit * g.scale, railY);
+        for (let m = -2; m <= 2; m += .5) { ctx.moveTo(width / 2 + m * g.scale, railY - 3 * u); ctx.lineTo(width / 2 + m * g.scale, railY + 3 * u); }
+        for (const m of [-physics.xTerminate, physics.xTerminate]) { ctx.moveTo(width / 2 + m * g.scale, railY - 7 * u); ctx.lineTo(width / 2 + m * g.scale, railY + 7 * u); }
+        ctx.stroke();
+        ctx.save();
+        if (resetAge >= 0) ctx.globalAlpha = Math.abs(resetAge - .15) / .15;
+        // Target pose as a dashed hairline at the current cart position.
+        const [t1, t2] = policy.phases[sim.target]!;
+        const ghostX = g.cartX + g.length * Math.sin(t1), ghostY = g.pivotY - g.length * Math.cos(t1);
+        ctx.strokeStyle = muted; ctx.lineWidth = 1; ctx.setLineDash([4 * u, 4 * u]);
+        ctx.beginPath(); ctx.moveTo(g.cartX, g.pivotY); ctx.lineTo(ghostX, ghostY); ctx.lineTo(ghostX + g.length * Math.sin(t2), ghostY - g.length * Math.cos(t2)); ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.strokeStyle = ink; ctx.lineWidth = 1.5;
+        ctx.strokeRect(g.cartX - 22 * u, g.pivotY - 8 * u, 44 * u, 16 * u);
+        for (const offset of [-12, 12]) { ctx.beginPath(); ctx.arc(g.cartX + offset * u, g.pivotY + 12 * u, 4 * u, 0, 2 * Math.PI); ctx.stroke(); }
+        ctx.strokeStyle = accent; ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.moveTo(g.cartX, g.pivotY); ctx.lineTo(g.jointX, g.jointY); ctx.stroke();
+        ctx.strokeStyle = ink; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(g.jointX, g.jointY); ctx.lineTo(g.tipX, g.tipY); ctx.stroke();
+        ctx.fillStyle = ink;
+        ctx.beginPath(); ctx.arc(g.cartX, g.pivotY, 3 * u, 0, 2 * Math.PI); ctx.fill();
+        ctx.beginPath(); ctx.arc(g.jointX, g.jointY, 2.5 * u, 0, 2 * Math.PI); ctx.fill();
+        if (performance.now() < arrowUntil) {
+          // Short hairline arrow at the nudged pole's centre of mass, pointing in the force direction.
+          const c = physics.poleCom / physics.poleLength;
+          const comX = arrowPole === 1 ? g.cartX + (g.jointX - g.cartX) * c : g.jointX + (g.tipX - g.jointX) * c;
+          const comY = arrowPole === 1 ? g.pivotY + (g.jointY - g.pivotY) * c : g.jointY + (g.tipY - g.jointY) * c;
+          const endX = comX - arrowDirection * 8 * u, startX = endX - arrowDirection * 26 * u;
+          ctx.strokeStyle = accent; ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(startX, comY); ctx.lineTo(endX, comY);
+          ctx.moveTo(endX - arrowDirection * 5 * u, comY - 4 * u); ctx.lineTo(endX, comY); ctx.lineTo(endX - arrowDirection * 5 * u, comY + 4 * u);
+          ctx.stroke();
+        }
+        ctx.restore();
+        if (sim.steps !== lastReadout && (sim.steps % 5 === 0 || paused)) updateReadouts();
+      }
+      function updateReadouts() {
+        readout.target.textContent = `${root!.dataset.target} ${poseNames[sim.target]}`;
+        readout.status.textContent = stable(sim) ? root!.dataset.stable! : root!.dataset.moving!;
+        readout.phi1.textContent = `φ₁ = ${angleFormat.format(wrapAngle(sim.qpos[1]!))} rad`;
+        readout.phi2.textContent = `φ₂ = ${angleFormat.format(wrapAngle(sim.qpos[1]! + sim.qpos[2]!))} rad`;
+        readout.x.textContent = `x = ${positionFormat.format(sim.qpos[0]!)} m`;
+        // Control steps since the last restart, for browser checks.
+        root!.dataset.steps = String(sim.steps);
+        lastReadout = sim.steps;
+      }
+      function tick(time: number) {
+        frame = 0;
+        if (paused || !inView || document.hidden) return;
+        const elapsed = last ? Math.min((time - last) / 1000, .1) : 0;
+        last = time;
+        if (resetAge >= 0) {
+          const previousAge = resetAge;
+          resetAge += elapsed;
+          // Restart hanging; the chosen target pose stays.
+          if (previousAge < .15 && resetAge >= .15) { equilibriumStart(sim, 3); lastReadout = -1; }
+          if (resetAge >= .3) { resetAge = -1; accumulator = 0; }
+        } else {
+          accumulator += elapsed;
+          while (accumulator >= dt) {
+            step(sim, act(network, observe(sim, policy, obs)));
+            accumulator -= dt;
+            // Visitors first see the hanging start, then one automatic swing-up.
+            if (autoSwitch && sim.steps >= 1.5 / dt) { autoSwitch = false; select(0); }
+            if (failed(sim)) { resetAge = 0; accumulator = 0; break; }
+          }
+        }
+        draw(); frame = requestAnimationFrame(tick);
+      }
+      function sync() {
+        cancelAnimationFrame(frame); frame = 0; last = 0; accumulator = 0;
+        toggle.textContent = paused ? root!.dataset.play! : root!.dataset.pause!;
+        root!.dataset.state = paused ? 'paused' : 'running';
+        if (!paused && inView && !document.hidden) frame = requestAnimationFrame(tick);
+        draw();
+      }
+      function select(phase: number, focus = false) {
+        autoSwitch = false;
+        if (phase !== sim.target) setTarget(sim, phase);
+        radios.forEach((radio, i) => {
+          radio.setAttribute('aria-checked', String(i === phase));
+          radio.tabIndex = i === phase ? 0 : -1;
+        });
+        if (focus) radios[phase]!.focus();
+        // A selection while paused is stored and shown; the simulation continues after Play.
+        updateReadouts(); draw();
+      }
+      function push(pole: 1 | 2, direction: number) {
+        if (resetAge >= 0) return;
+        nudge(sim, pole, direction * physics.nudgeForce, physics.nudgeSeconds);
+        arrowPole = pole; arrowDirection = direction; arrowUntil = performance.now() + 250;
+        draw();
+        if (paused || !inView) setTimeout(draw, 260);
+      }
+      function randomNudge() { push(Math.random() < .5 ? 1 : 2, Math.random() < .5 ? -1 : 1); }
+      function nudgeAt(event: MouseEvent) {
+        if (event.detail === 0) { randomNudge(); return; }
+        const rect = canvas.getBoundingClientRect(), px = event.clientX - rect.left, py = event.clientY - rect.top;
+        const g = geometry();
+        // Nearest point on each pole; push away from the click (click left of the pole pushes right).
+        const nearest = (ax: number, ay: number, bx: number, by: number) => {
+          const dx = bx - ax, dy = by - ay, t = Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / (dx * dx + dy * dy || 1)));
+          const x = ax + t * dx, y = ay + t * dy;
+          return { x, distance: Math.hypot(px - x, py - y) };
+        };
+        const lower = nearest(g.cartX, g.pivotY, g.jointX, g.jointY), upper = nearest(g.jointX, g.jointY, g.tipX, g.tipY);
+        const pole = lower.distance <= upper.distance ? 1 : 2, closest = pole === 1 ? lower : upper;
+        push(pole, px <= closest.x ? 1 : -1);
+      }
+      function resize() {
+        const rect = canvas.getBoundingClientRect();
+        width = rect.width; height = rect.height;
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = Math.round(width * dpr); canvas.height = Math.round(height * dpr);
+        context!.setTransform(dpr, 0, 0, dpr, 0, 0); colors(); draw();
+      }
+      canvas.hidden = false;
+      root.querySelector<SVGElement>('.lab-still')!.style.display = 'none';
+      hit.hidden = false; group.hidden = false;
+      root.querySelector<HTMLElement>('.readouts')!.hidden = false;
+      root.querySelector<HTMLElement>('.lab-controls')!.hidden = false;
+      message.hidden = true;
+      root.querySelector<HTMLButtonElement>('[data-nudge]')!.addEventListener('click', randomNudge);
+      hit.addEventListener('click', nudgeAt);
+      toggle.addEventListener('click', () => { paused = !paused; sync(); });
+      radios.forEach((radio, i) => radio.addEventListener('click', () => select(i)));
+      group.addEventListener('keydown', event => {
+        const focused = radios.indexOf(document.activeElement as HTMLButtonElement);
+        const current = focused >= 0 ? focused : sim.target;
+        const next = { ArrowRight: current + 1, ArrowDown: current + 1, ArrowLeft: current + 3, ArrowUp: current + 3, Home: 0, End: 3 }[event.key];
+        if (next === undefined) return;
+        event.preventDefault(); select(next % 4, true);
+      });
+      // Keys 1 to 4 choose a pose directly, but only while focus is inside the figure.
+      root.addEventListener('keydown', event => {
+        if (event.altKey || event.ctrlKey || event.metaKey || !/^[1-4]$/.test(event.key)) return;
+        event.preventDefault(); select(Number(event.key) - 1, group.contains(document.activeElement));
+      });
+      document.addEventListener('visibilitychange', sync);
+      reduced.addEventListener('change', () => { if (reduced.matches) { paused = true; autoSwitch = false; } sync(); });
+      matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { colors(); draw(); });
+      window.addEventListener('themechange', () => { colors(); draw(); });
+      new ResizeObserver(resize).observe(canvas);
+      new IntersectionObserver(entries => { inView = entries[0]!.isIntersecting; sync(); }).observe(root);
+      window.addEventListener('resize', resize);
+      updateReadouts(); resize(); sync();
+    } catch { message.textContent = root.dataset.error!; }
+  }
+</script>

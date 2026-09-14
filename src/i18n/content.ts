@@ -38,7 +38,7 @@ export function content(lang: Locale) {
     headline: field(hero, de ? 'Überschrift' : 'Headline'),
     hero: field(hero, de ? 'Satz' : 'Sentence'),
     meta: field(hero, de ? 'Metazeile' : 'Meta line'),
-    caption: field(hero, de ? 'Bildunterschrift CartPole' : 'Caption'),
+    caption: field(hero, de ? 'Bildunterschrift' : 'Caption'),
     about: localized(section('Über mich'), lang).split(/\n\s*\n/),
     method: localized(section('KI-gestützte Entwicklung'), lang),
     now, skills, contact,

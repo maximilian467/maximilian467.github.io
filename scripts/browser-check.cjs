@@ -11,7 +11,7 @@ async page => {
         await page.emulateMedia({ colorScheme: scheme, reducedMotion: 'reduce' });
         await page.goto(`http://127.0.0.1:4321/${lang === 'de' ? 'de/' : ''}`);
         await page.evaluate(() => document.fonts.ready);
-        await page.waitForFunction(() => document.querySelector('[data-cartpole]')?.dataset.state === 'paused');
+        await page.waitForFunction(() => document.querySelector('[data-double-pendulum]')?.dataset.state === 'paused');
         const layout = await page.evaluate(() => {
           const h = document.querySelector('h1');
           const hero = document.querySelector('.hero');

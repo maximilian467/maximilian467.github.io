@@ -1,5 +1,5 @@
 ---
-import CartPole from './CartPole.astro';
+import DoublePendulum from './DoublePendulum.astro';
 import { content } from '../i18n/content';
 import { links, ui, type Locale } from '../i18n/ui';
 interface Props { lang: Locale; }
@@ -19,5 +19,5 @@ const c = content(lang);
     </div>
   </div>
   {/* Hero demo. To show another trained policy, build it on LabFigure.astro and swap this one component. */}
-  <CartPole lang={lang} caption={c.caption} />
+  <DoublePendulum lang={lang} caption={c.caption} />
 </section>
