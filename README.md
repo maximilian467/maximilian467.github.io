@@ -1,72 +1,54 @@
-# Maximilian Köhlenbeck
+# Maximilian Köhlenbeck: personal website
 
-Statische persönliche Website mit Astro 7, Deutsch und Englisch. Lokale Schriften, reines CSS, echte CartPole-Policy im Browser.
+Static bilingual (German / English) personal website built with Astro 7. Local fonts, plain CSS, and a real CartPole PPO policy running in the browser.
 
-## Lokal starten
+**Live:** https://maximilian467.github.io/ (English: https://maximilian467.github.io/en/)
 
-Node 24 empfohlen, mindestens 22.12:
+## What it does
+
+- Presents my background, current work and projects in German and English.
+- Runs a **CartPole policy I trained with PPO** (Stable-Baselines3) directly in the browser. The network weights are exported to [`public/models/cartpole-policy.json`](public/models/cartpole-policy.json); the forward pass and the Gymnasium CartPole-v1 physics are reimplemented in TypeScript in [`src/lib/cartpole.ts`](src/lib/cartpole.ts). Visitors can nudge the pole.
+- No cookies, no tracking, no external requests. A light/dark theme switch stores a single local-storage value (`portfolio-theme`).
+
+## Architecture
+
+```
+docs/CONTENT.md ──┐                     public/models/cartpole-policy.json
+src/content/      ├─► Astro build ─► static HTML/CSS ─► GitHub Pages
+  projects/*.json │   (i18n routes: /, /en/)                 │
+docs/legal/*.md ──┘                                          ▼
+                                   src/lib/cartpole.ts (policy + physics) ─► CartPole.astro (canvas)
+```
+
+- `src/pages/`: routes (`/`, `/en/`, legal pages in both languages, 404)
+- `src/components/`: one component per section (Hero, ProjectEntry, Datasheet, CartPole, …)
+- `src/i18n/`: UI strings, links and routing helpers
+- `src/content/projects/`: one JSON file per project, with `de` and `en` fields, validated by the content collection at build time
+- `src/lib/cartpole.ts`: policy and physics, independent from rendering
+- `src/styles/`: design tokens, base layout, and the two design variants
+
+## Running locally
+
+Node 24 recommended, at least 22.12:
 
 ```sh
 npm ci
 npm run dev
 ```
 
-Produktionsversion prüfen: `npm run build`, danach `npm run preview`. Simulation prüfen: `npm run test:policy`.
+Check the production build: `npm run build`, then `npm run preview`.
 
-## Gestaltung schnell zurückwechseln
+## Tests and CI
 
-Besucher können über den Textbutton in der Kopfzeile Hell oder Dunkel wählen. Ohne eigene Auswahl folgt die Website dem Betriebssystem. Die Auswahl wird ausschließlich lokal unter `portfolio-theme` gespeichert. Die dunkle CartPole-Fläche bleibt erhalten. Umsetzung: `src/components/ThemeSwitch.astro` und `src/styles/tokens.css`.
+| Command | What it checks |
+|---|---|
+| `npm run build` | `astro check` (type checking) and the static build |
+| `npm run test:policy` | CartPole tests: a Gymnasium Euler reference step, argmax tie-breaking, and 20 seeded ten-minute runs that must survive a nudge every five seconds |
+| `node scripts/verify-content.mjs` | Run after a build: legal pages match their sources, every project description is sourced from `docs/CONTENT.md`, no externally loaded media, canonical and hreflang tags present |
 
-Standard ist die überarbeitete Gestaltung `experiment`. In `src/config/design.ts` lässt sich die Standardauswahl ändern. Beide Varianten teilen sich Inhalte, Komponenten, Routen und Simulation.
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) runs on every push to `main`: it builds the site with `withastro/action`, runs the policy tests and the content verification, and only then deploys to GitHub Pages.
 
-Für eine einmalige Vorschau der ursprünglichen Laborbuch-Gestaltung in PowerShell:
-
-```powershell
-$env:DESIGN_VARIANT='classic'
-npm run dev
-```
-
-Zurück zum neuen Design: Server stoppen, `Remove-Item Env:DESIGN_VARIANT`, erneut `npm run dev`. Für Produktionsdateien mit derselben Einstellung `npm run build` verwenden.
-
-- `src/styles/tokens.css`: Farben und Typografie
-- `src/styles/base.css`: responsives Grundlayout
-- `src/styles/experiment.css`: kursive Akzenttypografie und Experimentfläche
-- `src/styles/classic.css`: zurückhaltende Alternative
-- `src/components/CartPole.astro`: Darstellung und Bedienung
-- `src/lib/cartpole.ts`: davon unabhängige Policy und Physik
-
-Alle Entscheidungen und offenen Punkte: [docs/DECISIONS.md](docs/DECISIONS.md).
-
-## Inhalte und Projekte
-
-Fakten zuerst in `docs/CONTENT.md` pflegen. Hero, Über mich, Gerade dran und Kompetenzen werden beim Build direkt daraus gelesen. Rechtsseiten lesen die jeweilige Datei unter `docs/legal/`.
-
-Für ein neues Projekt eine JSON-Datei unter `src/content/projects/` kopieren, eine eindeutige `order` setzen und `de` sowie `en` ausfüllen. Jede Sprache hat `title`, `description`, `date`, `status`, `role`, `tech`. `running` steuert den Statuspunkt. `measurements` ist derzeit ausschließlich für das Wächter-Datenblatt vorgesehen. Die Collection validiert alle Dateien beim Build.
-
-`scripts/import-projects.mjs` ist der explizite Erstimport der sechs vorhandenen Projekte. Nicht automatisch ausführen: Er würde Änderungen an diesen sechs JSON-Dateien durch den aktuellen Inhalt von CONTENT.md ersetzen.
-
-OG-Bild und Favicon bei Bedarf mit `npm run assets` neu erzeugen. Die Glyphen sind echte Instrument-Serif-Pfade, daher brauchen Vorschau und Favicon keine externen Fonts.
-
-## Deployment
-
-Das Repository `maximilian467/maximilian467.github.io` ist angelegt, der Remote `origin` gesetzt und GitHub Pages auf **GitHub Actions** eingestellt. Zieladresse: https://maximilian467.github.io/.
-
-Für spätere Änderungen lokal prüfen, committen und veröffentlichen:
-
-```sh
-npm run build
-git add <geänderte-dateien>
-git commit -m "Describe the change"
-git push origin main
-```
-
-Der Workflow `.github/workflows/deploy.yml` baut mit `withastro/action` und veröffentlicht auf GitHub Pages. Es ist kein `base` gesetzt. Den Fortschritt zeigt der Actions-Tab des Repositories. Eine eigene Domain oder ein zusätzlicher Hosting-Anbieter ist nicht nötig.
-
-Nach dem freigegebenen Update auf Astro 7.3.2 meldet `npm audit` keine bekannten Sicherheitslücken (13. September 2026).
-
-## Prüfungen
-
-Browserprüfungen verwenden den vorhandenen `playwright-cli`. Nach `npm run preview`:
+Browser checks use the `playwright-cli`. After `npm run preview`:
 
 ```sh
 playwright-cli -s=laborbuch open http://127.0.0.1:4321/
@@ -74,4 +56,55 @@ playwright-cli -s=laborbuch run-code --filename=scripts/browser-check.cjs
 playwright-cli -s=laborbuch run-code --filename=scripts/browser-interactions.cjs
 ```
 
-Vorher `docs/qa/screenshots/` anlegen. Screenshots bleiben lokal und werden nicht committed oder veröffentlicht. Prüfergebnisse stehen unter `docs/qa/`.
+Create `docs/qa/screenshots/` first. Screenshots stay local and are not committed. Recorded check results are in [`docs/qa/`](docs/qa/).
+
+## Design variants and theme
+
+Visitors can choose light or dark via the text button in the header. Without a choice, the site follows the operating system. Implementation: `src/components/ThemeSwitch.astro` and `src/styles/tokens.css`. The CartPole area stays dark in both themes.
+
+The default design is the revised `experiment` variant; the default can be changed in `src/config/design.ts`. Both variants share content, components, routes and simulation.
+
+One-off preview of the original "lab notebook" (`classic`) design in PowerShell:
+
+```powershell
+$env:DESIGN_VARIANT='classic'
+npm run dev
+```
+
+Back to the default: stop the server, `Remove-Item Env:DESIGN_VARIANT`, run `npm run dev` again. Use `npm run build` with the same setting for production files.
+
+- `src/styles/tokens.css`: colors and typography
+- `src/styles/base.css`: responsive base layout
+- `src/styles/experiment.css`: italic accent typography and experiment area
+- `src/styles/classic.css`: more restrained alternative
+- `src/components/CartPole.astro`: rendering and controls
+- `src/lib/cartpole.ts`: policy and physics
+
+All decisions and open points: [docs/DECISIONS.md](docs/DECISIONS.md).
+
+## Content and projects
+
+`docs/CONTENT.md` is the single source of facts. Hero, about, current work and skills are read from it at build time. Legal pages read their files under `docs/legal/`.
+
+To add a project, copy a JSON file under `src/content/projects/`, set a unique `order` and fill in `de` and `en`. Each language has `title`, `description`, `date`, `status`, `role`, `tech`. `running` controls the status dot. `measurements` is currently reserved for the Wächter datasheet.
+
+`scripts/import-projects.mjs` was the one-time initial import of the six existing projects. Do not run it automatically: it would overwrite changes in those six JSON files with the current content of `CONTENT.md`.
+
+Regenerate the OG image and favicon with `npm run assets` when needed. The glyphs are real Instrument Serif paths, so previews and favicon need no external fonts.
+
+## Deployment
+
+The site is hosted on GitHub Pages at https://maximilian467.github.io/ and deployed by GitHub Actions; no `base` path is set. To publish a change:
+
+```sh
+npm run build
+git add <changed-files>
+git commit -m "Describe the change"
+git push origin main
+```
+
+Progress is visible in the repository's Actions tab. As of the update to Astro 7.3.2, `npm audit` reports no known vulnerabilities (13 September 2026, snapshot in [`docs/qa/npm-audit.json`](docs/qa/npm-audit.json)).
+
+## Documentation language
+
+The internal project documentation (`AGENTS.md`, `DESIGN.md`, `docs/`) is written in German.
