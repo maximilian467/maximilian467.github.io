@@ -174,6 +174,7 @@ Technische Berichte zu Projekten und Experimenten. Keine Artikel erfinden. Aufba
 
 Veröffentlicht:
 - `waechter` (Englisch, 14.09.2026): „Wächter: an offline voice-and-vision assistant for my front door". Quelle ist der vom Nutzer gelieferte Artikel, übernommen ohne inhaltliche Änderungen: `src/content/lab-notes/waechter.md`. Verknüpft als Technischer Bericht beim Projekt Wächter.
+- `one-policy-four-balance-modes` (Englisch, 14.09.2026): „One Policy, Four Balance Modes". Quelle ist der vom Nutzer gelieferte Artikel zum Doppelpendel-Training. Ergänzt: Hardware (gleicher Laptop wie Wächter, laut Nutzer) und der Absatz zur Web-Umsetzung aus `docs/DECISIONS.md` und `README.md`. Motivations-Platzhalter entfernt, weil dazu keine Angaben vorliegen. Verknüpft über die Bildunterschrift der Hero-Demo.
 
 KI-Hinweis, klein und unauffällig auf der Übersicht und unter jedem Artikel. Englisch **wörtlich** so (einschließlich Gedankenstrich):
 

@@ -6,8 +6,10 @@ import type { HTMLAttributes } from 'astro/types';
 interface Props extends HTMLAttributes<'figure'> {
   environment: string; algorithm: string; caption: string; label: string;
   nudge: string; nudgeLabel: string; pause: string; loading: string; staticText: string;
+  /** Optional link after the caption, e.g. to the lab note behind the demo. */
+  writeup?: { href: string; label: string };
 }
-const { environment, algorithm, caption, label, nudge, nudgeLabel, pause, loading, staticText, ...attributes } = Astro.props;
+const { environment, algorithm, caption, label, nudge, nudgeLabel, pause, loading, staticText, writeup, ...attributes } = Astro.props;
 ---
 <figure class="hero-figure" aria-label={label} {...attributes}>
   <div class="lab">
@@ -25,7 +27,7 @@ const { environment, algorithm, caption, label, nudge, nudgeLabel, pause, loadin
       <p class="lab-message mono" role="status" data-message>{loading}</p>
     </div>
   </div>
-  <figcaption class="mono">{caption}</figcaption>
+  <figcaption class="mono">{caption}{writeup && <> <a class="lab-writeup" href={writeup.href}>{writeup.label} <span aria-hidden="true">→</span></a></>}</figcaption>
 </figure>
 <style>
   .lab { background: var(--lab); color: var(--lab-ink); border: 1px solid var(--lab-rule); }
@@ -43,4 +45,5 @@ const { environment, algorithm, caption, label, nudge, nudgeLabel, pause, loadin
   .lab-controls button:hover { color: var(--lab-accent); }
   .lab-message, noscript .mono { color: var(--lab-muted); }
   figcaption { margin-top: .85rem; }
+  .lab-writeup { color: var(--ink); white-space: nowrap; }
 </style>

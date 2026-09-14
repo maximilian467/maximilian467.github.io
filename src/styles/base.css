@@ -141,7 +141,8 @@ tr:last-child > * { border-bottom: 0; }
 .note-prose blockquote { margin: 1.5rem 0; padding-left: 1.25rem; border-left: 2px solid var(--accent); }
 .note-prose blockquote p { max-width: none; }
 /* Wide tables scroll inside themselves; the page never scrolls sideways. */
-.note-prose table { display: block; width: max-content; max-width: 100%; overflow-x: auto; margin-block: 1.5rem; font: 400 .8125rem/1.5 var(--mono); }
+.note-prose .table-scroll { max-width: 100%; overflow-x: auto; margin-block: 1.5rem; }
+.note-prose .table-scroll > table { width: max-content; margin: 0; font: 400 .8125rem/1.5 var(--mono); }
 .note-prose :is(th, td) { width: auto; padding: .55rem 1.5rem .55rem 0; overflow-wrap: normal; }
 .note-prose thead tr > * { color: var(--ink-muted); vertical-align: bottom; border-bottom: 1px solid var(--ink-muted); }
 .note-prose td strong { font-weight: 600; }

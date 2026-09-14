@@ -12,6 +12,11 @@ const { title, summary, description, metaTitle, metaDescription, published, upda
 const t = ui[lang];
 const other = lang === 'en' ? 'de' : 'en';
 const { Content, headings } = await render(note);
+// Wide tables scroll inside a focusable region so keyboard users can scroll them too.
+// Done on the rendered HTML at build time: no Markdown plugin dependency, no client script.
+const html = note.rendered?.html
+  .replace(/<table(\s[^>]*)?>/g, '<div class="table-scroll" tabindex="0" role="region" aria-label="Table">$&')
+  .replace(/<\/table>/g, '</table></div>');
 // Compact contents list for long notes. Top-level sections only, so it stays short.
 const contents = headings.filter(heading => heading.depth === 2);
 const project = note.data.project ? await getEntry(note.data.project) : undefined;
@@ -44,7 +49,7 @@ const url = labNoteUrl(lang, note.id);
         <ol>{contents.map(heading => <li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ol>
       </nav>
     )}
-    <div class="note-prose"><Content /></div>
+    <div class="note-prose">{html ? <Fragment set:html={html} /> : <Content />}</div>
     <footer class="note-footer"><p class="disclosure mono">{t.disclosure}</p></footer>
   </article>
 </Base>

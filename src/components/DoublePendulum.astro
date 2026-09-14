@@ -1,9 +1,12 @@
 ---
 import LabFigure from './LabFigure.astro';
 import { ui, type Locale } from '../i18n/ui';
+import { labNoteUrl } from '../i18n/utils';
 interface Props { lang: Locale; caption: string; }
 const { lang, caption } = Astro.props;
 const t = ui[lang];
+// The training write-up is in English; the link is the same from both language versions.
+const writeup = { href: labNoteUrl('en', 'one-policy-four-balance-modes'), label: t.writeup };
 // Shared geometry for the still image and the canvas: 480 × 360 units, 90 units per metre.
 const W = 480, S = 90, pivotY = 180, railY = pivotY + 16, L = .6 * S;
 const up = 0, down = Math.PI;
@@ -20,7 +23,7 @@ const icon = (phase: number) => {
   return { lower: `M20 20L${jx.toFixed(2)} ${jy.toFixed(2)}`, upper: `M${jx.toFixed(2)} ${jy.toFixed(2)}L${tx.toFixed(2)} ${ty.toFixed(2)}`, jx, jy };
 };
 ---
-<LabFigure environment="Double CartPole" algorithm="TQC" caption={caption} label={t.figure}
+<LabFigure environment="Double CartPole" algorithm="TQC" caption={caption} label={t.figure} writeup={writeup}
   nudge={t.nudge} nudgeLabel={t.nudgeLabel} pause={t.pause} loading={t.loading} staticText={t.staticFigure}
   data-double-pendulum data-lang={lang} data-play={t.play} data-pause={t.pause} data-error={t.unavailable}
   data-target={t.target} data-stable={t.stable} data-moving={t.moving} data-poses={JSON.stringify(t.poses)}>
