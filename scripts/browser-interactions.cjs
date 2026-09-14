@@ -130,7 +130,7 @@ async page => {
   await page.unroute('**/models/double-pendulum-policy.json');
   await page.goto(`${origin}/`);
   const assets = {};
-  for (const route of ['/cv/maximilian-koehlenbeck-lebenslauf.pdf','/og.png','/favicon.svg','/robots.txt','/sitemap-index.xml','/models/double-pendulum-policy.json']) {
+  for (const route of ['/cv/maximilian-koehlenbeck-cv.pdf','/cv/maximilian-koehlenbeck-lebenslauf.pdf','/og.png','/favicon.svg','/robots.txt','/sitemap-index.xml','/models/double-pendulum-policy.json']) {
     const response = await page.request.get(`${origin}${route}`);
     assert(response.ok(), `Missing asset ${route}`); assets[route] = response.status();
   }

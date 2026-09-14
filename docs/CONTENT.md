@@ -25,7 +25,7 @@ Links:
 - GitHub: https://github.com/maximilian467
 - LinkedIn: https://www.linkedin.com/in/maximilian-k%C3%B6hlenbeck-06982b330/
 - E-Mail: m.koehlenbeck@koehlenbeck.com
-- CV: `/cv/maximilian-koehlenbeck-lebenslauf.pdf`
+- CV, je nach Sprache der Seite: EN `/cv/maximilian-koehlenbeck-cv.pdf` (Quelle `docs/cv/cv-en.html`), DE `/cv/maximilian-koehlenbeck-lebenslauf.pdf` (Quelle `docs/cv/lebenslauf.html`)
 
 ---
 

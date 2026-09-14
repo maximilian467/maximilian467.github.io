@@ -27,6 +27,13 @@ for (const route of ['','de/']) {
   assert.ok(html.includes('rel="canonical"') && html.includes('hreflang="de"') && html.includes('hreflang="en"'));
 }
 assert.equal(readFileSync('dist/index.html','utf8').match(/<html lang="(\w+)"/)[1], 'en', 'English must be the default language');
+// Each language links its own CV, and both PDFs are published.
+for (const [route, cv, other] of [['', 'maximilian-koehlenbeck-cv.pdf', 'maximilian-koehlenbeck-lebenslauf.pdf'], ['de/', 'maximilian-koehlenbeck-lebenslauf.pdf', 'maximilian-koehlenbeck-cv.pdf']]) {
+  const html = readFileSync(`dist/${route}index.html`,'utf8');
+  assert.ok(html.includes(`href="/cv/${cv}"`), `CV link missing on /${route}`);
+  assert.ok(!html.includes(`/cv/${other}`), `Wrong-language CV linked on /${route}`);
+  assert.ok(readFileSync(`dist/cv/${cv}`).length > 10000, `CV PDF missing: ${cv}`);
+}
 // The English AI-writing disclosure is quoted verbatim, including its dash.
 const disclosure = 'The projects, experiments, measurements and bugs are mine. Claude helps turn my notes into readable articles. I review the technical content before publishing — AI saves me writing time, not engineering time.';
 assert.ok(normalize(readFileSync('dist/lab-notes/index.html','utf8')).includes(disclosure), 'Lab Notes disclosure missing or altered');

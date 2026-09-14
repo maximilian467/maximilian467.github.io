@@ -33,7 +33,7 @@ src/
   pages/        index.astro (EN), legal-notice, privacy, lab-notes/, de/…
   styles/       tokens.css, base.css
 public/
-  cv/           maximilian-koehlenbeck-lebenslauf.pdf
+  cv/           maximilian-koehlenbeck-cv.pdf (EN, Quelle docs/cv/cv-en.html), maximilian-koehlenbeck-lebenslauf.pdf (DE, Quelle docs/cv/lebenslauf.html)
   models/       double-pendulum-policy.json
   favicon.svg, og.png, robots.txt
 ```

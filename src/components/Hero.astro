@@ -15,7 +15,7 @@ const c = content(lang);
     <div class="hero-links">
       <a href={links.github}>GitHub <span aria-hidden="true">↗</span></a>
       <a href={links.linkedin}>LinkedIn <span aria-hidden="true">↗</span></a>
-      <a class="cv-link" href={links.cv}>{ui[lang].cv}</a>
+      <a class="cv-link" href={links.cv[lang]} hreflang={lang} type="application/pdf">{ui[lang].cv}</a>
     </div>
   </div>
   {/* Hero demo. To show another trained policy, build it on LabFigure.astro and swap this one component. */}

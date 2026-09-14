@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="de">
+<html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Lebenslauf Maximilian Köhlenbeck</title>
+<title>CV Maximilian Köhlenbeck</title>
 <style>
   @page { size: A4; margin: 0; }
   :root {
@@ -37,7 +37,6 @@
   dl { display: grid; grid-template-columns: 52mm 1fr; row-gap: 1.2mm; }
   dt { font-weight: 600; }
   .intro { max-width: 125mm; }
-  .todo { background: #FBF3DB; color: #956400; padding: 0 3px; border-radius: 2px; }
   footer { margin-top: 4mm; }
 </style>
 </head>
@@ -45,10 +44,10 @@
   <header>
     <div>
       <h1 class="serif">Maximilian Köhlenbeck</h1>
-      <div class="role">Dualer Student Automatisierungstechnik · KUKA &amp; Hochschule Bremen</div>
+      <div class="role">Automation Engineering student (work-study) · KUKA &amp; Hochschule Bremen</div>
     </div>
     <div class="contact mono">
-      Bremen<br>
+      Bremen, Germany<br>
       <a href="mailto:m.koehlenbeck@koehlenbeck.com">m.koehlenbeck@koehlenbeck.com</a><br>
       <a href="https://maximilian467.github.io">maximilian467.github.io</a><br>
       <a href="https://github.com/maximilian467">github.com/maximilian467</a><br>
@@ -57,20 +56,20 @@
   </header>
 
   <section>
-    <h2 class="serif">Profil</h2>
-    <p class="intro">Ich studiere dual Automatisierungstechnik und baue nebenbei Dinge mit KI-Agenten, meistens schnell und meistens, weil mich ein Problem nicht loslässt. Am meisten interessiert mich Robotik, Automatisierung und Physical AI. Gerade bringe ich mir bei, wie man Modelle selbst trainiert.</p>
+    <h2 class="serif">Profile</h2>
+    <p class="intro">I study Automation Engineering in a work-study program and build systems with AI and robotics. I'm most interested in reinforcement learning, physical AI and systems that interact with the real world. Right now I'm teaching myself how to train models.</p>
   </section>
 
   <section>
-    <h2 class="serif">Ausbildung &amp; Praxis</h2>
+    <h2 class="serif">Education</h2>
     <div>
       <div class="entry">
-        <h3>Duales Studium Automatisierungstechnik</h3>
-        <span class="when mono">10/2024 bis 12/2027 (voraussichtlich)</span>
-        <p>Hochschule Bremen (Theorie) und KUKA (Praxisphasen)</p>
+        <h3>Automation Engineering, work-study program</h3>
+        <span class="when mono">10/2024 to 12/2027 (expected)</span>
+        <p>Hochschule Bremen (academic phases) and KUKA (practical phases)</p>
       </div>
       <div class="entry">
-        <h3>Abitur</h3>
+        <h3>Abitur (German university entrance qualification)</h3>
         <span class="when mono">2024</span>
         <p>Gymnasium Vegesack, Bremen</p>
       </div>
@@ -78,42 +77,42 @@
   </section>
 
   <section>
-    <h2 class="serif">Projekte</h2>
+    <h2 class="serif">Projects</h2>
     <div>
       <div class="entry">
-        <h3>Wächter: lokaler Sprach- und Vision-Assistent</h3>
+        <h3>Wächter: offline voice and vision assistant</h3>
         <span class="when mono">2026</span>
-        <p>Sieht per Kamera, hört zu und antwortet, komplett offline auf einem Laptop ohne GPU. Beginnt nach ~2,6 s zu sprechen (Ziel &lt; 3 s), Personenerkennung 17 ms pro Bild.</p>
-        <div class="tech mono">Python · faster-whisper · Piper TTS · lokales LLM · ONNX/DirectML</div>
+        <p>Sees through a camera, listens and talks back, fully offline on a laptop without a GPU. Starts speaking after ~2.6 s (target &lt; 3 s), person detection takes 17 ms per frame.</p>
+        <div class="tech mono">Python · faster-whisper · Piper TTS · local LLM · ONNX/DirectML</div>
       </div>
       <div class="entry">
-        <h3>Baulify: Koordination von Tiefbaumaßnahmen (Team)</h3>
-        <span class="when mono">seit 05/2026</span>
-        <p>Entstanden beim Smart Region Hackathon Offenburg, danach weiterentwickelt: Konflikterkennung auf der Karte, KI-Erfassung aus PDFs und Freitext, Freigaben per Link ohne Account.</p>
+        <h3>Baulify: coordinating roadworks (team)</h3>
+        <span class="when mono">since 05/2026</span>
+        <p>Started at the Smart Region Hackathon Offenburg and developed further afterwards: conflict detection on a map, AI intake from PDFs and free text, approvals via a link without an account.</p>
         <div class="tech mono">Next.js · TypeScript · PostgreSQL · Drizzle · MapLibre · LLM</div>
       </div>
       <div class="entry">
-        <h3>3D-Drucker: Düsen-Offset-Kalibrierung (mit KUKA)</h3>
-        <span class="when mono"><span class="dot"></span>läuft</span>
-        <p>Optimierung eines 3D-Druckers mit selbst eingebauter Kalibrierung des Düsen-Offsets.</p>
+        <h3>3D printer: nozzle offset calibration (with KUKA)</h3>
+        <span class="when mono"><span class="dot"></span>in progress</span>
+        <p>Optimizing a 3D printer with a nozzle offset calibration I built myself.</p>
       </div>
       <div class="entry">
-        <h3>Planen-Editor: Faltensimulation</h3>
+        <h3>Tarp editor: wrinkle simulation</h3>
         <span class="when mono">2026</span>
-        <p>Feder-Masse-Simulation einer Plane mit Faltenindex und Assistent, der Befestigungspunkte für eine glattere Plane vorschlägt.</p>
+        <p>Spring-mass simulation of a tarp with a wrinkle index and an assistant that suggests mounting points for a flatter tarp.</p>
         <div class="tech mono">JavaScript · Canvas</div>
       </div>
       <div class="entry">
-        <h3>Reinforcement Learning: CartPole bis Isaac Lab</h3>
-        <span class="when mono"><span class="dot"></span>läuft</span>
-        <p>PPO-Agent für CartPole, danach ein Doppelpendel, das mit einem TQC-Modell zwischen vier Haltungen wechselt. Jetzt Einstieg in NVIDIA Isaac Lab.</p>
+        <h3>Reinforcement learning: from CartPole to Isaac Lab</h3>
+        <span class="when mono"><span class="dot"></span>in progress</span>
+        <p>PPO agent for CartPole, then a double pendulum on a cart that switches between four poses with a single TQC model. Now getting started with NVIDIA Isaac Lab.</p>
         <div class="tech mono">Python · Gymnasium · Stable-Baselines3 (PPO, TQC) · MuJoCo · Isaac Lab</div>
       </div>
       <div class="entry">
-        <h3>Lokale Spracheingabe (Wispr-Flow-Klon) und n8n-Automationen</h3>
+        <h3>Local dictation (Wispr Flow clone) and n8n automations</h3>
         <span class="when mono">2026</span>
-        <p>Diktat per Hotkey in jedes Programm, offline. KI-Automationen für Rechnungen, E-Mail-Triage und Preisbeobachtung mit eingebauter Prüfung.</p>
-        <div class="tech mono">faster-whisper · n8n · LLM-APIs</div>
+        <p>Hotkey dictation into any app, fully offline. AI automations for invoices, email triage and price tracking with built-in checks.</p>
+        <div class="tech mono">faster-whisper · n8n · LLM APIs</div>
       </div>
     </div>
   </section>
@@ -127,17 +126,17 @@
   </section>
 
   <section>
-    <h2 class="serif">Kenntnisse</h2>
+    <h2 class="serif">Skills</h2>
     <dl>
-      <dt>Reinforcement Learning &amp; Simulation</dt><dd>Gymnasium, Stable-Baselines3 (PPO, SAC, TQC), MuJoCo, Feder-Masse-Simulation, NVIDIA Isaac Lab (gerade am Anfang)</dd>
-      <dt>Lokale KI &amp; Sprache</dt><dd>faster-whisper, Piper TTS, Ollama, ONNX / DirectML, LLMs über OpenRouter</dd>
-      <dt>Software &amp; Web</dt><dd>Python, TypeScript, JavaScript, Next.js, Astro, PostgreSQL, Drizzle, MapLibre</dd>
-      <dt>Automatisierung &amp; Werkzeuge</dt><dd>n8n, Claude Code, Codex, Git</dd>
-      <dt>Hardware</dt><dd>3D-Druck</dd>
-      <dt>Sprachen</dt><dd>Deutsch (Muttersprache), Englisch (C1)</dd>
+      <dt>Reinforcement learning &amp; simulation</dt><dd>Gymnasium, Stable-Baselines3 (PPO, SAC, TQC), MuJoCo, spring-mass simulation, NVIDIA Isaac Lab (just getting started)</dd>
+      <dt>Local AI &amp; speech</dt><dd>faster-whisper, Piper TTS, Ollama, ONNX / DirectML, LLMs via OpenRouter</dd>
+      <dt>Software &amp; web</dt><dd>Python, TypeScript, JavaScript, Next.js, Astro, PostgreSQL, Drizzle, MapLibre</dd>
+      <dt>Automation &amp; tooling</dt><dd>n8n, Claude Code, Codex, Git</dd>
+      <dt>Hardware</dt><dd>3D printing</dd>
+      <dt>Languages</dt><dd>German (native), English (C1)</dd>
     </dl>
   </section>
 
-  <footer class="mono">Stand: September 2026</footer>
+  <footer class="mono">As of September 2026</footer>
 </body>
 </html>
