@@ -23,7 +23,7 @@ jobs:
         uses: withastro/action@v5
         with:
           node-version: 24
-      - name: Verify CartPole policy
+      - name: Verify double pendulum policy and physics
         run: npm run test:policy
       - name: Verify source content
         run: node scripts/verify-content.mjs

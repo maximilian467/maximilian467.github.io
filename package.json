@@ -11,7 +11,8 @@
     "check": "astro check",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "test:policy": "node --experimental-strip-types --test tests/cartpole.test.ts",
+    "test:policy": "node --experimental-strip-types --test tests/double-pendulum.test.ts",
+    "bench:policy": "node --experimental-strip-types scripts/bench-double-pendulum.ts",
     "assets": "node scripts/generate-assets.mjs"
   },
   "dependencies": {
