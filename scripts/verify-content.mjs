@@ -20,7 +20,7 @@ for (const file of projectFiles) {
 }
 for (const route of ['','de/']) {
   const html = readFileSync(`dist/${route}index.html`,'utf8');
-  assert.ok(!/4\. Platz|Dreijährigen|passionate|Elevate|Unleash|revolutionär|nahtlos/.test(html));
+  assert.ok(!/\d\. Platz|Dreijährigen|passionate|Elevate|Unleash|revolutionär|nahtlos/.test(html));
   assert.ok(!/\s[–—]\s/.test(normalize(html)), 'Stylistic dash in body');
   assert.ok(!/src=["']https?:/.test(html),'Externally loaded media');
   assert.ok(!html.includes('_private'),'Private path in output');

@@ -47,7 +47,7 @@ Check the production build: `npm run build`, then `npm run preview`.
 |---|---|
 | `npm run build` | `astro check` (type checking) and the static build |
 | `npm run test:policy` | Double pendulum tests against reference data from MuJoCo and the real model (`tests/fixtures/`): the forward pass on 50 observations (max. \|Δ action\| < 1e-4), the observation, 20 open-loop trajectories with nudges (max. \|Δ qpos\| < 1e-5, \|Δ qvel\| < 1e-4), and the 4×4 start/target evaluation matrix (every cell ≥ 80 %, mean ≥ 95 %) |
-| `npm run bench:policy` | Not part of CI. Three-minute endurance runs with pose switches every 20 s and nudges every 4 s. It measures the trained model, not the implementation (see [docs/DECISIONS.md](docs/DECISIONS.md)) |
+| `npm run bench:policy` | Not part of CI. Three-minute endurance runs with pose switches every 20 s and nudges every 4 s. It measures the trained model, not the implementation |
 | `node scripts/verify-content.mjs` | Run after a build: legal pages match their sources, every project description is sourced from `docs/CONTENT.md`, English is the default, the Lab Notes disclosure is verbatim, old URLs redirect, no externally loaded media, canonical and hreflang tags present |
 
 [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) runs on every push to `main`: it builds the site with `withastro/action`, runs the policy tests and the content verification, and only then deploys to GitHub Pages.
@@ -61,7 +61,7 @@ playwright-cli -s=laborbuch run-code --filename=scripts/browser-interactions.cjs
 playwright-cli -s=laborbuch run-code --filename=scripts/browser-theme.cjs
 ```
 
-Create `docs/qa/screenshots/` first. Screenshots stay local and are not committed. Recorded check results are in [`docs/qa/`](docs/qa/).
+Create `docs/qa/screenshots/` first. Screenshots and recorded check results stay local and are not committed.
 
 ## Design variants and theme
 
@@ -92,7 +92,6 @@ Back to the default: stop the server, `Remove-Item Env:DESIGN_VARIANT`, run `npm
 2. Create a component next to `DoublePendulum.astro` that uses `LabFigure`: its own still SVG (`slot="still"`), optional selector row (`slot="selector"`), live readouts (`slot="readouts"`) and script.
 3. Swap that one component in `src/components/Hero.astro`, then update the caption in `docs/CONTENT.md` (Hero, both languages) and the figure strings in `src/i18n/ui.ts`.
 
-All decisions and open points: [docs/DECISIONS.md](docs/DECISIONS.md).
 
 ## Content and projects
 
@@ -106,7 +105,7 @@ Regenerate the OG image and favicon with `npm run assets` when needed. The glyph
 
 ## Lab Notes
 
-Articles are Markdown files under `src/content/lab-notes/<id>.md`. The overview is at `/lab-notes/` and `/de/laborbuch/`; articles are at `/lab-notes/<id>/` or `/de/laborbuch/<id>/`, depending on their language. Template, fields and how to link an article as a project's "Technical write-up": [docs/LAB-NOTES.md](docs/LAB-NOTES.md). The AI-writing disclosure is added automatically under every article.
+Articles are Markdown files under `src/content/lab-notes/<id>.md`. The overview is at `/lab-notes/` and `/de/laborbuch/`; articles are at `/lab-notes/<id>/` or `/de/laborbuch/<id>/`, depending on their language. The frontmatter fields are defined and validated in [`src/content.config.ts`](src/content.config.ts). To link an article as a project's "Technical write-up", set `links.writeup` in the project JSON to the article id. The AI-writing disclosure is added automatically under every article.
 
 ## Deployment
 
@@ -119,8 +118,8 @@ git commit -m "Describe the change"
 git push origin main
 ```
 
-Progress is visible in the repository's Actions tab. As of the update to Astro 7.3.2, `npm audit` reports no known vulnerabilities (13 September 2026, snapshot in [`docs/qa/npm-audit.json`](docs/qa/npm-audit.json)).
+Progress is visible in the repository's Actions tab. As of the update to Astro 7.3.2, `npm audit` reports no known vulnerabilities (re-checked 15 September 2026).
 
 ## Documentation language
 
-The internal project documentation (`AGENTS.md`, `DESIGN.md`, `docs/`) is written in German.
+Internal planning notes, agent instructions and QA artifacts are kept locally and are not part of this repository. The build inputs `docs/CONTENT.md` and `docs/legal/` are written in German.

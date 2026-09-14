@@ -1,1 +1,0 @@
-{"visibilitySignalTest":{"stopped":true,"resumed":true,"method":"injected document.hidden and native visibilitychange event; headless tabs do not change visibility"},"shots":["docs/qa/screenshots/legal-390-impressum-.png","docs/qa/screenshots/legal-390-en-privacy-.png","docs/qa/screenshots/legal-1440-impressum-.png","docs/qa/screenshots/legal-1440-en-privacy-.png"]}

@@ -8,3 +8,12 @@ _private/
 .playwright-cli/
 docs/qa/screenshots/
 
+
+# Internal planning, agent instructions and QA artifacts stay local (not published).
+AGENTS.md
+DESIGN.md
+.agents/
+docs/*
+!docs/CONTENT.md
+!docs/legal/
+!docs/cv/

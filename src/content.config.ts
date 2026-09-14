@@ -3,7 +3,7 @@ import { defineCollection, reference } from 'astro:content';
 import { z } from 'astro/zod';
 import { glob, type Loader } from 'astro/loaders';
 
-// Code links stay on an allowlist: only repositories that may be public are linked (see AGENTS.md).
+// Code links stay on an allowlist: only repositories that may be public are linked.
 const githubLink = z.enum(['https://github.com/maximilian467/n8n-automation-portfolio']);
 const flow = z.object({ label: z.string().optional(), nodes: z.array(z.string()).min(2) });
 const metric = z.object({ label: z.string(), value: z.string(), highlight: z.string().optional() });

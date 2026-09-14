@@ -7,7 +7,7 @@ Schreibregeln für alle Texte:
 - Keine Wörter wie „innovativ", „nahtlos", „revolutionär", „Leidenschaft", „next-level", „cutting-edge", „Synergie".
 - Keine übertriebenen Aussagen. Lieber ein echter Messwert als ein Adjektiv.
 - Keine Emojis.
-- Den 4. Platz beim Hackathon **nicht** erwähnen.
+- Keine Platzierungen bei Hackathons erwähnen.
 - Kein Foto.
 - Englisch ist die Standardsprache der Website. Studiengang im Englischen: „Automation Engineering“ (großgeschrieben).
 
@@ -170,11 +170,11 @@ Reihenfolge wie unten.
 
 ## Laborbuch / Lab Notes
 
-Technische Berichte zu Projekten und Experimenten. Keine Artikel erfinden. Aufbau und Vorlage: `docs/LAB-NOTES.md`.
+Technische Berichte zu Projekten und Experimenten. Keine Artikel erfinden. Felder: `src/content.config.ts`.
 
 Veröffentlicht:
 - `waechter` (Englisch, 14.09.2026): „Wächter: an offline voice-and-vision assistant for my front door". Quelle ist der vom Nutzer gelieferte Artikel, übernommen ohne inhaltliche Änderungen: `src/content/lab-notes/waechter.md`. Verknüpft als Technischer Bericht beim Projekt Wächter.
-- `one-policy-four-balance-modes` (Englisch, 14.09.2026): „One Policy, Four Balance Modes". Quelle ist der vom Nutzer gelieferte Artikel zum Doppelpendel-Training. Ergänzt: Hardware (gleicher Laptop wie Wächter, laut Nutzer) und der Absatz zur Web-Umsetzung aus `docs/DECISIONS.md` und `README.md`. Motivations-Platzhalter entfernt, weil dazu keine Angaben vorliegen. Verknüpft über die Bildunterschrift der Hero-Demo.
+- `one-policy-four-balance-modes` (Englisch, 14.09.2026): „One Policy, Four Balance Modes". Quelle ist der vom Nutzer gelieferte Artikel zum Doppelpendel-Training. Ergänzt: Hardware (gleicher Laptop wie Wächter, laut Nutzer) und der Absatz zur Web-Umsetzung aus `README.md`. Motivations-Platzhalter entfernt, weil dazu keine Angaben vorliegen. Verknüpft über die Bildunterschrift der Hero-Demo.
 
 KI-Hinweis, klein und unauffällig auf der Übersicht und unter jedem Artikel. Englisch **wörtlich** so (einschließlich Gedankenstrich):
 
