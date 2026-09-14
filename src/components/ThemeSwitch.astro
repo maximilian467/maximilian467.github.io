@@ -13,7 +13,7 @@ const { lang } = Astro.props;
 <style>
   .theme-switch { min-width: 4.5rem; min-height: 44px; padding: .5rem .6rem; border: 1px solid var(--rule); border-radius: 4px; background: transparent; font-size: .8125rem; }
   .theme-switch:hover { color: var(--accent-ink); border-color: var(--accent-ink); }
-  @media (max-width: 899px) { .theme-switch { order: 3; margin-block: .25rem; } }
+  @media (max-width: 899px) { .theme-switch { order: 1; margin: .25rem 0 .25rem .75rem; } }
 </style>
 <script>
   const button = document.querySelector<HTMLButtonElement>('[data-theme-switch]');

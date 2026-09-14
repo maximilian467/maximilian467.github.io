@@ -1,50 +1,23 @@
 ---
+import LabFigure from './LabFigure.astro';
 import { ui, type Locale } from '../i18n/ui';
 interface Props { lang: Locale; caption: string; }
 const { lang, caption } = Astro.props;
 const t = ui[lang];
 ---
-<figure class="hero-figure" aria-label={t.figure} data-cartpole data-lang={lang} data-play={t.play} data-pause={t.pause} data-error={t.unavailable}>
-  <div class="lab">
-    <div class="lab-heading mono"><span translate="no">CartPole</span><span translate="no">PPO</span></div>
-    <div class="lab-stage">
-      <svg class="lab-still" viewBox="0 0 480 360" role="img" aria-label={t.figure}>
-        <defs><pattern id="lab-grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="var(--lab-rule)" stroke-width=".7" /></pattern></defs>
-        <rect class="lab-grid" width="480" height="360" fill="url(#lab-grid)" />
-        <path d="M20 275H460" stroke="var(--lab-muted)" />
-        <g fill="none" stroke="var(--lab-ink)" stroke-width="1.5"><rect x="211" y="249" width="58" height="24" /><circle cx="222" cy="279" r="5" /><circle cx="258" cy="279" r="5" /></g>
-        <path d="M240 249L248 101" stroke="var(--lab-accent)" stroke-width="3" />
-        <circle cx="240" cy="249" r="4" fill="var(--lab-ink)" />
-      </svg>
-      <canvas width="960" height="720" aria-hidden="true" hidden></canvas>
-      <button class="lab-hit" aria-label={t.nudgeLabel} title={t.nudgeLabel} hidden></button>
-    </div>
-    <div class="lab-bottom">
-      <div class="readouts mono" aria-hidden="true" hidden><span data-theta></span><span data-x></span><span data-step-label={t.step}></span></div>
-      <div class="lab-controls" hidden><button data-nudge>{t.nudge}</button><button data-toggle>{t.pause}</button></div>
-      <noscript><style>.lab-message { display: none; }</style><p class="mono">{t.staticFigure}</p></noscript>
-      <p class="lab-message mono" role="status" data-message>{t.loading}</p>
-    </div>
-  </div>
-  <figcaption class="mono">{caption}</figcaption>
-</figure>
-<style>
-  .lab { background: var(--lab); color: var(--lab-ink); border: 1px solid var(--lab-rule); }
-  .lab-heading { display: flex; justify-content: space-between; padding: .85rem 1.1rem; color: var(--lab-muted); }
-  .lab-stage { position: relative; aspect-ratio: 4 / 3; margin: 0 1rem; }
-  .lab-stage canvas, .lab-still { display: block; width: 100%; height: 100%; }
-  .lab-still { position: absolute; inset: 0; }
-  .lab-hit { position: absolute; inset: 0; width: 100%; height: 100%; background: transparent; border: 0; }
-  .lab-hit:hover { background: rgb(255 255 255 / .015); }
-  .lab :focus-visible { outline-color: var(--lab-accent); outline-offset: -4px; }
-  .lab-bottom { padding: .8rem 1.1rem; border-top: 1px solid var(--lab-rule); }
-  .readouts { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .2rem .75rem; color: var(--lab-muted); font-variant-numeric: tabular-nums; min-height: 22px; }
-  .lab-controls { display: flex; gap: 1.5rem; margin-top: .2rem; }
-  .lab-controls button { min-height: 44px; border: 0; padding: .25rem 0; background: none; text-decoration: underline; text-underline-offset: .25em; font-size: .8125rem; }
-  .lab-controls button:hover { color: var(--lab-accent); }
-  .lab-message, noscript .mono { color: var(--lab-muted); }
-  figcaption { margin-top: .85rem; }
-</style>
+<LabFigure environment="CartPole" algorithm="PPO" caption={caption} label={t.figure}
+  nudge={t.nudge} nudgeLabel={t.nudgeLabel} pause={t.pause} loading={t.loading} staticText={t.staticFigure}
+  data-cartpole data-lang={lang} data-play={t.play} data-pause={t.pause} data-error={t.unavailable}>
+  <svg slot="still" viewBox="0 0 480 360" role="img" aria-label={t.figure}>
+    <defs><pattern id="lab-grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="var(--lab-rule)" stroke-width=".7" /></pattern></defs>
+    <rect class="lab-grid" width="480" height="360" fill="url(#lab-grid)" />
+    <path d="M20 275H460" stroke="var(--lab-muted)" />
+    <g fill="none" stroke="var(--lab-ink)" stroke-width="1.5"><rect x="211" y="249" width="58" height="24" /><circle cx="222" cy="279" r="5" /><circle cx="258" cy="279" r="5" /></g>
+    <path d="M240 249L248 101" stroke="var(--lab-accent)" stroke-width="3" />
+    <circle cx="240" cy="249" r="4" fill="var(--lab-ink)" />
+  </svg>
+  <Fragment slot="readouts"><span data-theta></span><span data-x></span><span data-step-label={t.step}></span></Fragment>
+</LabFigure>
 <script>
   import { action, step, failed, initialState, type Policy, type State } from '../lib/cartpole';
   const root = document.querySelector<HTMLElement>('[data-cartpole]');

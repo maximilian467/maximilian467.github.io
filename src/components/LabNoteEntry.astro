@@ -1,0 +1,22 @@
+---
+import { ui, type Locale } from '../i18n/ui';
+import { labNoteUrl } from '../i18n/utils';
+import { formatDate, isoDate, type LabNote } from '../lib/lab-notes';
+interface Props { note: LabNote; lang: Locale; headingLevel?: 2 | 3; }
+const { note, lang, headingLevel = 2 } = Astro.props;
+const Heading = headingLevel === 2 ? 'h2' : 'h3';
+const { title, summary, published, stack } = note.data;
+const noteLang = note.data.lang;
+const foreign = noteLang !== lang ? noteLang : undefined;
+---
+<article class="entry" data-reveal>
+  <div class="entry-meta mono">
+    <time datetime={isoDate(published)}>{formatDate(published, lang)}</time>
+    {foreign && <span>{ui[lang].noteLanguage[noteLang]}</span>}
+  </div>
+  <div class="entry-content" lang={foreign}>
+    <Heading class="note-entry-title"><a href={labNoteUrl(noteLang, note.id)} hreflang={foreign}>{title}</a></Heading>
+    <p>{summary}</p>
+    {stack.length > 0 && <p class="tech mono">{stack.join(' · ')}</p>}
+  </div>
+</article>

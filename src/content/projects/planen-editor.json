@@ -1,14 +1,16 @@
 {
   "order": 3,
   "running": false,
-  "measurements": false,
   "de": {
     "title": "Planen-Editor",
     "description": "Wie spannt man eine Plane so, dass sie keine Falten wirft? Im Editor zeichnet man die Form, setzt Befestigungspunkte und startet die Simulation. Die Plane wird zu einem Feder-Masse-Netz, Falten erscheinen als Linien und werden über einen Faltenindex messbar. Ein Assistent schlägt dann Positionen für die Befestigungspunkte vor, bei denen die Plane glatter liegt.",
     "date": "2026",
     "status": "fertig",
     "role": "Allein",
-    "tech": "JavaScript · Canvas · Feder-Masse-Simulation · eine einzige HTML-Datei"
+    "tech": "JavaScript · Canvas · Feder-Masse-Simulation · eine einzige HTML-Datei",
+    "architecture": [
+      { "nodes": ["Form zeichnen", "Befestigungspunkte setzen", "Feder-Masse-Netz", "Faltenindex", "Vorschlag für Befestigungspunkte"] }
+    ]
   },
   "en": {
     "title": "Tarp editor",
@@ -16,6 +18,9 @@
     "date": "2026",
     "status": "completed",
     "role": "Solo",
-    "tech": "JavaScript · Canvas · spring-mass simulation · a single HTML file"
+    "tech": "JavaScript · Canvas · spring-mass simulation · a single HTML file",
+    "architecture": [
+      { "nodes": ["Draw shape", "Place mounting points", "Spring-mass mesh", "Wrinkle index", "Suggested mounting points"] }
+    ]
   }
 }

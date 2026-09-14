@@ -4,12 +4,12 @@ async page => {
   const errors = [];
   page.on('request', request => { if (!request.url().startsWith('http://127.0.0.1:4321') && !request.url().startsWith('data:')) external.add(request.url()); });
   page.on('pageerror', error => errors.push(error.message));
-  for (const lang of ['de', 'en']) {
+  for (const lang of ['en', 'de']) {
     for (const [width, height] of [[390,844], [768,1024], [1366,768], [1440,900]]) {
       for (const scheme of ['light', 'dark']) {
         await page.setViewportSize({ width, height });
         await page.emulateMedia({ colorScheme: scheme, reducedMotion: 'reduce' });
-        await page.goto(`http://127.0.0.1:4321/${lang === 'en' ? 'en/' : ''}`);
+        await page.goto(`http://127.0.0.1:4321/${lang === 'de' ? 'de/' : ''}`);
         await page.evaluate(() => document.fonts.ready);
         await page.waitForFunction(() => document.querySelector('[data-cartpole]')?.dataset.state === 'paused');
         const layout = await page.evaluate(() => {
@@ -30,7 +30,7 @@ async page => {
         });
         const id = `${lang}-${width}x${height}-${scheme}`;
         await page.screenshot({ path: `docs/qa/screenshots/${id}.png` });
-        if (lang === 'de' && [390,1440].includes(width) && scheme === 'light') {
+        if (lang === 'en' && [390,1440].includes(width) && scheme === 'light') {
           await page.screenshot({ path: `docs/qa/screenshots/${id}-full.png`, fullPage: true });
           await page.locator('#project-waechter').scrollIntoViewIfNeeded();
           await page.screenshot({ path: `docs/qa/screenshots/${id}-projects.png` });

@@ -18,17 +18,17 @@ async page => {
   const shots = [];
   for (const [width,height] of [[390,844],[1440,900]]) {
     await page.setViewportSize({width,height});
-    for (const route of ['impressum/','en/privacy/']) {
+    for (const route of ['de/impressum/','privacy/','lab-notes/','de/laborbuch/']) {
       await page.goto(`http://127.0.0.1:4321/${route}`);
-      const filename = `docs/qa/screenshots/legal-${width}-${route.replaceAll('/','-')}.png`;
-      await page.screenshot({path:filename}); shots.push(filename);
+      const filename = `docs/qa/screenshots/page-${width}-${route.replaceAll('/','-')}.png`;
+      await page.screenshot({path:filename, fullPage:true}); shots.push(filename);
     }
   }
   await page.goto('http://127.0.0.1:4321/');
   await page.setViewportSize({width:1440,height:900});
   await page.emulateMedia({reducedMotion:'no-preference'});
   await page.reload();
-  await page.waitForFunction(() => document.querySelector('[data-step-label]').textContent !== 'Schritt 0');
+  await page.waitForFunction(() => document.querySelector('[data-step-label]').textContent !== 'Step 0');
   await page.screenshot({path:'docs/qa/screenshots/final-desktop.png'});
   await page.setViewportSize({width:390,height:844});
   await page.locator('.hero').screenshot({path:'docs/qa/screenshots/final-mobile-hero.png'});

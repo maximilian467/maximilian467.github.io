@@ -1,14 +1,23 @@
 {
   "order": 1,
   "running": false,
-  "measurements": true,
   "de": {
     "title": "Wächter",
     "description": "Ein Assistent, der durch eine Kamera sieht, zuhört und antwortet. Alles läuft offline auf meinem Laptop, ohne Grafikkarte, ohne Cloud. Eine Bewegungserkennung weckt die Personenerkennung erst, wenn sich etwas tut. Die Spracherkennung bekommt nur Abschnitte, in denen wirklich gesprochen wird, weil Whisper bei Stille sonst Sätze erfindet. Ziel war: Er fängt nach weniger als drei Sekunden an zu sprechen.",
     "date": "2026",
     "status": "fertig",
     "role": "Allein",
-    "tech": "Python · faster-whisper · Piper TTS · lokales Sprachmodell · ONNX / DirectML"
+    "tech": "Python · faster-whisper · Piper TTS · lokales Sprachmodell · ONNX / DirectML",
+    "architecture": [
+      { "label": "Bild", "nodes": ["Kamera", "Bewegungserkennung", "Personenerkennung"] },
+      { "label": "Sprache", "nodes": ["Mikrofon", "Nur Sprachabschnitte", "faster-whisper", "Lokales Sprachmodell", "Piper TTS"] }
+    ],
+    "metrics": [
+      { "label": "Zeit bis zum ersten gesprochenen Wort", "value": "~2,6 s (Ziel < 3 s)", "highlight": "~2,6 s" },
+      { "label": "Personenerkennung", "value": "17,3 ms pro Bild (58 fps)" },
+      { "label": "Sprachmodell", "value": "17–19 Token/s" },
+      { "label": "Hardware", "value": "Intel i7-13700H, 32 GB RAM, keine dedizierte GPU" }
+    ]
   },
   "en": {
     "title": "Wächter",
@@ -16,6 +25,16 @@
     "date": "2026",
     "status": "completed",
     "role": "Solo",
-    "tech": "Python · faster-whisper · Piper TTS · local language model · ONNX / DirectML"
+    "tech": "Python · faster-whisper · Piper TTS · local language model · ONNX / DirectML",
+    "architecture": [
+      { "label": "Vision", "nodes": ["Camera", "Motion detection", "Person detection"] },
+      { "label": "Voice", "nodes": ["Microphone", "Speech segments only", "faster-whisper", "Local language model", "Piper TTS"] }
+    ],
+    "metrics": [
+      { "label": "Time to first spoken word", "value": "~2.6 s (target < 3 s)", "highlight": "~2.6 s" },
+      { "label": "Person detection", "value": "17.3 ms per frame (58 fps)" },
+      { "label": "Language model", "value": "17–19 tokens/s" },
+      { "label": "Hardware", "value": "Intel i7-13700H, 32 GB RAM, no dedicated GPU" }
+    ]
   }
 }

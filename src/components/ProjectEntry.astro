@@ -1,10 +1,27 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { ui, type Locale } from '../i18n/ui';
+import { labNoteUrl } from '../i18n/utils';
+import { getLabNotes } from '../lib/lab-notes';
+import ArchitectureFlow from './ArchitectureFlow.astro';
 import Datasheet from './Datasheet.astro';
 interface Props { project: CollectionEntry<'projects'>; lang: Locale; }
 const { project, lang } = Astro.props;
+const t = ui[lang];
 const p = project.data[lang];
+const { demo, github, writeup } = project.data.links;
+let writeupUrl: string | undefined;
+if (writeup) {
+  const note = (await getLabNotes()).find(note => note.id === writeup);
+  if (!note) throw new Error(`Project "${project.id}" links to missing lab note "${writeup}"`);
+  writeupUrl = labNoteUrl(note.data.lang, note.id);
+}
+// Order follows how an engineering write-up reads. Sections without facts are skipped.
+const facts = (entries: [string, string[] | undefined][]) =>
+  entries.filter((entry): entry is [string, string[]] => !!entry[1]?.length);
+const intro = facts([[t.goal, p.goal ? [p.goal] : undefined], [t.whatIBuilt, p.built ? [p.built] : undefined]]);
+const decisions = facts([[t.decisions, p.decisions]]);
+const outro = facts([[t.learned, p.learned], [t.next, p.next]]);
 ---
 <article class="entry" aria-labelledby={`project-${project.id}`} data-reveal>
   <div class="entry-meta mono">
@@ -15,8 +32,18 @@ const p = project.data[lang];
   <div class="entry-content">
     <h3 id={`project-${project.id}`}>{p.title}</h3>
     <p>{p.description}</p>
-    {project.data.measurements && <Datasheet lang={lang} />}
+    {[intro, decisions, outro].map((group, index) => <>
+      {index === 1 && p.architecture && <ArchitectureFlow flows={p.architecture} title={t.architecture} />}
+      {index === 2 && p.metrics && <Datasheet metrics={p.metrics} title={`${t.measurements}: ${p.title}`} />}
+      {group.length > 0 && <dl class="project-facts">{group.map(([title, items]) => (
+        <div><dt class="mono">{title}</dt><dd>{items.length === 1 ? <p>{items[0]}</p> : <ul>{items.map(item => <li>{item}</li>)}</ul>}</dd></div>
+      ))}</dl>}
+    </>)}
     <p class="tech mono">{p.tech}</p>
-    {project.data.code && <a class="code-link" href={project.data.code}>{ui[lang].code} <span aria-hidden="true">↗</span></a>}
+    {(demo || github || writeupUrl) && <p class="project-links">
+      {demo && <a href={demo}>{t.demo} <span aria-hidden="true">↗</span></a>}
+      {github && <a href={github}>{t.github} <span aria-hidden="true">↗</span></a>}
+      {writeupUrl && <a href={writeupUrl}>{t.writeup} <span aria-hidden="true">→</span></a>}
+    </p>}
   </div>
 </article>

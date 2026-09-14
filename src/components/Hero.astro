@@ -9,6 +9,7 @@ const c = content(lang);
 <section class="hero wrap" aria-labelledby="name">
   <div class="hero-copy">
     <h1 id="name" translate="no"><span>Maximilian</span> <em>Köhlenbeck</em></h1>
+    <p class="headline">{c.headline}</p>
     <p class="intro">{c.hero}</p>
     <p class="hero-meta mono">{c.meta}</p>
     <div class="hero-links">
@@ -17,5 +18,6 @@ const c = content(lang);
       <a class="cv-link" href={links.cv}>{ui[lang].cv}</a>
     </div>
   </div>
+  {/* Hero demo. To show another trained policy, build it on LabFigure.astro and swap this one component. */}
   <CartPole lang={lang} caption={c.caption} />
 </section>

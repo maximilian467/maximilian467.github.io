@@ -17,6 +17,22 @@ Stand: 13. September 2026. Grundlage: Nutzerfeedback nach Phase 2. Der Nutzer ha
 | Node 24 für Entwicklung und Deployment | Unterstützte lokale Version; mindestens Node 22.12 erforderlich | `package.json`, `.github/workflows/deploy.yml` |
 | GitHub Pages unter maximilian467.github.io | Veröffentlichung vom Nutzer inzwischen ausdrücklich gewünscht | Push auf `main` startet den Workflow; frühere Änderungen per Git-Revert zurücknehmen |
 
+## Überarbeitung 14. September 2026: international, technischer, Lab Notes
+
+| Entscheidung | Grund | Schnell ändern |
+| --- | --- | --- |
+| Englisch ist Standard (`/`), Deutsch unter `/de/` | Zielgruppe: internationale Hackathons, Praktika, Programme | `astro.config.mjs` (`defaultLocale`), `src/i18n/utils.ts`, Seiten unter `src/pages/` |
+| Keine Weiterleitung nach Browsersprache, kein gespeicherter Sprachwert | Die gewählte Sprache wird nie überschrieben; die URL trägt die Sprache; keine neue Speicherung für die Datenschutzerklärung | `src/components/LangSwitch.astro` |
+| Alte URLs leiten per statischer Weiterleitung um | Bereits geteilte Links (`/en/`, `/impressum/`, …) bleiben gültig | `redirects` in `astro.config.mjs` |
+| Name bleibt `h1`, Positionierung als Zeile direkt darunter | Visuelle Identität bleibt, die Positionierung ist trotzdem in Sekunden lesbar | `src/components/Hero.astro`, `docs/CONTENT.md` |
+| „KI-gestützte Entwicklung" als eigener Block unter Über mich | Transparent zu Claude Code/Codex, Schwerpunkt auf Systemdesign und Validierung | `docs/CONTENT.md` |
+| Werkzeuge nach Einsatz gruppiert, ohne Selbsteinstufung | „Sehr sicher" war eine Selbstbewertung; nur belegte Technologien, Isaac Lab als Anfang markiert | `docs/CONTENT.md` |
+| Architekturdiagramme als geordnete Liste mit CSS-Pfeilen | Leicht, zugänglich, ohne Diagramm-Bibliothek; nur aus Beschreibungen abgeleitete Abläufe | `src/components/ArchitectureFlow.astro`, Projekt-JSON |
+| Messwerte aus Projektdaten statt fest im Datenblatt | Weitere Projekte und Artikel können Messwerte zeigen | `src/components/Datasheet.astro` |
+| Lab Notes / Laborbuch als eigene Seiten, Startseitenabschnitt erst ab dem ersten Artikel | Kein leerer Abschnitt auf der Startseite; Navigation zeigt die Übersicht mit Hinweis „in Arbeit" | `src/layouts/LabNotesIndex.astro`, `src/layouts/Home.astro` |
+| KI-Hinweis wörtlich mit Gedankenstrich, nur im Laborbuch | Vom Nutzer exakt vorgegeben; die deutsche Fassung kommt ohne Gedankenstrich aus | `src/i18n/ui.ts` (`disclosure`) |
+| `LabFigure` als Rahmen der Hero-Demo | Double Pendulum kann später ohne Umbau des Hero eingesetzt werden | `src/components/LabFigure.astro`, `Hero.astro` |
+
 ## Rückwechsel ohne Umbau
 
 `DESIGN_VARIANT=classic` wählt beim Start/Build die ruhigere Laborbuch-Variante. Der Name wird normal und ohne Akzent gesetzt, die Simulation hell, das Raster entfernt und die zusätzliche Messwerthervorhebung ausgeblendet. Inhalte, Routen und Physik bleiben identisch. Build und Browserdarstellung der Alternative wurden geprüft.

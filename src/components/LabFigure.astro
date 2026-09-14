@@ -1,0 +1,44 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+// Experiment surface for the hero demo. A demo supplies its static SVG, its live readouts and its own
+// script (canvas drawing, [data-nudge], [data-toggle], [data-message]). CartPole.astro is the reference.
+interface Props extends HTMLAttributes<'figure'> {
+  environment: string; algorithm: string; caption: string; label: string;
+  nudge: string; nudgeLabel: string; pause: string; loading: string; staticText: string;
+}
+const { environment, algorithm, caption, label, nudge, nudgeLabel, pause, loading, staticText, ...attributes } = Astro.props;
+---
+<figure class="hero-figure" aria-label={label} {...attributes}>
+  <div class="lab">
+    <div class="lab-heading mono"><span translate="no">{environment}</span><span translate="no">{algorithm}</span></div>
+    <div class="lab-stage">
+      <div class="lab-still"><slot name="still" /></div>
+      <canvas width="960" height="720" aria-hidden="true" hidden></canvas>
+      <button class="lab-hit" aria-label={nudgeLabel} title={nudgeLabel} hidden></button>
+    </div>
+    <div class="lab-bottom">
+      <div class="readouts mono" aria-hidden="true" hidden><slot name="readouts" /></div>
+      <div class="lab-controls" hidden><button data-nudge>{nudge}</button><button data-toggle>{pause}</button></div>
+      <noscript><style>.lab-message { display: none; }</style><p class="mono">{staticText}</p></noscript>
+      <p class="lab-message mono" role="status" data-message>{loading}</p>
+    </div>
+  </div>
+  <figcaption class="mono">{caption}</figcaption>
+</figure>
+<style>
+  .lab { background: var(--lab); color: var(--lab-ink); border: 1px solid var(--lab-rule); }
+  .lab-heading { display: flex; justify-content: space-between; padding: .85rem 1.1rem; color: var(--lab-muted); }
+  .lab-stage { position: relative; aspect-ratio: 4 / 3; margin: 0 1rem; }
+  .lab-stage canvas, .lab-still :global(svg) { display: block; width: 100%; height: 100%; }
+  .lab-still { position: absolute; inset: 0; }
+  .lab-hit { position: absolute; inset: 0; width: 100%; height: 100%; background: transparent; border: 0; }
+  .lab-hit:hover { background: rgb(255 255 255 / .015); }
+  .lab :focus-visible { outline-color: var(--lab-accent); outline-offset: -4px; }
+  .lab-bottom { padding: .8rem 1.1rem; border-top: 1px solid var(--lab-rule); }
+  .readouts { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .2rem .75rem; color: var(--lab-muted); font-variant-numeric: tabular-nums; min-height: 22px; }
+  .lab-controls { display: flex; gap: 1.5rem; margin-top: .2rem; }
+  .lab-controls button { min-height: 44px; border: 0; padding: .25rem 0; background: none; text-decoration: underline; text-underline-offset: .25em; font-size: .8125rem; }
+  .lab-controls button:hover { color: var(--lab-accent); }
+  .lab-message, noscript .mono { color: var(--lab-muted); }
+  figcaption { margin-top: .85rem; }
+</style>

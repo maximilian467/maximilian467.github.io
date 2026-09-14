@@ -1,0 +1,42 @@
+---
+import { getEntry, render } from 'astro:content';
+import Base from './Base.astro';
+import ArchitectureFlow from '../components/ArchitectureFlow.astro';
+import Datasheet from '../components/Datasheet.astro';
+import { ui } from '../i18n/ui';
+import { labNoteUrl, routes } from '../i18n/utils';
+import { formatDate, isoDate, type LabNote } from '../lib/lab-notes';
+interface Props { note: LabNote; }
+const { note } = Astro.props;
+const { title, summary, published, updated, stack, architecture, metrics, links, lang } = note.data;
+const t = ui[lang];
+const other = lang === 'en' ? 'de' : 'en';
+const { Content } = await render(note);
+const project = note.data.project ? await getEntry(note.data.project) : undefined;
+if (note.data.project && !project) throw new Error(`Lab note "${note.id}" references a missing project`);
+const url = labNoteUrl(lang, note.id);
+---
+<Base lang={lang} page="labNotes" title={title} description={summary} ogType="article"
+  alternates={{ [lang]: url }} languageLinks={{ [lang]: url, [other]: routes[other].labNotes }}>
+  <article class="note wrap" aria-labelledby="note-title">
+    <a class="note-back mono" href={routes[lang].labNotes}><span aria-hidden="true">←</span> {t.allNotes}</a>
+    <header class="note-header">
+      <h1 id="note-title">{title}</h1>
+      <p class="note-summary">{summary}</p>
+      <dl class="note-meta mono">
+        <div><dt>{t.published}</dt><dd><time datetime={isoDate(published)}>{formatDate(published, lang)}</time></dd></div>
+        {updated && <div><dt>{t.updated}</dt><dd><time datetime={isoDate(updated)}>{formatDate(updated, lang)}</time></dd></div>}
+        {project && <div><dt>{t.project}</dt><dd><a href={`${routes[lang].home}#project-${project.id}`}>{project.data[lang].title}</a></dd></div>}
+        {stack.length > 0 && <div><dt>{t.stack}</dt><dd>{stack.join(' · ')}</dd></div>}
+      </dl>
+      {(links.demo || links.github) && <p class="project-links">
+        {links.demo && <a href={links.demo}>{t.demo} <span aria-hidden="true">↗</span></a>}
+        {links.github && <a href={links.github}>{t.github} <span aria-hidden="true">↗</span></a>}
+      </p>}
+    </header>
+    {architecture && <ArchitectureFlow flows={architecture} title={t.architecture} />}
+    {metrics && <Datasheet metrics={metrics} title={`${t.measurements}: ${title}`} />}
+    <div class="note-prose"><Content /></div>
+    <footer class="note-footer"><p class="disclosure mono">{t.disclosure}</p></footer>
+  </article>
+</Base>

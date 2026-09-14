@@ -1,14 +1,16 @@
 {
   "order": 6,
   "running": false,
-  "measurements": false,
   "de": {
     "title": "KI-Automationen mit n8n",
     "description": "Drei Automationen für kleine Firmen. Rechnungen aus PDFs auslesen und prüfen, ob die Positionen wirklich die Summe ergeben. Eingehende Mails sortieren und Antworten als Entwurf vorbereiten, nie automatisch senden. Preise und Lagerbestand in Onlineshops ohne API beobachten. Wenn die KI unsicher ist, entscheidet ein Mensch.",
     "date": "2026",
     "status": "fertig",
     "role": "Allein",
-    "tech": "n8n · LLM über HTTP · Google Sheets · Airtable · Slack · Gmail"
+    "tech": "n8n · LLM über HTTP · Google Sheets · Airtable · Slack · Gmail",
+    "architecture": [
+      { "label": "Rechnungen", "nodes": ["Rechnung als PDF", "Auslesen per LLM", "Positionen gegen Summe prüfen", "Mensch entscheidet bei Unsicherheit"] }
+    ]
   },
   "en": {
     "title": "AI automations with n8n",
@@ -16,7 +18,10 @@
     "date": "2026",
     "status": "completed",
     "role": "Solo",
-    "tech": "n8n · LLM via HTTP · Google Sheets · Airtable · Slack · Gmail"
+    "tech": "n8n · LLM via HTTP · Google Sheets · Airtable · Slack · Gmail",
+    "architecture": [
+      { "label": "Invoices", "nodes": ["PDF invoice", "LLM extraction", "Line items vs. total", "Human decides when unsure"] }
+    ]
   },
-  "code": "https://github.com/maximilian467/n8n-automation-portfolio"
+  "links": { "github": "https://github.com/maximilian467/n8n-automation-portfolio" }
 }

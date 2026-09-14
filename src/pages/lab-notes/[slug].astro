@@ -1,0 +1,8 @@
+---
+import LabNote from '../../layouts/LabNote.astro';
+import { labNotePaths, type LabNote as Note } from '../../lib/lab-notes';
+export const getStaticPaths = () => labNotePaths('en');
+interface Props { note: Note; }
+const { note } = Astro.props;
+---
+<LabNote note={note} />

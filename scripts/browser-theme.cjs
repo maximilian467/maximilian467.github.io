@@ -25,14 +25,14 @@ async page => {
   check(state.lab === 'rgb(28, 27, 24)', 'Experiment surface must remain dark');
   await page.reload();
   check((await read()).theme === 'light', 'Reload lost preference');
-  await page.locator('.language a[lang="en"]').click();
+  await page.locator('.language a[lang="de"]').click();
   check((await read()).theme === 'light', 'Language navigation lost preference');
-  check(await toggle.getAttribute('aria-label') === 'Switch to dark theme', 'Wrong English button label');
-  await page.locator('a[href="/en/privacy/"]').click();
+  check(await toggle.getAttribute('aria-label') === 'Zum dunklen Design wechseln', 'Wrong German button label');
+  await page.locator('a[href="/de/datenschutz/"]').click();
   check(await toggle.isVisible(), 'Theme switch missing on legal page');
   await toggle.press('Space');
   check(await page.evaluate(() => getComputedStyle(document.body).backgroundColor) === 'rgb(21, 20, 18)', 'Legal page keyboard dark switch failed');
-  await page.goto(origin + '/en/');
+  await page.goto(origin + '/de/');
   await page.emulateMedia({ colorScheme: 'light' });
   check((await read()).background === 'rgb(21, 20, 18)', 'Explicit preference must override system');
   await page.evaluate(() => localStorage.removeItem('portfolio-theme'));

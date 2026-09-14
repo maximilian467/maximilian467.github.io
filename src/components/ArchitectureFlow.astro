@@ -1,0 +1,15 @@
+---
+// Compact data-flow diagram: each flow is an ordered list of steps. Only use for architecture that is documented.
+interface Flow { label?: string; nodes: string[]; }
+interface Props { flows: Flow[]; title: string; }
+const { flows, title } = Astro.props;
+---
+<figure class="flow">
+  <figcaption class="mono">{title}</figcaption>
+  {flows.map(flow => (
+    <div class:list={['flow-row', { labelled: flow.label }]}>
+      {flow.label && <p class="flow-label mono">{flow.label}</p>}
+      <ol class="flow-nodes">{flow.nodes.map(node => <li><span>{node}</span></li>)}</ol>
+    </div>
+  ))}
+</figure>

@@ -1,14 +1,16 @@
 {
   "order": 2,
   "running": false,
-  "measurements": false,
   "de": {
     "title": "Baulify",
     "description": "Entstanden beim Smart Region Hackathon Offenburg. Eine Plattform, auf der Versorger, Kommunen und Baufirmen ihre Tiefbaumaßnahmen abstimmen. Sie zeigt Konflikte, bevor dieselbe Straße zweimal aufgerissen wird. Nach dem Hackathon habe ich weitergebaut: Eine KI liest Anfragen aus PDFs oder Freitext aus und füllt das Formular vor, Freigaben laufen über einen Link ohne Account, dazu eine Karte und eine eigene Landingpage.",
     "date": "seit Mai 2026",
     "status": "Prototyp",
     "role": "im Team",
-    "tech": "Next.js · TypeScript · PostgreSQL · Drizzle · MapLibre · LLM über OpenRouter"
+    "tech": "Next.js · TypeScript · PostgreSQL · Drizzle · MapLibre · LLM über OpenRouter",
+    "architecture": [
+      { "label": "Anfragen", "nodes": ["PDF oder Freitext", "LLM über OpenRouter", "Vorausgefülltes Formular"] }
+    ]
   },
   "en": {
     "title": "Baulify",
@@ -16,6 +18,9 @@
     "date": "since May 2026",
     "status": "prototype",
     "role": "Team",
-    "tech": "Next.js · TypeScript · PostgreSQL · Drizzle · MapLibre · LLM via OpenRouter"
+    "tech": "Next.js · TypeScript · PostgreSQL · Drizzle · MapLibre · LLM via OpenRouter",
+    "architecture": [
+      { "label": "Requests", "nodes": ["PDF or free text", "LLM via OpenRouter", "Pre-filled form"] }
+    ]
   }
 }

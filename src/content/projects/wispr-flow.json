@@ -1,14 +1,16 @@
 {
   "order": 5,
   "running": false,
-  "measurements": false,
   "de": {
     "title": "Mein Wispr-Flow-Klon",
     "description": "Das Tool, das ich von allen hier am meisten benutze. Tastenkombination drücken, sprechen, nochmal drücken, und der Text steht da, wo der Cursor ist. In Word, im Browser, im Code-Editor. Nachgebaut nach dem Vorbild von Wispr Flow, nur dass alles lokal läuft, nichts kostet und nichts ins Internet schickt.",
     "date": "2026",
     "status": "täglich im Einsatz",
     "role": "Allein",
-    "tech": "Python · faster-whisper (small, int8, CPU) · Windows"
+    "tech": "Python · faster-whisper (small, int8, CPU) · Windows",
+    "architecture": [
+      { "nodes": ["Tastenkombination", "Sprachaufnahme", "faster-whisper (small, int8, CPU)", "Text am Cursor"] }
+    ]
   },
   "en": {
     "title": "My Wispr Flow clone",
@@ -16,6 +18,9 @@
     "date": "2026",
     "status": "in daily use",
     "role": "Solo",
-    "tech": "Python · faster-whisper (small, int8, CPU) · Windows"
+    "tech": "Python · faster-whisper (small, int8, CPU) · Windows",
+    "architecture": [
+      { "nodes": ["Hotkey", "Voice recording", "faster-whisper (small, int8, CPU)", "Text at cursor"] }
+    ]
   }
 }

@@ -1,0 +1,23 @@
+---
+import Base from './Base.astro';
+import LabNoteEntry from '../components/LabNoteEntry.astro';
+import { getLabNotes } from '../lib/lab-notes';
+import { ui, type Locale } from '../i18n/ui';
+interface Props { lang: Locale; }
+const { lang } = Astro.props;
+const t = ui[lang];
+// Notes in both languages are listed; the other language is marked in the meta column.
+const notes = await getLabNotes();
+---
+<Base lang={lang} page="labNotes" title={t.labNotes} description={t.labNotesDescription}>
+  <section class="page wrap" aria-labelledby="lab-notes-title">
+    <div class="section-heading">
+      <h1 id="lab-notes-title" class="section-title page-title">{t.labNotes}</h1>
+      <p>{t.labNotesIntro}</p>
+    </div>
+    {notes.length > 0
+      ? <div class="notes-list">{notes.map(note => <LabNoteEntry note={note} lang={lang} />)}</div>
+      : <p class="notes-empty mono">{t.labNotesEmpty}</p>}
+    <p class="disclosure mono">{t.disclosure}</p>
+  </section>
+</Base>

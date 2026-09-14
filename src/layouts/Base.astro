@@ -15,11 +15,22 @@ import Footer from '../components/Footer.astro';
 import { ui, type Locale } from '../i18n/ui';
 import { routes, type PageKey } from '../i18n/utils';
 import { designVariant } from '../config/design';
-interface Props { lang: Locale; page?: PageKey; title?: string; noindex?: boolean; }
-const { lang, page = 'home', title, noindex = false } = Astro.props;
+interface Props {
+  lang: Locale; page?: PageKey; title?: string; description?: string; noindex?: boolean;
+  ogType?: 'website' | 'article';
+  /** Language versions of this exact page for hreflang. Defaults to the shared route table. */
+  alternates?: Partial<Record<Locale, string>>;
+  /** Targets of the EN / DE switch when they differ from the route table. */
+  languageLinks?: Partial<Record<Locale, string>>;
+}
+const { lang, page = 'home', title, description, noindex = false, ogType = 'website', alternates, languageLinks } = Astro.props;
 const t = ui[lang];
-const pageTitle = title ? `${title} · Maximilian Köhlenbeck` : 'Maximilian Köhlenbeck';
+const pageTitle = title ? `${title} · Maximilian Köhlenbeck` : `Maximilian Köhlenbeck · ${t.homeTitle}`;
+const metaDescription = description ?? t.description;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const versions = alternates ?? { en: routes.en[page], de: routes.de[page] };
+const other = lang === 'en' ? 'de' : 'en';
+const ogLocale = { en: 'en_US', de: 'de_DE' } as const;
 ---
 <!doctype html>
 <html lang={lang}>
@@ -33,14 +44,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       } catch { /* Use the system theme when storage is unavailable. */ }
     </script>
     <title>{pageTitle}</title>
-    <meta name="description" content={t.description} />
+    <meta name="description" content={metaDescription} />
     <meta name="generator" content={Astro.generator} />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
     {!noindex && <>
-      <link rel="alternate" hreflang="de" href={new URL(routes.de[page], Astro.site)} />
-      <link rel="alternate" hreflang="en" href={new URL(routes.en[page], Astro.site)} />
-      <link rel="alternate" hreflang="x-default" href={new URL(routes.de[page], Astro.site)} />
+      {versions.en && <link rel="alternate" hreflang="en" href={new URL(versions.en, Astro.site)} />}
+      {versions.de && <link rel="alternate" hreflang="de" href={new URL(versions.de, Astro.site)} />}
+      {versions.en && <link rel="alternate" hreflang="x-default" href={new URL(versions.en, Astro.site)} />}
     </>}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -49,20 +60,22 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     {page === 'home' && <link rel="preload" href={italicUrl} as="font" type="font/woff2" crossorigin />}
     <meta name="theme-color" content="#F6F4EF" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#151412" media="(prefers-color-scheme: dark)" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Maximilian Köhlenbeck" />
     <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={t.description} />
+    <meta property="og:description" content={metaDescription} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:locale" content={lang === 'de' ? 'de_DE' : 'en_US'} />
+    <meta property="og:locale" content={ogLocale[lang]} />
+    {versions[other] && <meta property="og:locale:alternate" content={ogLocale[other]} />}
     <meta property="og:image" content={new URL('/og.png', Astro.site)} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Maximilian Köhlenbeck. Automatisierung, Robotik, Physical AI." />
+    <meta property="og:image:alt" content={t.ogAlt} />
     <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body data-design={designVariant}>
     <a class="skip" href="#main">{t.skip}</a>
-    <Header lang={lang} page={page} />
+    <Header lang={lang} page={page} languageLinks={languageLinks} />
     <main id="main" tabindex="-1"><slot /></main>
     <Footer lang={lang} />
     <script>

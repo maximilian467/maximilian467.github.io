@@ -3,20 +3,21 @@ import LangSwitch from './LangSwitch.astro';
 import ThemeSwitch from './ThemeSwitch.astro';
 import { ui, type Locale } from '../i18n/ui';
 import { routes, type PageKey } from '../i18n/utils';
-interface Props { lang: Locale; page?: PageKey; }
-const { lang, page = 'home' } = Astro.props;
+interface Props { lang: Locale; page?: PageKey; languageLinks?: Partial<Record<Locale, string>>; }
+const { lang, page = 'home', languageLinks } = Astro.props;
 const t = ui[lang];
 const home = routes[lang].home;
 ---
 <header class="site-header wrap">
   <a href={home} class="brand" translate="no">Maximilian Köhlenbeck</a>
   <div class="navigation">
-    <nav class="anchors" aria-label={lang === 'de' ? 'Hauptnavigation' : 'Main navigation'}>
+    <nav class="anchors" aria-label={t.mainNav}>
       <a href={`${home}#projects`}>{t.projects}</a>
+      <a href={routes[lang].labNotes} aria-current={page === 'labNotes' ? 'page' : undefined}>{t.labNotes}</a>
       <a href={`${home}#now`}>{t.now}</a>
       <a href={`${home}#contact`}>{t.contact}</a>
     </nav>
-    <LangSwitch lang={lang} page={page} />
+    <LangSwitch lang={lang} page={page} links={languageLinks} />
     <ThemeSwitch lang={lang} />
   </div>
 </header>

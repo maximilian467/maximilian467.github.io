@@ -4,22 +4,29 @@ import Base from './Base.astro';
 import Hero from '../components/Hero.astro';
 import NowEntry from '../components/NowEntry.astro';
 import ProjectEntry from '../components/ProjectEntry.astro';
+import LabNoteEntry from '../components/LabNoteEntry.astro';
 import SkillList from '../components/SkillList.astro';
 import Contact from '../components/Contact.astro';
 import { content } from '../i18n/content';
 import { ui, type Locale } from '../i18n/ui';
+import { routes } from '../i18n/utils';
+import { getLabNotes } from '../lib/lab-notes';
 interface Props { lang: Locale; }
 const { lang } = Astro.props;
 const c = content(lang);
 const t = ui[lang];
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const notes = (await getLabNotes()).slice(0, 3);
 ---
 <Base lang={lang}>
   <Hero lang={lang} />
   <section id="about" class="section wrap" aria-labelledby="about-title" data-reveal>
     <div class="about-layout">
       <div><h2 id="about-title" class="section-title">{t.about}</h2><p class="mono section-note">Bremen</p></div>
-      <div class="prose">{c.about.map(p => <p>{p}</p>)}</div>
+      <div>
+        <div class="prose">{c.about.map(p => <p>{p}</p>)}</div>
+        <div class="about-method"><h3>{t.aiAssisted}</h3><p>{c.method}</p></div>
+      </div>
     </div>
   </section>
   <section id="now" class="section wrap" aria-labelledby="now-title" data-reveal>
@@ -30,12 +37,21 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
     <div class="section-heading"><h2 id="projects-title" class="section-title">{t.projects}</h2></div>
     <div>{projects.map(project => <ProjectEntry project={project} lang={lang} />)}</div>
   </section>
+  {notes.length > 0 && (
+    <section id="lab-notes" class="section wrap" aria-labelledby="lab-notes-title" data-reveal>
+      <div class="section-heading">
+        <h2 id="lab-notes-title" class="section-title">{t.labNotes}</h2>
+        <p><a href={routes[lang].labNotes}>{t.allNotes} <span aria-hidden="true">→</span></a></p>
+      </div>
+      <div>{notes.map(note => <LabNoteEntry note={note} lang={lang} headingLevel={3} />)}</div>
+    </section>
+  )}
   <section id="hackathons" class="section wrap" aria-labelledby="hackathons-title" data-reveal>
     <div class="section-heading"><h2 id="hackathons-title" class="section-title">{t.hackathons}</h2></div>
     <article class="entry"><p class="mono">{lang === 'de' ? 'Mai 2026' : 'May 2026'}</p><div class="entry-content"><h3>Smart Region Hackathon Offenburg</h3><p>{lang === 'de' ? 'Daraus entstand Baulify.' : 'This is where Baulify started.'}</p></div></article>
   </section>
   <section id="skills" class="section wrap" aria-labelledby="skills-title" data-reveal>
-    <div class="section-heading"><h2 id="skills-title" class="section-title">{t.skills}</h2></div>
+    <div class="section-heading"><h2 id="skills-title" class="section-title">{t.skills}</h2><p class="mono">{t.skillsNote}</p></div>
     <SkillList items={c.skills} />
   </section>
   <Contact lang={lang} text={c.contact} />

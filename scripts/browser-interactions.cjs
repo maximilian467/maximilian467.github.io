@@ -1,10 +1,11 @@
 async page => {
   const assert = (condition, message) => { if (!condition) throw new Error(message); };
-  const output = { keyboard: [], legal: [], simulation: {} };
+  const origin = 'http://127.0.0.1:4321';
+  const output = { keyboard: [], legal: [], labNotes: [], simulation: {} };
   await page.setViewportSize({ width: 1366, height: 768 });
   await page.emulateMedia({ colorScheme: 'light', reducedMotion: 'no-preference' });
-  for (const lang of ['de', 'en']) {
-    await page.goto(`http://127.0.0.1:4321/${lang === 'en' ? 'en/' : ''}`);
+  for (const lang of ['en', 'de']) {
+    await page.goto(`${origin}/${lang === 'de' ? 'de/' : ''}`);
     await page.waitForFunction(() => document.querySelector('[data-cartpole]')?.dataset.state === 'running');
     const steps = [];
     const total = await page.locator('a,button').count();
@@ -20,8 +21,8 @@ async page => {
     }
     output.keyboard.push({ lang, count: steps.length, steps });
   }
-  await page.goto('http://127.0.0.1:4321/');
-  await page.waitForFunction(() => document.querySelector('[data-step-label]')?.textContent !== 'Schritt 0');
+  await page.goto(`${origin}/`);
+  await page.waitForFunction(() => document.querySelector('[data-step-label]')?.textContent !== 'Step 0');
   await page.locator('[data-toggle]').focus();
   await page.keyboard.press('Enter');
   assert(await page.locator('[data-cartpole]').getAttribute('data-state') === 'paused', 'Pause via keyboard failed');
@@ -54,14 +55,19 @@ async page => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.reload();
   await page.waitForFunction(() => document.querySelector('[data-cartpole]')?.dataset.state === 'paused');
-  assert(await page.locator('[data-toggle]').textContent() === 'Abspielen', 'Reduced motion is not paused');
+  assert(await page.locator('[data-toggle]').textContent() === 'Play', 'Reduced motion is not paused');
   output.simulation.reducedMotion = true;
-  await page.locator('.language a[lang=en]').focus(); await page.keyboard.press('Enter');
-  await page.waitForURL('**/en/');
-  assert(await page.locator('html').getAttribute('lang') === 'en', 'Language switch failed');
+  await page.locator('.language a[lang=de]').focus(); await page.keyboard.press('Enter');
+  await page.waitForURL('**/de/');
+  assert(await page.locator('html').getAttribute('lang') === 'de', 'Language switch failed');
   output.languageSwitch = true;
-  for (const route of ['impressum/', 'datenschutz/', 'en/legal-notice/', 'en/privacy/']) {
-    const response = await page.goto(`http://127.0.0.1:4321/${route}`);
+  for (const [from, to] of [['en/', '/'], ['impressum/', '/de/impressum/'], ['en/privacy/', '/privacy/']]) {
+    await page.goto(`${origin}/${from}`);
+    await page.waitForURL(`${origin}${to}`);
+  }
+  output.oldUrlsRedirect = true;
+  for (const route of ['legal-notice/', 'privacy/', 'de/impressum/', 'de/datenschutz/']) {
+    const response = await page.goto(`${origin}/${route}`);
     assert(response.status() === 200, `Broken legal route ${route}`);
     const text = await page.locator('.legal-prose').innerText();
     assert(!text.includes('Vorlage') && !text.includes('keine Rechtsberatung'), 'Draft notes published');
@@ -72,9 +78,19 @@ async page => {
     const alternate = await page.locator('.language a:not([aria-current])').getAttribute('href');
     output.legal.push({ route, title: await page.locator('h1').innerText(), alternate, violations });
   }
+  for (const route of ['lab-notes/', 'de/laborbuch/']) {
+    const response = await page.goto(`${origin}/${route}`);
+    assert(response.status() === 200, `Broken Lab Notes route ${route}`);
+    assert(await page.locator('.disclosure').isVisible(), 'Disclosure missing');
+    assert(await page.locator('.anchors a[aria-current="page"]').count() === 1, 'Lab Notes nav state missing');
+    await page.addScriptTag({ path: 'node_modules/axe-core/axe.min.js' });
+    const violations = await page.evaluate(async () => (await axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a','wcag2aa','wcag21aa'] } })).violations.map(v => v.id));
+    assert(violations.length === 0, `Lab Notes accessibility: ${violations}`);
+    output.labNotes.push({ route, title: await page.title(), violations });
+  }
   const nojsContext = await page.context().browser().newContext({ javaScriptEnabled: false, viewport: { width:390, height:844 }, colorScheme:'light' });
   const nojs = await nojsContext.newPage();
-  await nojs.goto('http://127.0.0.1:4321/');
+  await nojs.goto(`${origin}/`);
   assert(await nojs.locator('#projects article').count() === 6, 'No-JS content missing');
   assert(await nojs.locator('.lab-still').isVisible(), 'No-JS SVG missing');
   assert(!await nojs.locator('.lab-message').isVisible(), 'No-JS loading message visible');
@@ -82,16 +98,16 @@ async page => {
   output.noJavaScript = true;
   await nojsContext.close();
   await page.route('**/models/cartpole-policy.json', route => route.abort());
-  await page.goto('http://127.0.0.1:4321/');
-  await page.waitForFunction(() => document.querySelector('[data-message]')?.textContent.includes('erneut'));
+  await page.goto(`${origin}/`);
+  await page.waitForFunction(() => document.querySelector('[data-message]')?.textContent.includes('Reload'));
   assert(await page.locator('.lab-still').isVisible(), 'Model error loses static SVG');
   assert(!await page.locator('.lab-controls').isVisible(), 'Broken controls after failed load');
   output.modelFailureFallback = true;
   await page.unroute('**/models/cartpole-policy.json');
-  await page.goto('http://127.0.0.1:4321/');
+  await page.goto(`${origin}/`);
   const assets = {};
   for (const route of ['/cv/maximilian-koehlenbeck-lebenslauf.pdf','/og.png','/favicon.svg','/robots.txt','/sitemap-index.xml']) {
-    const response = await page.request.get(`http://127.0.0.1:4321${route}`);
+    const response = await page.request.get(`${origin}${route}`);
     assert(response.ok(), `Missing asset ${route}`); assets[route] = response.status();
   }
   output.assets = assets;
