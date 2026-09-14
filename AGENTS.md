@@ -18,23 +18,23 @@ Persönliche Website von Maximilian Köhlenbeck. Ein Lebenslauf zum Durchklicken
 - i18n: Astros eingebautes Routing, `defaultLocale: 'en'`, `locales: ['en', 'de']`, `prefixDefaultLocale: false` → `/` Englisch (Standard), `/de/` Deutsch. Keine automatische Weiterleitung nach Browsersprache.
 - Rechtsseiten: `/legal-notice`, `/privacy`, `/de/impressum`, `/de/datenschutz`. Alte URLs (`/en/…`, `/impressum`, `/datenschutz`) leiten über `redirects` in `astro.config.mjs` weiter.
 - Lab Notes: `/lab-notes/` und `/de/laborbuch/`, Artikel als Markdown in `src/content/lab-notes/`.
-- Client-JavaScript nur für: CartPole-Figur, Einblend-Animation und den vom Nutzer gewünschten Hell-/Dunkel-Schalter. Keine Frameworks (kein React), Vanilla TS in `<script>`.
+- Client-JavaScript nur für: Doppelpendel-Figur, Einblend-Animation und den vom Nutzer gewünschten Hell-/Dunkel-Schalter. Keine Frameworks (kein React), Vanilla TS in `<script>`.
 - Hosting: **GitHub Pages** unter `https://maximilian467.github.io` (Repo `maximilian467/maximilian467.github.io`), Deploy per GitHub Actions mit `withastro/action`. `site: 'https://maximilian467.github.io'`, kein `base`.
 
 ## Struktur
 
 ```
 src/
-  components/   Header, LangSwitch, ProjectEntry, ArchitectureFlow, Datasheet, LabFigure, CartPole, LabNoteEntry, Footer …
+  components/   Header, LangSwitch, ProjectEntry, ArchitectureFlow, Datasheet, LabFigure, DoublePendulum, LabNoteEntry, Footer …
   i18n/         ui.ts (UI-Strings), utils.ts (Routen), content.ts (liest CONTENT.md)
   content/      projects/ (je Projekt eine JSON-Datei mit en/de), lab-notes/ (Markdown)
-  lib/          cartpole.ts (Policy + Physik), lab-notes.ts
+  lib/          double-pendulum.ts (Policy + Physik), lab-notes.ts
   layouts/      Base.astro (Meta, hreflang, OG, Fonts), Home, Legal, LabNotesIndex, LabNote
   pages/        index.astro (EN), legal-notice, privacy, lab-notes/, de/…
   styles/       tokens.css, base.css
 public/
   cv/           maximilian-koehlenbeck-lebenslauf.pdf
-  models/       cartpole-policy.json
+  models/       double-pendulum-policy.json
   favicon.svg, og.png, robots.txt
 ```
 
@@ -56,14 +56,15 @@ npm run preview   # gebaute Seite testen
 - Keine Cookies, kein Tracking, keine externen Requests (Fonts, CDNs, Analytics). Sonst stimmt die Datenschutzerklärung nicht mehr.
 - Die Verbotsliste in `DESIGN.md` Abschnitt 8 gilt ausnahmslos.
 
-## CartPole-Figur
+## Doppelpendel-Figur
 
-- `public/models/cartpole-policy.json` enthält die echten Gewichte der PPO-Policy (Stable-Baselines3 MlpPolicy), die Maximilian trainiert hat. Forward-Pass: für jede Schicht in `hidden`: `h = tanh(W·h + b)`, dann `logits = action.W·h + action.b`, Aktion = argmax (0 = links, 1 = rechts). Eingabe: `[x, x_dot, theta, theta_dot]`, unnormalisiert.
-- Physik exakt wie Gymnasium CartPole-v1 (Euler, Werte in `physics` im JSON), 50 Schritte/s. Rendering mit `requestAnimationFrame` und festem Zeitschritt.
-- „Stupsen" addiert einen kleinen Impuls auf `theta_dot` (ca. ±0.6 rad/s, zufällige Richtung). Reset, wenn `|theta| > 0.2095` oder `|x| > 2.4`.
-- Geprüft (13.09.2026): Die JS-Umsetzung liefert dieselben Aktionen wie Python, und die Policy hält den Stab in 20 von 20 Läufen 10 Minuten lang, bei einem Stupser alle 5 Sekunden. Fällt der Stab in deiner Umsetzung trotzdem, ist die Umsetzung falsch. Reset trotzdem sauber mit kurzem Fade einbauen.
-- Ohne JS: statisches SVG-Standbild. Mit `prefers-reduced-motion`: angehalten mit Play-Button.
-- Rahmen, Steuerung und Bildunterschrift liegen in `LabFigure.astro`. Eine spätere Demo (z. B. Double Pendulum) bekommt eine eigene Komponente auf `LabFigure` und eine eigene Logik unter `src/lib/`; in `Hero.astro` wird nur die Komponente getauscht. Keine Platzhalter-Demo veröffentlichen.
+- `public/models/double-pendulum-policy.json` enthält nur die Actor-Gewichte der TQC-Policy (sb3-contrib), die Maximilian in MuJoCo trainiert hat (`runs/tqc_phases/best_model.zip`, 1,7 Mio. Schritte). Kein Critic, kein Reward, kein Trainingscode. Netz: Linear(12→256) → ReLU → Linear(256→256) → ReLU → Linear(256→1) → tanh. Gewichte als Base64 von Float32 little-endian.
+- Beobachtung (12 Werte, float32, auf ±10 geclippt): x/2.4, ẋ/3, sin/cos φ₁, sin/cos φ₂, ω₁/10, ω₂/10, One-Hot der Zielhaltung. Winkel absolut, 0 = oben, π = unten. Haltungen: 0 oben · oben, 1 oben · unten, 2 unten · oben, 3 unten · unten (unteres · oberes Pendel).
+- Physik in `src/lib/double-pendulum.ts` ist eine eigene Umsetzung des MuJoCo-Modells: Lagrange-Gleichungen, viskose Dämpfung auf den MuJoCo-Geschwindigkeiten, RK4 mit 0.005 s, 4 Teilschritte pro Aktion (50 Hz), Motor 40 N · Aktion. Stupser: 3 N für 0.1 s im Schwerpunkt eines Pendels. Die weiche Schienengrenze bei ±2.4 ist nicht nachgebaut, weil ab |x| > 2.3 neu gestartet wird.
+- Referenzdaten in `tests/fixtures/double-pendulum-reference.json` stammen aus MuJoCo und dem echten Modell (Export-Skript liegt privat im RL-Projekt). Geprüft (14.09.2026): Netz max. |Δ Aktion| 7,9e-7, Open-Loop max. |Δ qpos| 2,8e-14, 4×4-Matrix im Mittel 99 %. Weichen die Tests ab, ist die Umsetzung falsch. Physik, Kräfte und Netz nie anpassen, damit es besser aussieht.
+- Bekannte Grenze des Modells, nicht der Umsetzung: In langen Läufen driftet der Wagen beim Halten aus der Mitte, und der nächste Wechsel fährt dann über die Schiene. `npm run bench:policy` misst das (TS 9/20, MuJoCo 6/20 ohne Schienen-Aus in 3 Minuten). Die Figur startet dann nach kurzem Fade hängend neu, die gewählte Haltung bleibt.
+- Start: hängend, nach 1,5 s einmal automatisch auf oben · oben. Ohne JS: statisches SVG-Standbild. Mit `prefers-reduced-motion`: angehalten, kein automatischer Wechsel.
+- Rahmen, Steuerung und Bildunterschrift liegen in `LabFigure.astro`. Eine spätere Demo bekommt eine eigene Komponente auf `LabFigure` und eine eigene Logik unter `src/lib/`; in `Hero.astro` wird nur die Komponente getauscht. Keine Platzhalter-Demo veröffentlichen.
 
 ## Skills (`.agents/skills/`)
 

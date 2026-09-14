@@ -9,7 +9,7 @@ Leitsatz: **Die Inhalte sind konkret, also darf das Design leise sein.**
 Der Nutzer wünscht ausdrücklich mehr visuellen Charakter und einen professionelleren Einstieg. Diese gezielten Änderungen haben Vorrang vor den entsprechenden ursprünglichen Detailregeln unten:
 
 - Richtung: technisches Portfolio mit Experimentfläche. Der Hero behält zwei Spalten, setzt den Nachnamen aber in Instrument Serif Italic und Akzent-Textfarbe. Maximal zwei Namenszeilen und weiterhin die vorhandene Schriftgrößenskala.
-- Die CartPole-Zeichnung liegt auf einer durchgehend dunklen Fläche (#1C1B18), auch im hellen Farbschema. Ein feines Koordinatenraster und Teilstriche auf der Schiene vermitteln den Simulationsraum. Keine Schatten oder Verläufe. Die Zeichnung bleibt ungefüllt; Stab #E0703F, Linien #ECE8DF, sekundärer Text #BDB7AC, Raster #34312B.
+- Die Simulationszeichnung (seit 14.09.2026 das Doppelpendel) liegt auf einer durchgehend dunklen Fläche (#1C1B18), auch im hellen Farbschema. Ein feines Koordinatenraster und Teilstriche auf der Schiene vermitteln den Simulationsraum. Keine Schatten oder Verläufe. Die Zeichnung bleibt ungefüllt; Stab #E0703F, Linien #ECE8DF, sekundärer Text #BDB7AC, Raster #34312B.
 - Steuerung und Live-Werte sind direkt in die Experimentfläche integriert. Bildunterschrift bleibt außerhalb. Der eigentliche Zeichenbereich hat etwa 4:3.
 - Abschnittsüberschriften erhalten eine kurze Akzentlinie und dürfen in einer eigenen linken Spalte stehen. Projekte behalten ihre Randspalte für Metadaten.
 - Der echte Wächter-Messwert ~2,6 s darf als typografischer Schwerpunkt neben der zugänglichen Datenblatt-Tabelle erscheinen. Die Messwertfläche verwendet --paper-2, ohne Kartenrand oder Rundung.
@@ -23,11 +23,11 @@ Der Nutzer wünscht ausdrücklich mehr visuellen Charakter und einen professione
 
 - Wirkt wie: Laborbuch, technisches Datenblatt, gut gesetztes Buch.
 - Wirkt nicht wie: SaaS-Landingpage, Template, Dark Mode mit Neon, „AI-Startup".
-- Eine einzige Besonderheit darf auffallen: das live balancierende CartPole im Hero. Alles andere tritt zurück.
+- Eine einzige Besonderheit darf auffallen: das live geregelte Doppelpendel im Hero. Alles andere tritt zurück.
 
 ## 2. Farben
 
-Warm-monochrom, eine Akzentfarbe, sparsam eingesetzt (Statuspunkt „läuft", Link-Hover, Fokus-Ring, der Stab im CartPole).
+Warm-monochrom, eine Akzentfarbe, sparsam eingesetzt (Statuspunkt „läuft", Link-Hover, Fokus-Ring, das untere Pendel in der Simulation).
 
 ```css
 :root {
@@ -81,12 +81,12 @@ Inter, Roboto, Arial, Open Sans sind verboten. Keine Versalien-Eyebrows über Ü
 - **Randspalte wie im Laborbuch:** Auf Desktop (≥ 900px) ein Zwei-Spalten-Raster: links eine schmale Metaspalte (ca. 180px) für Datum, Status, Rolle; rechts der Inhalt. Auf Mobil stapelt sich die Metazeile über dem Inhalt.
 - Abschnitte sind durch eine volle Haarlinie (`1px solid var(--rule)`) und großzügigen Abstand getrennt (`clamp(5rem, 10vw, 8rem)` vertikal).
 - Keine Karten-Grids, keine Bento-Boxen, keine Karten in Karten. Projekte sind **Einträge** untereinander, getrennt durch Linien.
-- Linksbündig. Nichts zentriert außer der CartPole-Figur innerhalb ihres Rahmens.
+- Linksbündig. Nichts zentriert außer der Simulationsfigur innerhalb ihres Rahmens.
 
 ## 5. Seitenaufbau
 
 1. **Kopfzeile:** Links „Maximilian Köhlenbeck" (Geist, klein). Rechts Anker (Projekte, Gerade dran, Kontakt) und Sprachumschalter `DE / EN` als Text, aktive Sprache in `--ink`, andere in `--ink-muted`. Nicht sticky oder nur dezent sticky ohne Blur-Pill.
-2. **Hero:** Desktop zweispaltig. Links: Name (Serif, groß), ein Satz, Metazeile in Mono, Links (GitHub, LinkedIn, Lebenslauf). Rechts: CartPole-Figur mit Bildunterschrift „Abb. 1: …". Mobil: Text, dann Figur. Erster Screen muss auf 1366×768 vollständig lesbar sein.
+2. **Hero:** Desktop zweispaltig. Links: Name (Serif, groß), ein Satz, Metazeile in Mono, Links (GitHub, LinkedIn, Lebenslauf). Rechts: Doppelpendel-Figur mit Bildunterschrift „Abb. 1: …". Mobil: Text, dann Figur. Erster Screen muss auf 1366×768 vollständig lesbar sein.
 3. **Über mich:** zwei bis drei kurze Absätze, Randspalte leer oder mit „Bremen".
 4. **Gerade dran:** Einträge mit Metaspalte „Stand Sept. 2026" / Status.
 5. **Projekte:** kurzer Intro-Satz, dann 6 Einträge.
@@ -119,14 +119,15 @@ Allein
 - Ein einziger „Button"-Stil für „Lebenslauf (PDF)": 1px Rahmen `--ink`, Radius 4px, kein Schatten, Hover: invertiert.
 - Keine Pill-Buttons, keine Icon-in-Kreis-Buttons.
 
-### CartPole-Figur (Signatur-Element)
-- Canvas in einem Rahmen: 1px `--rule`, Hintergrund `--paper-2`, Seitenverhältnis ca. 4:3.
-- Strichzeichnung: Schiene als Haarlinie, Wagen als Rechteck-Kontur in `--ink`, Stab in `--accent`, kleine Achse. Keine Farbfüllung, keine Schatten. Sieht aus wie eine Skizze im Laborbuch.
-- Darunter Bildunterschrift in Mono (siehe CONTENT.md) und dezente Live-Werte: `θ = 0.012 rad · x = -0.08 m · Schritt 1.204`.
-- Interaktion: Klick/Tap oder Taste auf der Figur = Stups (Impuls auf den Stab). Button „Anstupsen" für Tastatur. Wenn der Stab fällt oder der Wagen rausfährt: sanft zurücksetzen.
+### Doppelpendel-Figur (Signatur-Element)
+- Canvas in einem Rahmen, Seitenverhältnis ca. 4:3, Maßstab 90 Einheiten pro Meter bei 480 Einheiten Breite. Beide Pendel passen in allen vier Haltungen in den Rahmen.
+- Strichzeichnung: Schiene als Haarlinie mit Teilstrichen alle 0,5 m und längeren Marken bei ±2,3 m, Wagen als Rechteck-Kontur mit zwei Rädern in `--lab-ink`. Unteres Pendel in Akzentfarbe, 3 px; oberes Pendel in `--lab-ink`, 2 px; Gelenke als kleine gefüllte Punkte. Zielhaltung als gestrichelte Haarlinie in `--lab-muted`. Stupser als kurzer Haarlinien-Pfeil in Akzentfarbe (250 ms). Keine Farbfüllung, keine Schatten.
+- Zwischen Zeichenfläche und Live-Werten eine Reihe mit vier gleich breiten Haltungs-Knöpfen: kleines Piktogramm und Mono-Beschriftung, keine Pills, keine Kästen. Aktiv: Piktogramm in Akzentfarbe, Text in `--lab-ink` mit 1 px Unterstrich. Semantik als Radiogroup, Pfeiltasten und Tasten 1 bis 4 (nur mit Fokus in der Figur).
+- Live-Werte in Mono: Ziel, Status (stabil / Wechsel läuft), φ₁, φ₂ in rad, x in m.
+- Interaktion: Klick/Tap stupst das nächstgelegene Pendel vom Klickpunkt weg. Button „Anstupsen" für Tastatur. Fährt der Wagen raus: sanft zurücksetzen, hängend neu starten.
 - `prefers-reduced-motion`: pausiert, Standbild + „Abspielen"-Button.
 - Pausiert, wenn nicht im Viewport (IntersectionObserver) oder Tab verborgen.
-- Die Policy ist echt: Gewichte in `public/models/cartpole-policy.json` (siehe AGENTS.md).
+- Die Policy ist echt: Gewichte in `public/models/double-pendulum-policy.json` (siehe AGENTS.md).
 
 ### Sprachumschalter
 - `DE / EN`, als echte Links auf die jeweilige Sprachversion derselben Seite, mit `hreflang` und `lang`.
@@ -158,4 +159,4 @@ Kaum sichtbar.
 - Semantisches HTML: `header`, `main`, `section` mit Überschrift, `article` pro Projekt, `footer`.
 - Lighthouse-Ziel: 100 / 100 / 100 / 100 (Performance, Accessibility, Best Practices, SEO).
 - Kein Layout-Shift, Schriften mit `font-display: swap` und passenden Fallback-Metriken.
-- Funktioniert ohne JavaScript (alles außer der CartPole-Animation; dort erscheint ein statisches SVG-Standbild).
+- Funktioniert ohne JavaScript (alles außer der Doppelpendel-Animation; dort erscheint ein statisches SVG-Standbild).

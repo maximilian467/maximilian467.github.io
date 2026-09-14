@@ -6,12 +6,12 @@ Stand: 13. September 2026. Grundlage: Nutzerfeedback nach Phase 2. Der Nutzer ha
 
 | Entscheidung | Grund | Schnell ändern |
 | --- | --- | --- |
-| Dunkle CartPole-Experimentfläche, feines Raster | Die Simulation schafft den gewünschten stärkeren visuellen Schwerpunkt | `src/styles/experiment.css`; oder gesamter Rückwechsel per `DESIGN_VARIANT=classic` |
+| Dunkle Experimentfläche, feines Raster | Die Simulation schafft den gewünschten stärkeren visuellen Schwerpunkt | `src/styles/experiment.css`; oder gesamter Rückwechsel per `DESIGN_VARIANT=classic` |
 | Nachname kursiv und in Akzentfarbe | Mehr typografischer Charakter, ohne weitere Schriften oder Dekoration | `src/styles/experiment.css` |
 | Drei Kontaktlinks: LinkedIn, E-Mail, GitHub | Auflösung des Widerspruchs DESIGN.md/CONTENT.md; CV bleibt im Hero | `src/components/Contact.astro` |
 | Sachlicher Hero und Über-mich-Text | Der ursprüngliche Einstieg wurde ausdrücklich abgelehnt | `docs/CONTENT.md`, in beiden Sprachen |
 | Wächter-Messwert als typografischer Schwerpunkt | Ein belegtes Ergebnis hilft beim schnellen Erfassen | `src/components/Datasheet.astro`; Classic blendet die zusätzliche Hervorhebung aus |
-| Sichtbarer Pause-/Abspielen-Textbutton | Laufende Bewegung bleibt steuerbar; reduzierte Bewegung startet pausiert | `src/components/CartPole.astro` |
+| Sichtbarer Pause-/Abspielen-Textbutton | Laufende Bewegung bleibt steuerbar; reduzierte Bewegung startet pausiert | `src/components/DoublePendulum.astro` |
 | Native Ankersprünge | Vermeidet kurzzeitig nicht sichtbaren Tastaturfokus bei weichem Scrollen | `src/styles/base.css` |
 | Lokale Fontsource-Pakete und statische Seiten | Keine externen Ladeanfragen, kein Framework im Browser | `src/layouts/Base.astro`, `astro.config.mjs` |
 | Node 24 für Entwicklung und Deployment | Unterstützte lokale Version; mindestens Node 22.12 erforderlich | `package.json`, `.github/workflows/deploy.yml` |
@@ -33,13 +33,25 @@ Stand: 13. September 2026. Grundlage: Nutzerfeedback nach Phase 2. Der Nutzer ha
 | KI-Hinweis wörtlich mit Gedankenstrich, nur im Laborbuch | Vom Nutzer exakt vorgegeben; die deutsche Fassung kommt ohne Gedankenstrich aus | `src/i18n/ui.ts` (`disclosure`) |
 | `LabFigure` als Rahmen der Hero-Demo | Double Pendulum kann später ohne Umbau des Hero eingesetzt werden | `src/components/LabFigure.astro`, `Hero.astro` |
 
+## 14. September 2026: Doppelpendel statt CartPole
+
+| Entscheidung | Grund | Schnell ändern |
+| --- | --- | --- |
+| Hero-Demo ist das Doppelpendel mit TQC-Policy, CartPole entfernt | Ein Modell, vier Haltungen zeigt mehr als ein balancierender Stab; vom Nutzer optisch freigegeben | `src/components/Hero.astro`; CartPole liegt in der Git-Historie |
+| Physik als eigene TS-Umsetzung statt WASM-Engine | Keine neue Abhängigkeit, keine externen Requests; stimmt bis auf Rundungsfehler mit MuJoCo überein (max. \|Δ qpos\| 2,8e-14) | `src/lib/double-pendulum.ts` |
+| Nur Actor-Gewichte veröffentlicht | Repo ist öffentlich; Critic, Reward, Curriculum und Trainingscode bleiben privat | `public/models/double-pendulum-policy.json` |
+| Dauerlauf als Benchmark statt CI-Test | Die Vorgabe „18 von 20 Läufen à 3 min ohne Schienen-Aus“ schafft das Modell selbst nicht: MuJoCo mit `model.predict` 6/20, TS 9/20. Zwischenhaltungen oder anders getaktete Stupser änderten daran nichts. CI prüft die Umsetzung (Netz, Beobachtung, Open-Loop, 4×4-Matrix), `npm run bench:policy` misst das Modell | `package.json`, `scripts/bench-double-pendulum.ts` |
+| Figur zeigt Aussetzer ehrlich | Fährt der Wagen raus, startet sie nach kurzem Fade hängend neu; kein Regler, keine vorberechnete Animation | `src/components/DoublePendulum.astro` |
+
+Offener Punkt: Beim längeren Halten driftet der Wagen aus der Mitte, besonders deutlich beim Wechsel oben · oben → unten · unten nach mehreren Sekunden Halten (MuJoCo: nach 20 s Halten 4/10 stabil). Abhilfe wäre ein Nachtraining mit längeren Halte-Phasen und Mitten-Strafe; danach neu exportieren und `npm run test:policy` sowie `npm run bench:policy` laufen lassen.
+
 ## Rückwechsel ohne Umbau
 
 `DESIGN_VARIANT=classic` wählt beim Start/Build die ruhigere Laborbuch-Variante. Der Name wird normal und ohne Akzent gesetzt, die Simulation hell, das Raster entfernt und die zusätzliche Messwerthervorhebung ausgeblendet. Inhalte, Routen und Physik bleiben identisch. Build und Browserdarstellung der Alternative wurden geprüft.
 
 Die Variante ist eine Umsetzung der ursprünglichen Gestaltungsregeln, kein pixelgenauer Nachbau der damaligen generierten Bilder. Die neuen sachlichen Texte bleiben auch beim Designwechsel erhalten.
 
-Die Dateigrenzen sind absichtlich klein: UI-Strings und Routen unter `src/i18n/`, ein Projekt pro JSON-Datei, jede Sektion als Komponente, reine Simulationslogik unter `src/lib/cartpole.ts`, Darstellung getrennt davon in `CartPole.astro`.
+Die Dateigrenzen sind absichtlich klein: UI-Strings und Routen unter `src/i18n/`, ein Projekt pro JSON-Datei, jede Sektion als Komponente, reine Simulationslogik unter `src/lib/double-pendulum.ts`, Darstellung getrennt davon in `DoublePendulum.astro`.
 
 ## Freigegeben: Astro-Update und Farbschalter
 
@@ -47,7 +59,7 @@ Der Nutzer hat das Sicherheitsupdate ausdrücklich freigegeben. Astro wurde von 
 
 Der Projekt-Introtext wurde auf ausdrücklichen Wunsch in beiden Sprachen entfernt. Der Farbschalter sitzt als kleiner Textbutton in der Kopfzeile. Die Beschriftung nennt das Ziel des nächsten Klicks. Ohne eigene Auswahl gilt das Systemfarbschema; eine eigene Auswahl bleibt über Seiten- und Sprachwechsel erhalten. Dafür wird genau ein Local-Storage-Wert `portfolio-theme` verwendet. Kein Cookie und keine Übertragung. Die Datenschutzerklärung beschreibt dies in beiden Sprachen. Ohne JavaScript bleibt der Button verborgen; ohne verfügbaren Speicher funktioniert das Umschalten weiterhin auf der aktuellen Seite.
 
-Die CartPole-Experimentfläche bleibt in beiden Farbschemata dunkel. Darstellung, Inhalte und Physik wurden ansonsten beibehalten. Theme-Komponente, Farbvariablen und Designvariante bleiben unabhängig austauschbar.
+Die Experimentfläche bleibt in beiden Farbschemata dunkel. Darstellung, Inhalte und Physik wurden ansonsten beibehalten. Theme-Komponente, Farbvariablen und Designvariante bleiben unabhängig austauschbar.
 
 ## Ehrliche Einschätzung und nächste sinnvolle Verbesserungen
 

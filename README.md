@@ -1,13 +1,13 @@
 # Maximilian Köhlenbeck: personal website
 
-Static bilingual (English / German) personal website built with Astro 7. English is the default at `/`, German lives under `/de/`. Local fonts, plain CSS, and a real CartPole PPO policy running in the browser.
+Static bilingual (English / German) personal website built with Astro 7. English is the default at `/`, German lives under `/de/`. Local fonts, plain CSS, and a double pendulum policy I trained with TQC, running live in the browser.
 
 **Live:** https://maximilian467.github.io/ (German: https://maximilian467.github.io/de/)
 
 ## What it does
 
 - Presents my background, current work and projects in English and German.
-- Runs a **CartPole policy I trained with PPO** (Stable-Baselines3) directly in the browser. The network weights are exported to [`public/models/cartpole-policy.json`](public/models/cartpole-policy.json); the forward pass and the Gymnasium CartPole-v1 physics are reimplemented in TypeScript in [`src/lib/cartpole.ts`](src/lib/cartpole.ts). Visitors can nudge the pole.
+- Runs a **double pendulum on a cart, controlled by a TQC policy I trained** (sb3-contrib, MuJoCo) directly in the browser. One model holds four target poses (up · up, up · down, down · up, down · down) and switches between them. Only the actor weights are exported to [`public/models/double-pendulum-policy.json`](public/models/double-pendulum-policy.json); the forward pass and the MuJoCo model (Lagrangian dynamics, RK4, 0.005 s, 4 substeps per 50 Hz action) are reimplemented in TypeScript in [`src/lib/double-pendulum.ts`](src/lib/double-pendulum.ts). Visitors pick a pose and nudge a pole (3 N for 0.1 s).
 - Shows projects with architecture diagrams, measurements and links where the facts exist.
 - Hosts **Lab Notes**: technical write-ups of projects and experiments (`/lab-notes/`, German `/de/laborbuch/`).
 - No cookies, no tracking, no external requests. A light/dark theme switch stores a single local-storage value (`portfolio-theme`). The language is carried by the URL only; there is no browser-language redirect.
@@ -15,19 +15,19 @@ Static bilingual (English / German) personal website built with Astro 7. English
 ## Architecture
 
 ```
-docs/CONTENT.md ────┐                     public/models/cartpole-policy.json
+docs/CONTENT.md ────┐                     public/models/double-pendulum-policy.json
 src/content/        ├─► Astro build ─► static HTML/CSS ─► GitHub Pages
   projects/*.json   │   (i18n routes: /, /de/)                   │
   lab-notes/*.md    │                                            ▼
-docs/legal/*.md ────┘          src/lib/cartpole.ts (policy + physics) ─► CartPole.astro on LabFigure.astro (canvas)
+docs/legal/*.md ────┘   src/lib/double-pendulum.ts (policy + physics) ─► DoublePendulum.astro on LabFigure.astro (canvas)
 ```
 
 - `src/pages/`: routes (`/`, `/de/`, legal pages in both languages, Lab Notes, 404). Old URLs (`/en/…`, `/impressum/`, `/datenschutz/`) redirect via `redirects` in `astro.config.mjs`.
-- `src/components/`: one component per section (Hero, ProjectEntry, ArchitectureFlow, Datasheet, LabFigure, CartPole, LabNoteEntry, …)
+- `src/components/`: one component per section (Hero, ProjectEntry, ArchitectureFlow, Datasheet, LabFigure, DoublePendulum, LabNoteEntry, …)
 - `src/i18n/`: UI strings, links and routing helpers
 - `src/content/projects/`: one JSON file per project, with `en` and `de` fields, validated by the content collection at build time
 - `src/content/lab-notes/`: one Markdown file per Lab Notes article
-- `src/lib/cartpole.ts`: policy and physics, independent from rendering; `src/lib/lab-notes.ts`: article queries
+- `src/lib/double-pendulum.ts`: policy and physics, independent from rendering; `src/lib/lab-notes.ts`: article queries
 - `src/styles/`: design tokens, base layout, and the two design variants
 
 ## Running locally
@@ -46,7 +46,8 @@ Check the production build: `npm run build`, then `npm run preview`.
 | Command | What it checks |
 |---|---|
 | `npm run build` | `astro check` (type checking) and the static build |
-| `npm run test:policy` | CartPole tests: a Gymnasium Euler reference step, argmax tie-breaking, and 20 seeded ten-minute runs that must survive a nudge every five seconds |
+| `npm run test:policy` | Double pendulum tests against reference data from MuJoCo and the real model (`tests/fixtures/`): the forward pass on 50 observations (max. \|Δ action\| < 1e-4), the observation, 20 open-loop trajectories with nudges (max. \|Δ qpos\| < 1e-5, \|Δ qvel\| < 1e-4), and the 4×4 start/target evaluation matrix (every cell ≥ 80 %, mean ≥ 95 %) |
+| `npm run bench:policy` | Not part of CI. Three-minute endurance runs with pose switches every 20 s and nudges every 4 s. It measures the trained model, not the implementation (see [docs/DECISIONS.md](docs/DECISIONS.md)) |
 | `node scripts/verify-content.mjs` | Run after a build: legal pages match their sources, every project description is sourced from `docs/CONTENT.md`, English is the default, the Lab Notes disclosure is verbatim, old URLs redirect, no externally loaded media, canonical and hreflang tags present |
 
 [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) runs on every push to `main`: it builds the site with `withastro/action`, runs the policy tests and the content verification, and only then deploys to GitHub Pages.
@@ -64,7 +65,7 @@ Create `docs/qa/screenshots/` first. Screenshots stay local and are not committe
 
 ## Design variants and theme
 
-Visitors can choose light or dark via the text button in the header. Without a choice, the site follows the operating system. Implementation: `src/components/ThemeSwitch.astro` and `src/styles/tokens.css`. The CartPole area stays dark in both themes.
+Visitors can choose light or dark via the text button in the header. Without a choice, the site follows the operating system. Implementation: `src/components/ThemeSwitch.astro` and `src/styles/tokens.css`. The simulation area stays dark in both themes.
 
 The default design is the revised `experiment` variant; the default can be changed in `src/config/design.ts`. Both variants share content, components, routes and simulation.
 
@@ -82,13 +83,13 @@ Back to the default: stop the server, `Remove-Item Env:DESIGN_VARIANT`, run `npm
 - `src/styles/experiment.css`: italic accent typography and experiment area
 - `src/styles/classic.css`: more restrained alternative
 - `src/components/LabFigure.astro`: dark experiment surface, controls and caption
-- `src/components/CartPole.astro`: CartPole drawing and controls, built on `LabFigure`
-- `src/lib/cartpole.ts`: policy and physics
+- `src/components/DoublePendulum.astro`: double pendulum drawing, pose buttons and controls, built on `LabFigure`
+- `src/lib/double-pendulum.ts`: policy and physics
 
-### Replacing the hero demo later (e.g. double pendulum)
+### Replacing the hero demo later
 
-1. Put the weights in `public/models/` and the policy and physics as plain logic in `src/lib/` (like `cartpole.ts`, with a test under `tests/`).
-2. Create a component next to `CartPole.astro` that uses `LabFigure`: its own still SVG (`slot="still"`), live readouts (`slot="readouts"`) and script.
+1. Put the weights in `public/models/` and the policy and physics as plain logic in `src/lib/` (like `double-pendulum.ts`, with a test under `tests/`).
+2. Create a component next to `DoublePendulum.astro` that uses `LabFigure`: its own still SVG (`slot="still"`), optional selector row (`slot="selector"`), live readouts (`slot="readouts"`) and script.
 3. Swap that one component in `src/components/Hero.astro`, then update the caption in `docs/CONTENT.md` (Hero, both languages) and the figure strings in `src/i18n/ui.ts`.
 
 All decisions and open points: [docs/DECISIONS.md](docs/DECISIONS.md).

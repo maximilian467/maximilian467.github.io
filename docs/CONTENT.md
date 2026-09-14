@@ -37,14 +37,14 @@ Links:
 - Satz: Mich interessieren Reinforcement Learning, Physical AI und Systeme, die mit der realen Welt interagieren.
 - Metazeile: Bremen · Duales Studium bei KUKA und an der Hochschule Bremen
 - Links: GitHub · LinkedIn · Lebenslauf (PDF)
-- Bildunterschrift CartPole: Abb. 1: Diese Policy habe ich selbst mit PPO trainiert. Sie läuft hier live in deinem Browser. Stups den Stab an.
+- Bildunterschrift: Abb. 1: Ein Modell, vier Haltungen. Diese Policy habe ich selbst mit TQC trainiert. Sie läuft live in deinem Browser. Wähl eine Haltung oder stups ein Pendel an.
 
 **EN**
 - Headline: Automation Engineering student building AI and robotics systems.
 - Sentence: Interested in reinforcement learning, physical AI and systems that interact with the real world.
 - Meta line: Bremen · Work-study program at KUKA and Hochschule Bremen
 - Links: GitHub · LinkedIn · CV (PDF)
-- Caption: Fig. 1: I trained this policy myself with PPO. It is running live in your browser. Give the pole a nudge.
+- Caption: Fig. 1: One model, four poses. I trained this policy myself with TQC. It runs live in your browser. Pick a pose or give a pole a nudge.
 
 ---
 
@@ -76,13 +76,13 @@ I use coding agents like Claude Code and Codex heavily for implementation. I foc
 
 **DE**
 
-**KI trainieren statt nur benutzen.** Ich bringe mir gerade bei, wie man Modelle selbst trainiert. Angefangen habe ich mit Reinforcement Learning: erst ein Agent, der einen Stab auf einem Wagen balanciert (das Pendel oben auf der Seite), dann ein doppeltes Pendel. Jetzt geht es mit NVIDIA Isaac Lab weiter. Die Frage, die mich dabei beschäftigt: Wie bringt man einem Modell etwas so bei, dass es auch in Situationen klappt, die es nie gesehen hat?
+**KI trainieren statt nur benutzen.** Ich bringe mir gerade bei, wie man Modelle selbst trainiert. Angefangen habe ich mit Reinforcement Learning: erst ein Agent, der einen Stab auf einem Wagen balanciert, dann ein Doppelpendel auf einem Wagen, das mit einem einzigen Modell zwischen vier Haltungen wechselt (das oben auf der Seite). Jetzt geht es mit NVIDIA Isaac Lab weiter. Die Frage, die mich dabei beschäftigt: Wie bringt man einem Modell etwas so bei, dass es auch in Situationen klappt, die es nie gesehen hat?
 
 **3D-Drucker optimieren, zusammen mit KUKA.** Ich optimiere einen 3D-Drucker und habe dafür eine Kalibrierung des Düsen-Offsets selbst eingebaut. Das Projekt läuft noch.
 
 **EN**
 
-**Training AI instead of just using it.** I'm teaching myself how to train models. I started with reinforcement learning: first an agent that balances a pole on a cart (the pendulum at the top of this page), then a double pendulum. Next up is NVIDIA Isaac Lab. The question on my mind: how do you teach a model something so it also works in situations it has never seen?
+**Training AI instead of just using it.** I'm teaching myself how to train models. I started with reinforcement learning: first an agent that balances a pole on a cart, then a double pendulum on a cart that switches between four poses with a single model (the one at the top of this page). Next up is NVIDIA Isaac Lab. The question on my mind: how do you teach a model something so it also works in situations it has never seen?
 
 **Improving a 3D printer, together with KUKA.** I'm optimizing a 3D printer and built a nozzle offset calibration into it myself. The project is ongoing.
 
@@ -185,7 +185,7 @@ KI-Hinweis, klein und unauffällig auf der Übersicht und unter jedem Artikel. E
 ## Werkzeuge und Technologien
 
 **DE** (nach praktischem Einsatz gruppiert, keine Prozentbalken, keine Sterne, nur was in Projekten tatsächlich verwendet wurde)
-- **Reinforcement Learning und Simulation:** Gymnasium, Stable-Baselines3 (PPO), Feder-Masse-Simulation, NVIDIA Isaac Lab (gerade am Anfang)
+- **Reinforcement Learning und Simulation:** Gymnasium, Stable-Baselines3 (PPO, SAC, TQC), MuJoCo, Feder-Masse-Simulation, NVIDIA Isaac Lab (gerade am Anfang)
 - **Lokale KI und Sprache:** faster-whisper, Piper TTS, Ollama, ONNX / DirectML, LLMs über OpenRouter
 - **Software und Web:** Python, TypeScript, JavaScript, Next.js, Astro, PostgreSQL, Drizzle, MapLibre
 - **Automatisierung und Werkzeuge:** n8n, Claude Code, Codex, Git
@@ -193,7 +193,7 @@ KI-Hinweis, klein und unauffällig auf der Übersicht und unter jedem Artikel. E
 - **Sprachen:** Deutsch (Muttersprache), Englisch (C1)
 
 **EN**
-- **Reinforcement learning & simulation:** Gymnasium, Stable-Baselines3 (PPO), spring-mass simulation, NVIDIA Isaac Lab (just getting started)
+- **Reinforcement learning & simulation:** Gymnasium, Stable-Baselines3 (PPO, SAC, TQC), MuJoCo, spring-mass simulation, NVIDIA Isaac Lab (just getting started)
 - **Local AI & speech:** faster-whisper, Piper TTS, Ollama, ONNX / DirectML, LLMs via OpenRouter
 - **Software & web:** Python, TypeScript, JavaScript, Next.js, Astro, PostgreSQL, Drizzle, MapLibre
 - **Automation & tooling:** n8n, Claude Code, Codex, Git
