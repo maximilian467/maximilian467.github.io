@@ -170,7 +170,10 @@ Reihenfolge wie unten.
 
 ## Laborbuch / Lab Notes
 
-Technische Berichte zu Projekten und Experimenten. Noch keine Einträge veröffentlicht. Keine Artikel erfinden. Aufbau und Vorlage: `docs/LAB-NOTES.md`.
+Technische Berichte zu Projekten und Experimenten. Keine Artikel erfinden. Aufbau und Vorlage: `docs/LAB-NOTES.md`.
+
+Veröffentlicht:
+- `waechter` (Englisch, 14.09.2026): „Wächter: an offline voice-and-vision assistant for my front door". Quelle ist der vom Nutzer gelieferte Artikel, übernommen ohne inhaltliche Änderungen: `src/content/lab-notes/waechter.md`. Verknüpft als Technischer Bericht beim Projekt Wächter.
 
 KI-Hinweis, klein und unauffällig auf der Übersicht und unter jedem Artikel. Englisch **wörtlich** so (einschließlich Gedankenstrich):
 

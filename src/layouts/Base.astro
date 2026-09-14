@@ -17,15 +17,17 @@ import { routes, type PageKey } from '../i18n/utils';
 import { designVariant } from '../config/design';
 interface Props {
   lang: Locale; page?: PageKey; title?: string; description?: string; noindex?: boolean;
+  /** Complete page title, used as-is instead of "title · Maximilian Köhlenbeck". */
+  fullTitle?: string;
   ogType?: 'website' | 'article';
   /** Language versions of this exact page for hreflang. Defaults to the shared route table. */
   alternates?: Partial<Record<Locale, string>>;
   /** Targets of the EN / DE switch when they differ from the route table. */
   languageLinks?: Partial<Record<Locale, string>>;
 }
-const { lang, page = 'home', title, description, noindex = false, ogType = 'website', alternates, languageLinks } = Astro.props;
+const { lang, page = 'home', title, fullTitle, description, noindex = false, ogType = 'website', alternates, languageLinks } = Astro.props;
 const t = ui[lang];
-const pageTitle = title ? `${title} · Maximilian Köhlenbeck` : `Maximilian Köhlenbeck · ${t.homeTitle}`;
+const pageTitle = fullTitle ?? (title ? `${title} · Maximilian Köhlenbeck` : `Maximilian Köhlenbeck · ${t.homeTitle}`);
 const metaDescription = description ?? t.description;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const versions = alternates ?? { en: routes.en[page], de: routes.de[page] };

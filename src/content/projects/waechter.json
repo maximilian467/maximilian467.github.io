@@ -36,5 +36,6 @@
       { "label": "Language model", "value": "17–19 tokens/s" },
       { "label": "Hardware", "value": "Intel i7-13700H, 32 GB RAM, no dedicated GPU" }
     ]
-  }
+  },
+  "links": { "writeup": "waechter" }
 }

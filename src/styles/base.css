@@ -81,7 +81,7 @@ img, svg { max-width: 100%; }
 .flow-nodes li { display: flex; align-items: center; }
 .flow-nodes li + li::before { content: '→'; content: '→' / ''; padding-inline: .5rem; color: var(--accent-ink); }
 .flow-nodes span { padding: .4rem .6rem; border: 1px solid var(--rule); background: var(--paper-2); color: var(--ink); }
-.datasheet { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 1.5rem; background: var(--paper-2); padding: 1.5rem; margin-top: 1.75rem; }
+.datasheet { display: grid; grid-template-columns: minmax(180px, max-content) minmax(0, 1fr); gap: 1.5rem; background: var(--paper-2); padding: 1.5rem; margin-top: 1.75rem; }
 .datasheet.plain { grid-template-columns: minmax(0, 1fr); }
 .measurement { display: flex; flex-direction: column; gap: .5rem; justify-content: center; }
 .measurement strong { font: 400 clamp(2.75rem, 4vw, 3.5rem)/1 var(--serif); color: var(--accent-ink); white-space: nowrap; }
@@ -115,22 +115,36 @@ tr:last-child > * { border-bottom: 0; }
 .note-back { display: inline-block; padding-block: .6rem; text-decoration: none; }
 .note-back:hover { text-decoration: underline; }
 .note-header { margin-top: 1.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--rule); }
-.note-header h1 { font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.05; overflow-wrap: anywhere; }
-.note-summary { margin-top: 1.25rem; font-size: 1.1875rem; }
+.note-header h1 { font-size: clamp(2.25rem, 5vw, 3.25rem); line-height: 1.08; overflow-wrap: anywhere; }
+.note-summary { margin-top: 1.25rem; font-size: 1.1875rem; line-height: 1.6; }
 .note-meta { display: flex; flex-wrap: wrap; gap: .25rem 2rem; margin-top: 1.5rem; }
 .note-meta div { display: flex; gap: .5rem; }
 .note-meta dd { color: var(--ink); }
+.note-toc { margin-top: 2.5rem; padding-block: 1.25rem; border-block: 1px solid var(--rule); }
+.note-toc ol { margin: .5rem 0 0; padding-left: 1.5rem; columns: 2 15rem; column-gap: 2.5rem; font-size: .9375rem; }
+.note-toc li { break-inside: avoid; padding-block: .2rem; }
+.note-toc li::marker { color: var(--ink-muted); font-family: var(--mono); font-size: .8125rem; }
+.note-toc a { text-decoration-color: var(--rule); }
+.note-toc a:hover { text-decoration-color: currentColor; }
 .note-prose { margin-top: 2.5rem; }
-.note-prose h2 { margin: 3rem 0 1rem; font-size: clamp(1.75rem, 3vw, 2.25rem); }
-.note-prose h3 { margin: 2rem 0 .75rem; font-size: 1.5rem; }
+.note-prose > :first-child { margin-top: 0; }
+.note-prose h2 { margin: 4rem 0 1.25rem; padding-top: 1.75rem; border-top: 1px solid var(--rule); font-size: clamp(1.75rem, 3vw, 2.25rem); }
+.note-prose > h2:first-child { padding-top: 0; border-top: 0; }
+.note-prose h3 { margin: 2.75rem 0 .75rem; font-size: clamp(1.3rem, 2.2vw, 1.5rem); line-height: 1.25; }
 .note-prose :is(p, ul, ol, pre, blockquote, table, figure) { margin-block: 1rem; }
-.note-prose li + li { margin-top: .35rem; }
+.note-prose ul { padding-left: 1.25rem; }
+.note-prose li + li { margin-top: .5rem; }
 .note-prose img { height: auto; }
-.note-prose code { font: .875em/1.6 var(--mono); background: var(--paper-2); padding: .1em .3em; }
+.note-prose code { font: .875em/1.6 var(--mono); background: var(--paper-2); padding: .1em .3em; overflow-wrap: anywhere; }
 .note-prose pre { overflow-x: auto; padding: 1rem 1.25rem; background: var(--paper-2); }
-.note-prose pre code { padding: 0; background: none; }
-.note-prose blockquote { margin-inline: 0; padding-left: 1.25rem; border-left: 2px solid var(--rule); color: var(--ink-muted); }
-.note-prose table { display: block; overflow-x: auto; }
+.note-prose pre code { padding: 0; background: none; font-size: .8125rem; line-height: 1.5; overflow-wrap: normal; }
+.note-prose blockquote { margin: 1.5rem 0; padding-left: 1.25rem; border-left: 2px solid var(--accent); }
+.note-prose blockquote p { max-width: none; }
+/* Wide tables scroll inside themselves; the page never scrolls sideways. */
+.note-prose table { display: block; width: max-content; max-width: 100%; overflow-x: auto; margin-block: 1.5rem; font: 400 .8125rem/1.5 var(--mono); }
+.note-prose :is(th, td) { width: auto; padding: .55rem 1.5rem .55rem 0; overflow-wrap: normal; }
+.note-prose thead tr > * { color: var(--ink-muted); vertical-align: bottom; border-bottom: 1px solid var(--ink-muted); }
+.note-prose td strong { font-weight: 600; }
 .astro-code, .astro-code span { color: var(--shiki-light); }
 :root[data-theme='dark'] :is(.astro-code, .astro-code span) { color: var(--shiki-dark); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme='light']) :is(.astro-code, .astro-code span) { color: var(--shiki-dark); } }

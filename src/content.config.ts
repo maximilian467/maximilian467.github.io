@@ -48,7 +48,14 @@ const labNotes = defineCollection({
   loader: labNotesLoader,
   schema: z.object({
     title: z.string(),
+    /** Lead paragraph shown under the title. */
     summary: z.string(),
+    /** Shorter text for the overview card; defaults to summary. */
+    description: z.string().optional(),
+    /** Full browser and search title; replaces "Title · Maximilian Köhlenbeck". */
+    metaTitle: z.string().optional(),
+    /** Search description; defaults to description, then summary. */
+    metaDescription: z.string().optional(),
     lang: z.enum(['en', 'de']),
     published: z.coerce.date(),
     updated: z.coerce.date().optional(),

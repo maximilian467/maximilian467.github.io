@@ -8,15 +8,17 @@ import { labNoteUrl, routes } from '../i18n/utils';
 import { formatDate, isoDate, type LabNote } from '../lib/lab-notes';
 interface Props { note: LabNote; }
 const { note } = Astro.props;
-const { title, summary, published, updated, stack, architecture, metrics, links, lang } = note.data;
+const { title, summary, description, metaTitle, metaDescription, published, updated, stack, architecture, metrics, links, lang } = note.data;
 const t = ui[lang];
 const other = lang === 'en' ? 'de' : 'en';
-const { Content } = await render(note);
+const { Content, headings } = await render(note);
+// Compact contents list for long notes. Top-level sections only, so it stays short.
+const contents = headings.filter(heading => heading.depth === 2);
 const project = note.data.project ? await getEntry(note.data.project) : undefined;
 if (note.data.project && !project) throw new Error(`Lab note "${note.id}" references a missing project`);
 const url = labNoteUrl(lang, note.id);
 ---
-<Base lang={lang} page="labNotes" title={title} description={summary} ogType="article"
+<Base lang={lang} page="labNotes" title={title} fullTitle={metaTitle} description={metaDescription ?? description ?? summary} ogType="article"
   alternates={{ [lang]: url }} languageLinks={{ [lang]: url, [other]: routes[other].labNotes }}>
   <article class="note wrap" aria-labelledby="note-title">
     <a class="note-back mono" href={routes[lang].labNotes}><span aria-hidden="true">←</span> {t.allNotes}</a>
@@ -36,6 +38,12 @@ const url = labNoteUrl(lang, note.id);
     </header>
     {architecture && <ArchitectureFlow flows={architecture} title={t.architecture} />}
     {metrics && <Datasheet metrics={metrics} title={`${t.measurements}: ${title}`} />}
+    {contents.length >= 4 && (
+      <nav class="note-toc" aria-labelledby="note-toc-title">
+        <p id="note-toc-title" class="mono">{lang === 'de' ? 'Inhalt' : 'Contents'}</p>
+        <ol>{contents.map(heading => <li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ol>
+      </nav>
+    )}
     <div class="note-prose"><Content /></div>
     <footer class="note-footer"><p class="disclosure mono">{t.disclosure}</p></footer>
   </article>

@@ -16,7 +16,7 @@ const foreign = noteLang !== lang ? noteLang : undefined;
   </div>
   <div class="entry-content" lang={foreign}>
     <Heading class="note-entry-title"><a href={labNoteUrl(noteLang, note.id)} hreflang={foreign}>{title}</a></Heading>
-    <p>{summary}</p>
+    <p>{note.data.description ?? summary}</p>
     {stack.length > 0 && <p class="tech mono">{stack.join(' · ')}</p>}
   </div>
 </article>

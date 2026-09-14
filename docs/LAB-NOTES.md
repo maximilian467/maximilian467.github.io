@@ -20,7 +20,10 @@ Lab Notes (German UI: „Laborbuch") are technical write-ups of projects and exp
 ```md
 ---
 title: Short, specific title
-summary: One or two sentences: what was built or tested and the main result.
+summary: One or two sentences: what was built or tested and the main result. Shown as the lead under the title.
+# description: Shorter text for the overview card (defaults to summary)
+# metaTitle: Full browser/search title, replaces "Title · Maximilian Köhlenbeck"
+# metaDescription: Search description (defaults to description, then summary)
 lang: en              # en or de
 published: 2026-10-01
 # updated: 2026-10-15
