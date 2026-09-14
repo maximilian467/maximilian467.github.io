@@ -65,7 +65,7 @@ export const ui = {
 } as const;
 export const links = {
   github: 'https://github.com/maximilian467',
-  linkedin: 'https://www.linkedin.com/in/maximilian-k%C3%B6hlenbeck',
+  linkedin: 'https://www.linkedin.com/in/maximilian-k%C3%B6hlenbeck-06982b330/',
   email: 'mailto:m.koehlenbeck@koehlenbeck.com',
   cv: '/cv/maximilian-koehlenbeck-lebenslauf.pdf',
 };
