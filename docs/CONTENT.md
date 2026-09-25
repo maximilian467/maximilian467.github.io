@@ -76,13 +76,13 @@ I use coding agents like Claude Code and Codex heavily for implementation. I foc
 
 **DE**
 
-**KI trainieren statt nur benutzen.** Ich bringe mir gerade bei, wie man Modelle selbst trainiert. Angefangen habe ich mit Reinforcement Learning: erst ein Agent, der einen Stab auf einem Wagen balanciert, dann ein Doppelpendel auf einem Wagen, das mit einem einzigen Modell zwischen vier Haltungen wechselt (das oben auf der Seite). Jetzt geht es mit NVIDIA Isaac Lab weiter. Die Frage, die mich dabei beschäftigt: Wie bringt man einem Modell etwas so bei, dass es auch in Situationen klappt, die es nie gesehen hat?
+**KI trainieren statt nur benutzen.** Ich bringe mir gerade bei, wie man Modelle selbst trainiert. Angefangen habe ich mit Reinforcement Learning: erst ein Agent, der einen Stab auf einem Wagen balanciert, dann ein Doppelpendel auf einem Wagen, das mit einem einzigen Modell zwischen vier Haltungen wechselt (das oben auf der Seite). Die Frage, die mich dabei beschäftigt: Wie bringt man einem Modell etwas so bei, dass es auch in Situationen klappt, die es nie gesehen hat?
 
 **3D-Drucker optimieren, zusammen mit KUKA.** Ich optimiere einen 3D-Drucker und habe dafür eine Kalibrierung des Düsen-Offsets selbst eingebaut. Das Projekt läuft noch.
 
 **EN**
 
-**Training AI instead of just using it.** I'm teaching myself how to train models. I started with reinforcement learning: first an agent that balances a pole on a cart, then a double pendulum on a cart that switches between four poses with a single model (the one at the top of this page). Next up is NVIDIA Isaac Lab. The question on my mind: how do you teach a model something so it also works in situations it has never seen?
+**Training AI instead of just using it.** I'm teaching myself how to train models. I started with reinforcement learning: first an agent that balances a pole on a cart, then a double pendulum on a cart that switches between four poses with a single model (the one at the top of this page). The question on my mind: how do you teach a model something so it also works in situations it has never seen?
 
 **Improving a 3D printer, together with KUKA.** I'm optimizing a 3D printer and built a nozzle offset calibration into it myself. The project is ongoing.
 
@@ -195,7 +195,7 @@ KI-Hinweis, klein und unauffällig auf der Übersicht und unter jedem Artikel. E
 ## Werkzeuge und Technologien
 
 **DE** (nach praktischem Einsatz gruppiert, keine Prozentbalken, keine Sterne, nur was in Projekten tatsächlich verwendet wurde)
-- **Reinforcement Learning und Simulation:** Gymnasium, Stable-Baselines3 (PPO, SAC, TQC), MuJoCo, Feder-Masse-Simulation, NVIDIA Isaac Lab (gerade am Anfang)
+- **Reinforcement Learning und Simulation:** Gymnasium, Stable-Baselines3 (PPO, SAC, TQC), MuJoCo, Feder-Masse-Simulation
 - **Lokale KI und Sprache:** faster-whisper, Piper TTS, Ollama, ONNX / DirectML, LLMs über OpenRouter
 - **Software und Web:** Python, TypeScript, JavaScript, Next.js, Astro, PostgreSQL, Drizzle, MapLibre
 - **Automatisierung und Werkzeuge:** n8n, Claude Code, Codex, Git
@@ -203,7 +203,7 @@ KI-Hinweis, klein und unauffällig auf der Übersicht und unter jedem Artikel. E
 - **Sprachen:** Deutsch (Muttersprache), Englisch (C1)
 
 **EN**
-- **Reinforcement learning & simulation:** Gymnasium, Stable-Baselines3 (PPO, SAC, TQC), MuJoCo, spring-mass simulation, NVIDIA Isaac Lab (just getting started)
+- **Reinforcement learning & simulation:** Gymnasium, Stable-Baselines3 (PPO, SAC, TQC), MuJoCo, spring-mass simulation
 - **Local AI & speech:** faster-whisper, Piper TTS, Ollama, ONNX / DirectML, LLMs via OpenRouter
 - **Software & web:** Python, TypeScript, JavaScript, Next.js, Astro, PostgreSQL, Drizzle, MapLibre
 - **Automation & tooling:** n8n, Claude Code, Codex, Git
