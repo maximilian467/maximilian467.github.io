@@ -23,6 +23,8 @@ const projects = defineCollection({
   loader: glob({ pattern: '*.json', base: './src/content/projects' }),
   schema: z.object({
     order: z.number(), running: z.boolean().default(false),
+    /** Shown on the home page. All projects are listed on /projects/ and /de/projekte/. */
+    pinned: z.boolean().default(false),
     en: localizedProject, de: localizedProject,
     links: z.object({
       demo: z.url().optional(),

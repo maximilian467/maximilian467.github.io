@@ -27,6 +27,15 @@ for (const route of ['','de/']) {
   assert.ok(html.includes('rel="canonical"') && html.includes('hreflang="de"') && html.includes('hreflang="en"'));
 }
 assert.equal(readFileSync('dist/index.html','utf8').match(/<html lang="(\w+)"/)[1], 'en', 'English must be the default language');
+// Home shows the pinned projects and links the full list; the projects pages list every project.
+const pinnedCount = projectFiles.filter(f => JSON.parse(readFileSync(`src/content/projects/${f}`,'utf8')).pinned).length;
+for (const [home, list] of [['', 'projects/'], ['de/', 'de/projekte/']]) {
+  const homeHtml = readFileSync(`dist/${home}index.html`,'utf8'), listHtml = readFileSync(`dist/${list}index.html`,'utf8');
+  const count = html => (html.match(/<article class="entry" aria-labelledby="project-/g) ?? []).length;
+  assert.equal(count(homeHtml), pinnedCount, `Pinned projects on /${home}`);
+  assert.equal(count(listHtml), projectFiles.length, `All projects on /${list}`);
+  assert.ok(homeHtml.includes(`href="/${list}"`), `Link to /${list} missing on /${home}`);
+}
 // Each language links its own CV, and both PDFs are published.
 for (const [route, cv, other] of [['', 'maximilian-koehlenbeck-cv.pdf', 'maximilian-koehlenbeck-lebenslauf.pdf'], ['de/', 'maximilian-koehlenbeck-lebenslauf.pdf', 'maximilian-koehlenbeck-cv.pdf']]) {
   const html = readFileSync(`dist/${route}index.html`,'utf8');

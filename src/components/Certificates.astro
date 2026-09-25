@@ -1,0 +1,29 @@
+---
+import { ui, type Locale } from '../i18n/ui';
+interface Props { lang: Locale; }
+const { lang } = Astro.props;
+const t = ui[lang];
+// Issuer marks from Simple Icons (CC0), drawn in the text colour like the rest of the page.
+const marks = {
+  anthropic: 'M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z',
+  google: 'M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z',
+};
+const certificates = [
+  { title: 'Claude Code 101', issuer: 'Anthropic', mark: marks.anthropic, href: 'https://academy.claude.com/badges/877ce300-0a1a-4ed3-b5e4-102c72d87680', label: t.credential, external: true },
+  { title: 'Applying AI Principles with Google Cloud', issuer: 'Google Cloud', mark: marks.google, href: '/certificates/google-applying-ai-principles-badge.png', label: t.badge, external: false },
+];
+---
+<section id="certificates" class="section wrap" aria-labelledby="certificates-title" data-reveal>
+  <div class="section-heading"><h2 id="certificates-title" class="section-title">{t.certificates}</h2></div>
+  <div>
+    {certificates.map(c => (
+      <article class="entry">
+        <p class="mono issuer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d={c.mark} /></svg><span translate="no">{c.issuer}</span></p>
+        <div class="entry-content">
+          <h3 translate="no">{c.title}</h3>
+          <p class="project-links"><a href={c.href}>{c.label}{c.external && <> <span aria-hidden="true">↗</span></>}</a></p>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

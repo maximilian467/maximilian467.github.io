@@ -110,10 +110,26 @@ async page => {
     assert(violations.length === 0, `Lab Notes accessibility: ${violations}`);
     output.labNotes.push({ route, title: await page.title(), violations });
   }
+  // Full project list: every project, h1 then h2 per project, reachable from the home page link.
+  output.projects = [];
+  for (const [home, route] of [['', 'projects/'], ['de/', 'de/projekte/']]) {
+    await page.goto(`${origin}/${home}`);
+    await page.locator('.section-more a').click();
+    await page.waitForURL(`${origin}/${route}`);
+    assert(await page.locator('#projects article').count() === 6, `Projects page incomplete: ${route}`);
+    assert(await page.locator('h1').count() === 1 && await page.locator('#projects h2').count() === 6, `Projects heading levels: ${route}`);
+    await page.addScriptTag({ path: 'node_modules/axe-core/axe.min.js' });
+    const violations = await page.evaluate(async () => (await axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a','wcag2aa','wcag21aa'] } })).violations.map(v => v.id));
+    assert(violations.length === 0, `Projects page accessibility: ${violations}`);
+    output.projects.push({ route, title: await page.title(), violations });
+  }
   const nojsContext = await page.context().browser().newContext({ javaScriptEnabled: false, viewport: { width:390, height:844 }, colorScheme:'light' });
   const nojs = await nojsContext.newPage();
   await nojs.goto(`${origin}/`);
-  assert(await nojs.locator('#projects article').count() === 6, 'No-JS content missing');
+  assert(await nojs.locator('#projects article').count() === 3, 'No-JS pinned projects missing');
+  await nojs.goto(`${origin}/projects/`);
+  assert(await nojs.locator('#projects article').count() === 6, 'No-JS projects page incomplete');
+  await nojs.goto(`${origin}/`);
   assert(await nojs.locator('.lab-still').isVisible(), 'No-JS SVG missing');
   assert(!await nojs.locator('.lab-message').isVisible(), 'No-JS loading message visible');
   assert(!await nojs.locator('[data-pose-group]').isVisible(), 'Inert pose buttons visible without JavaScript');

@@ -60,6 +60,8 @@ img, svg { max-width: 100%; }
 .status { display: inline-flex; align-items: center; gap: .5rem; }
 .status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--ink-muted); flex: 0 0 6px; }
 .status.running::before { background: var(--accent); }
+.issuer { display: flex; align-self: start; align-items: center; gap: .6rem; color: var(--ink); }
+.issuer svg { flex: 0 0 1.125rem; width: 1.125rem; height: 1.125rem; fill: currentColor; }
 .entry-content { min-width: 0; }
 .entry-content h3 { margin-bottom: 1rem; }
 .entry-content > p { max-width: 64ch; }
@@ -67,6 +69,12 @@ img, svg { max-width: 100%; }
 .project-links { display: flex; flex-wrap: wrap; gap: 0 1.75rem; margin-top: .5rem; font-size: .875rem; }
 .project-links a { display: inline-block; padding-block: .6rem; }
 .project-facts { margin-top: 1.75rem; }
+/* "All projects" below the pinned projects, aligned with the entry content column */
+.section-more { margin-top: 3rem; padding-left: calc(180px + 2.75rem); font-size: .875rem; }
+.section-more a { display: inline-block; padding-block: .6rem; }
+/* Project titles look the same as h2 (projects page) and h3 (home page). */
+.entry-content .project-title { font-size: clamp(1.5rem, 2.4vw, 1.875rem); line-height: 1.2; margin-bottom: 1rem; }
+.projects-heading { margin-top: 1.5rem; }
 .project-facts > div { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 1.5rem; padding-block: .85rem; border-top: 1px solid var(--rule); }
 .project-facts dt { padding-top: .15rem; }
 .project-facts ul { margin: 0; padding-left: 1.1rem; }
@@ -165,6 +173,7 @@ tr:last-child > * { border-bottom: 0; }
   .section-heading { margin-bottom: 2.5rem; }
   .entry { grid-template-columns: 1fr; gap: 1rem; padding-block: 2.5rem; }
   .entry-meta { flex-direction: row; flex-wrap: wrap; gap: .35rem 1rem; }
+  .section-more { padding-left: 0; margin-top: 2rem; }
   .skill-list > div { grid-template-columns: 1fr; gap: .5rem; }
   .datasheet { grid-template-columns: 1fr; padding: 1.25rem; gap: 1.25rem; }
   .measurement { padding-bottom: .75rem; border-bottom: 1px solid var(--rule); }

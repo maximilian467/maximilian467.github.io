@@ -94,7 +94,7 @@ Kein Intro im Projektabschnitt. Die Arbeitsweise mit KI-Agenten wird unter „KI
 
 Die Projektdateien unter `src/content/projects/` können optional strukturierte Felder haben: Ziel, Was ich gebaut habe, Aufbau (Diagramm), Technische Entscheidungen, Messwerte, Was ich gelernt habe, Grenzen und nächste Schritte, sowie Links (Live-Demo, GitHub, Technischer Bericht). Nur füllen, wenn die Fakten hier stehen. Leere Felder werden nicht angezeigt.
 
-Reihenfolge wie unten.
+Reihenfolge wie unten. Auf der Startseite stehen nur angepinnte Projekte (`"pinned": true` in der Projektdatei), zurzeit Wächter, Baulify und die n8n-Automationen. Darunter der Link „Alle Projekte (6) →“ / „All projects (6) →“ zur Seite `/de/projekte/` bzw. `/projects/`, auf der alle Projekte vollständig untereinander stehen.
 
 ### 1. Wächter
 
@@ -165,6 +165,15 @@ Reihenfolge wie unten.
 - EN: **Smart Region Hackathon Offenburg** · May 2026 · This is where Baulify started.
 
 (Keine Platzierung erwähnen.)
+
+---
+
+## Zertifikate
+
+Abschnitt direkt nach den Hackathons. Ohne Datum, weil keins vorliegt. Umsetzung: `src/components/Certificates.astro`.
+
+- **Claude Code 101** · Anthropic · Nachweis: https://academy.claude.com/badges/877ce300-0a1a-4ed3-b5e4-102c72d87680 (DE „Nachweis ansehen", EN "View credential")
+- **Applying AI Principles with Google Cloud** · Google Cloud · Completion Badge als Bild: `/certificates/google-applying-ai-principles-badge.png` (DE „Badge ansehen", EN "View badge")
 
 ---
 

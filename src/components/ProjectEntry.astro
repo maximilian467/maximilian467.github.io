@@ -5,8 +5,9 @@ import { labNoteUrl } from '../i18n/utils';
 import { getLabNotes } from '../lib/lab-notes';
 import ArchitectureFlow from './ArchitectureFlow.astro';
 import Datasheet from './Datasheet.astro';
-interface Props { project: CollectionEntry<'projects'>; lang: Locale; }
-const { project, lang } = Astro.props;
+interface Props { project: CollectionEntry<'projects'>; lang: Locale; headingLevel?: 2 | 3; }
+const { project, lang, headingLevel = 3 } = Astro.props;
+const Heading = headingLevel === 2 ? 'h2' : 'h3';
 const t = ui[lang];
 const p = project.data[lang];
 const { demo, github, writeup } = project.data.links;
@@ -30,7 +31,7 @@ const outro = facts([[t.learned, p.learned], [t.next, p.next]]);
     <span>{p.role}</span>
   </div>
   <div class="entry-content">
-    <h3 id={`project-${project.id}`}>{p.title}</h3>
+    <Heading id={`project-${project.id}`} class="project-title">{p.title}</Heading>
     <p>{p.description}</p>
     {[intro, decisions, outro].map((group, index) => <>
       {index === 1 && p.architecture && <ArchitectureFlow flows={p.architecture} title={t.architecture} />}

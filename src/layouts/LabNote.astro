@@ -33,7 +33,7 @@ const url = labNoteUrl(lang, note.id);
       <dl class="note-meta mono">
         <div><dt>{t.published}</dt><dd><time datetime={isoDate(published)}>{formatDate(published, lang)}</time></dd></div>
         {updated && <div><dt>{t.updated}</dt><dd><time datetime={isoDate(updated)}>{formatDate(updated, lang)}</time></dd></div>}
-        {project && <div><dt>{t.project}</dt><dd><a href={`${routes[lang].home}#project-${project.id}`}>{project.data[lang].title}</a></dd></div>}
+        {project && <div><dt>{t.project}</dt><dd><a href={`${routes[lang].projects}#project-${project.id}`}>{project.data[lang].title}</a></dd></div>}
         {stack.length > 0 && <div><dt>{t.stack}</dt><dd>{stack.join(' · ')}</dd></div>}
       </dl>
       {(links.demo || links.github) && <p class="project-links">

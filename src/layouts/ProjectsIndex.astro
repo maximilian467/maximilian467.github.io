@@ -1,0 +1,20 @@
+---
+import { getCollection } from 'astro:content';
+import Base from './Base.astro';
+import ProjectEntry from '../components/ProjectEntry.astro';
+import { ui, type Locale } from '../i18n/ui';
+import { routes } from '../i18n/utils';
+interface Props { lang: Locale; }
+const { lang } = Astro.props;
+const t = ui[lang];
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+---
+<Base lang={lang} page="projects" title={t.projects} description={t.projectsDescription}>
+  <section id="projects" class="page wrap" aria-labelledby="projects-title">
+    <a class="note-back mono" href={routes[lang].home}><span aria-hidden="true">←</span> {t.home}</a>
+    <div class="section-heading projects-heading">
+      <h1 id="projects-title" class="section-title page-title">{t.projects}</h1>
+    </div>
+    <div>{projects.map(project => <ProjectEntry project={project} lang={lang} headingLevel={2} />)}</div>
+  </section>
+</Base>
