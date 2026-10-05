@@ -1,0 +1,90 @@
+{
+  "order": 0,
+  "running": false,
+  "pinned": true,
+  "de": {
+    "title": "Helpy",
+    "description": "Ein Assistent, der einem Experten bei der Arbeit zusieht, die Erklärungen anhört und in natürlichen Pausen nach den Entscheidungen fragt. Daraus entsteht eine Work Map aus Schritten, Regeln und Begründungen. Ein neuer Kollege übt dann damit, und Fehler werden vor dem Speichern abgefangen. Bildschirmfotos werden schon im Browser per OCR geprüft und geschwärzt. Entstanden beim Hack-Nation 7.",
+    "date": "Oktober 2026",
+    "status": "Prototyp",
+    "role": "im Team",
+    "tech": "TypeScript · React · TanStack Start · Convex · Claude · ElevenLabs · Tesseract.js",
+    "architecture": [
+      {
+        "label": "Aufnahme",
+        "nodes": [
+          "Bildschirm und Stimme",
+          "OCR und Schwärzung im Browser",
+          "Fragen in Pausen"
+        ]
+      },
+      {
+        "label": "Lernen",
+        "nodes": [
+          "Rückfrage und Bestätigung",
+          "Work Map",
+          "Üben mit Leitplanken"
+        ]
+      }
+    ],
+    "metrics": [
+      {
+        "label": "Bildschirmfoto-Pipeline (einfacher Bildschirm)",
+        "value": "378 ms gesamt",
+        "highlight": "~0,4 s"
+      },
+      {
+        "label": "Bildschirmfoto-Pipeline (dichter Bildschirm)",
+        "value": "1.512 ms gesamt"
+      },
+      {
+        "label": "Aufnahme",
+        "value": "alle 2 s ein Bild in voller Auflösung"
+      }
+    ]
+  },
+  "en": {
+    "title": "Helpy",
+    "description": "An assistant that watches an expert work, listens to their narration and asks about decisions at natural pauses. The session becomes a Work Map of steps, rules and reasons. A new colleague then practices with it, and mistakes get caught before saving. Screenshots are OCR'd and redacted right in the browser. Started at Hack-Nation 7.",
+    "date": "October 2026",
+    "status": "prototype",
+    "role": "in a team",
+    "tech": "TypeScript · React · TanStack Start · Convex · Claude · ElevenLabs · Tesseract.js",
+    "architecture": [
+      {
+        "label": "Capture",
+        "nodes": [
+          "Screen and voice",
+          "OCR and redaction in the browser",
+          "Questions at pauses"
+        ]
+      },
+      {
+        "label": "Teach",
+        "nodes": [
+          "Debrief and teach-back",
+          "Work Map",
+          "Practice with guardrails"
+        ]
+      }
+    ],
+    "metrics": [
+      {
+        "label": "Screenshot pipeline (sparse screen)",
+        "value": "378 ms end to end",
+        "highlight": "~0.4 s"
+      },
+      {
+        "label": "Screenshot pipeline (dense screen)",
+        "value": "1,512 ms end to end"
+      },
+      {
+        "label": "Capture",
+        "value": "every 2 s, full-resolution frame"
+      }
+    ]
+  },
+  "links": {
+    "writeup": "helpy"
+  }
+}

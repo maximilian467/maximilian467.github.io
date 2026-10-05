@@ -6,6 +6,7 @@ metaTitle: "Helpy — Capturing Expert Judgment | Maximilian Köhlenbeck"
 metaDescription: "A technical write-up of Helpy, built at Hack-Nation 7: screen and voice capture, in-browser OCR and PII redaction, question timing and a Work Map with guardrails."
 lang: en
 published: 2026-10-05
+project: helpy
 stack: [TypeScript, React 19, TanStack Start, Convex, Anthropic, ElevenLabs, Tesseract.js, Railway]
 architecture:
   - label: Capture
