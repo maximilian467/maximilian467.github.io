@@ -94,7 +94,7 @@ Kein Intro im Projektabschnitt. Die Arbeitsweise mit KI-Agenten wird unter „KI
 
 Die Projektdateien unter `src/content/projects/` können optional strukturierte Felder haben: Ziel, Was ich gebaut habe, Aufbau (Diagramm), Technische Entscheidungen, Messwerte, Was ich gelernt habe, Grenzen und nächste Schritte, sowie Links (Live-Demo, GitHub, Technischer Bericht). Nur füllen, wenn die Fakten hier stehen. Leere Felder werden nicht angezeigt.
 
-Reihenfolge wie unten. Auf der Startseite stehen nur angepinnte Projekte (`"pinned": true` in der Projektdatei), zurzeit Helpy, Wächter, Baulify und die n8n-Automationen. Darunter der Link „Alle Projekte (7) →“ / „All projects (7) →“ zur Seite `/de/projekte/` bzw. `/projects/`, auf der alle Projekte vollständig untereinander stehen.
+Reihenfolge wie unten. Auf der Startseite stehen nur angepinnte Projekte (`"pinned": true` in der Projektdatei), zurzeit Helpy, Baulify und die n8n-Automationen. Darunter der Link „Alle Projekte (7) →“ / „All projects (7) →“ zur Seite `/de/projekte/` bzw. `/projects/`, auf der alle Projekte vollständig untereinander stehen.
 
 ### 0. Helpy
 
