@@ -161,6 +161,8 @@ Reihenfolge wie unten. Auf der Startseite stehen nur angepinnte Projekte (`"pinn
 
 ## Hackathons
 
+- **Hack-Nation 7** · Oktober 2026 · Daraus entstand Helpy.
+- EN: **Hack-Nation 7** · October 2026 · This is where Helpy started.
 - **Smart Region Hackathon Offenburg** · Mai 2026 · Daraus entstand Baulify.
 - EN: **Smart Region Hackathon Offenburg** · May 2026 · This is where Baulify started.
 
