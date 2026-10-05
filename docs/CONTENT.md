@@ -96,6 +96,15 @@ Die Projektdateien unter `src/content/projects/` können optional strukturierte 
 
 Reihenfolge wie unten. Auf der Startseite stehen nur angepinnte Projekte (`"pinned": true` in der Projektdatei), zurzeit Helpy, Wächter, Baulify und die n8n-Automationen. Darunter der Link „Alle Projekte (7) →“ / „All projects (7) →“ zur Seite `/de/projekte/` bzw. `/projects/`, auf der alle Projekte vollständig untereinander stehen.
 
+### 0. Helpy
+
+- Status: Prototyp · Zeitraum: Oktober 2026 · im Team
+- **DE:** Ein Assistent, der einem Experten bei der Arbeit zusieht, die Erklärungen anhört und in natürlichen Pausen nach den Entscheidungen fragt. Daraus entsteht eine Work Map aus Schritten, Regeln und Begründungen. Ein neuer Kollege übt dann damit, und Fehler werden vor dem Speichern abgefangen. Bildschirmfotos werden schon im Browser per OCR geprüft und geschwärzt. Entstanden beim Hack-Nation 7.
+- **EN:** An assistant that watches an expert work, listens to their narration and asks about decisions at natural pauses. The session becomes a Work Map of steps, rules and reasons. A new colleague then practices with it, and mistakes get caught before saving. Screenshots are OCR'd and redacted right in the browser. Started at Hack-Nation 7.
+- Tech: TypeScript · React · TanStack Start · Convex · Claude · ElevenLabs · Tesseract.js
+- Messwerte: Bildschirmfoto-Pipeline 378 ms (einfacher Bildschirm) bzw. 1.512 ms (dichter Bildschirm), laut Benchmark vom 04.10.2026
+- Links: Technischer Bericht (Lab Note `helpy`)
+
 ### 1. Wächter
 
 - Status: fertig · Zeitraum: 2026 · Allein
