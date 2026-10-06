@@ -28,7 +28,7 @@ metrics:
     value: "382 unit tests"
 links:
   github: https://github.com/maximilian467/Developer-Island
-draft: true
+draft: false
 ---
 
 ## What I wanted to build
