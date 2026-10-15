@@ -11,8 +11,8 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { background: #fff; }
   body {
-    width: 210mm; height: 297mm; overflow: hidden; padding: 13mm 16mm 10mm;
-    font-family: "Segoe UI", system-ui, sans-serif; font-size: 9pt; line-height: 1.42; color: var(--ink);
+    width: 210mm; height: 297mm; overflow: hidden; padding: 11mm 16mm 9mm;
+    font-family: "Segoe UI", system-ui, sans-serif; font-size: 8.8pt; line-height: 1.36; color: var(--ink);
     -webkit-print-color-adjust: exact; print-color-adjust: exact;
   }
   .serif { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
@@ -23,7 +23,7 @@
   .role { margin-top: 2mm; font-size: 10pt; }
   .contact { flex: none; text-align: right; line-height: 1.6; }
   .contact a { color: var(--ink); text-decoration: none; }
-  section { display: grid; grid-template-columns: 34mm 1fr; column-gap: 6mm; padding: 2.5mm 0; border-bottom: 1px solid var(--rule); }
+  section { display: grid; grid-template-columns: 34mm 1fr; column-gap: 6mm; padding: 2.2mm 0; border-bottom: 1px solid var(--rule); }
   section:last-of-type { border-bottom: 0; }
   h2 { font-size: 12pt; line-height: 1.2; }
   .entry { display: grid; grid-template-columns: 1fr auto; column-gap: 4mm; }
@@ -37,7 +37,7 @@
   .entry .tech { margin-top: 0.4mm; }
   .entry .tech a { color: inherit; text-decoration: none; }
   .dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); margin-right: 4px; vertical-align: 1px; }
-  dl { display: grid; grid-template-columns: 52mm 1fr; row-gap: 1.2mm; }
+  dl { display: grid; grid-template-columns: 56mm 1fr; row-gap: 1.2mm; }
   dt { font-weight: 600; }
   footer { margin-top: 3mm; }
 </style>
@@ -102,9 +102,15 @@
     <h2 class="serif">Projects</h2>
     <div>
       <div class="entry">
+        <h3>Nozzle offset calibration for FDM 3D printing (KUKA)</h3>
+        <span class="when mono">2026</span>
+        <p>My longest project so far. Errors of a few tenths of a millimeter already showed in the parts, and the offset shifted with temperature and after nozzle changes. I found a reliable, repeatable way to measure it, separated real offset errors from causes like bed leveling or material behavior, and turned it into a process the team can rerun without me. Getting consistent results took many rounds of test prints and measurements.</p>
+        <div class="tech mono">FDM 3D printing · Calibration · Measurement</div>
+      </div>
+      <div class="entry">
         <h3>Helpy: capturing an expert's judgment while they work (team)</h3>
         <span class="when mono">10/2026</span>
-        <p>Started at Hack-Nation 7. An assistant that watches an expert work, listens to their narration and asks about decisions at natural pauses. The session becomes a Work Map of steps, rules and reasons that a new colleague practices with. Screenshots are OCR'd and redacted right in the browser (378 ms on a simple screen).</p>
+        <p>Started at Hack-Nation 7. An assistant that watches an expert work, listens and asks about decisions at natural pauses. The result is a Work Map of steps, rules and reasons that a new colleague practices with. Screenshots are OCR'd and redacted in the browser (378 ms on a simple screen).</p>
         <div class="tech mono">TypeScript · React · TanStack Start · Convex · Claude · ElevenLabs · Tesseract.js</div>
       </div>
       <div class="entry">
@@ -116,13 +122,13 @@
       <div class="entry">
         <h3>Reinforcement learning: one policy, four poses of a double pendulum</h3>
         <span class="when mono"><span class="dot"></span>in progress</span>
-        <p>A single TQC policy I trained swings a double pendulum on a cart into each of its four poses and switches between them on demand. 100 % success across all 4×4 transitions after 1.7M steps, trained on a laptop CPU. It runs live in the browser on my website. Before that: PPO on CartPole.</p>
+        <p>A single TQC policy I trained swings a double pendulum on a cart into each of its four poses and switches between them on demand. 100 % success across all 4×4 transitions after 1.7M steps, trained on a laptop CPU. It runs live in the browser on my website.</p>
         <div class="tech mono">Python · Gymnasium · MuJoCo · Stable-Baselines3 · sb3-contrib (TQC) · TypeScript</div>
       </div>
       <div class="entry">
         <h3>Developer Island: a status capsule for the Windows desktop</h3>
         <span class="when mono">10/2026</span>
-        <p>A native app at the top of the screen that shows Claude Code and Codex usage, music, focus timer, meetings and system health. It reads the tools' local logs incrementally, with no polling and no cloud. Idles at 55 MB and 0.03 % of one CPU core, 382 unit tests, open source.</p>
+        <p>A native app at the top of the screen for Claude Code and Codex usage, music, focus timer, meetings and system health. Reads local logs incrementally, no polling, no cloud. Idles at 55 MB and 0.03 % of one CPU core, 382 unit tests, open source.</p>
         <div class="tech mono">C# · .NET 10 · WinUI 3 · SQLite · xUnit · <a href="https://github.com/maximilian467/Developer-Island">github.com/maximilian467/Developer-Island</a></div>
       </div>
     </div>
@@ -131,11 +137,10 @@
   <section>
     <h2 class="serif">Skills</h2>
     <dl>
-      <dt>Reinforcement learning &amp; simulation</dt><dd>Gymnasium, Stable-Baselines3 (PPO, SAC, TQC), MuJoCo, spring-mass simulation</dd>
+      <dt>Reinforcement learning &amp; simulation</dt><dd>Gymnasium, Stable-Baselines3 (PPO, SAC, TQC), MuJoCo</dd>
       <dt>Local AI &amp; speech</dt><dd>faster-whisper, Piper TTS, Ollama, ONNX / DirectML, LLMs via OpenRouter</dd>
       <dt>Software &amp; web</dt><dd>Python, TypeScript, JavaScript, Next.js, Astro, PostgreSQL, Drizzle, MapLibre</dd>
       <dt>Automation &amp; tooling</dt><dd>n8n, Claude Code, Codex, Git</dd>
-      <dt>Hardware</dt><dd>3D printing</dd>
       <dt>Languages</dt><dd>German (native), English (C1)</dd>
     </dl>
   </section>

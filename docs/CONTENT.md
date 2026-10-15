@@ -147,6 +147,7 @@ Reihenfolge wie unten. Auf der Startseite stehen nur angepinnte Projekte (`"pinn
 - Aufbau: nicht dokumentiert, daher kein Diagramm
 - Tech: 3D-Druck · Kalibrierung
 - Links: keine
+- Weitere Fakten vom Nutzer (15.10.2026), bisher nur im Lebenslauf verwendet: mein längstes und größtes Projekt bisher. FDM-3D-Druck bei KUKA. Schon Fehler von wenigen Zehntelmillimetern waren in den Bauteilen sichtbar, und der Offset verschob sich mit der Temperatur und nach Düsenwechseln. Aufgabe: den Offset zuverlässig und wiederholbar messen, echte Offset-Fehler von anderen Ursachen wie Bettnivellierung oder Materialverhalten trennen und daraus einen Ablauf machen, den das Team ohne mich wiederholen kann. Es brauchte viele Runden aus Testdrucken und Messungen, bis die Ergebnisse konsistent waren.
 
 ### 5. Mein Wispr-Flow-Klon
 
@@ -235,7 +236,8 @@ Eine Seite A4 je Sprache, gleiche URLs wie oben. Nach Änderungen an `docs/cv/*.
 
 Stand Oktober 2026:
 - Abschnitte: Profil, Ausbildung, Hackathons (alle drei wie oben, 1. Platz beim Mobile Robotics Hackathon hervorgehoben), Projekte, Kenntnisse.
-- Projekte, nur die stärksten: Helpy, Baulify, Doppelpendel mit einer TQC-Policy, Developer Island. Wächter, Planen-Editor, 3D-Drucker, Wispr-Flow-Klon und n8n stehen nur auf der Website.
+- Projekte, nur die stärksten: Düsen-Offset-Kalibrierung bei KUKA (zuerst, längstes Projekt), Helpy, Baulify, Doppelpendel mit einer TQC-Policy, Developer Island. Wächter, Planen-Editor, Wispr-Flow-Klon und n8n stehen nur auf der Website.
+- Kenntnisse: wie auf der Website, ohne Feder-Masse-Simulation (Planen-Editor fehlt im Lebenslauf) und ohne die Zeile Hardware (steckt im Kalibrierungsprojekt).
 - Fakten zu Developer Island stammen aus der Lab Note `developer-island` (06.10.2026), zum Doppelpendel aus `one-policy-four-balance-modes`.
 
 ---

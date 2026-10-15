@@ -11,8 +11,8 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { background: #fff; }
   body {
-    width: 210mm; height: 297mm; overflow: hidden; padding: 13mm 16mm 10mm;
-    font-family: "Segoe UI", system-ui, sans-serif; font-size: 9pt; line-height: 1.42; color: var(--ink);
+    width: 210mm; height: 297mm; overflow: hidden; padding: 11mm 16mm 9mm;
+    font-family: "Segoe UI", system-ui, sans-serif; font-size: 8.8pt; line-height: 1.36; color: var(--ink);
     -webkit-print-color-adjust: exact; print-color-adjust: exact;
   }
   .serif { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
@@ -23,7 +23,7 @@
   .role { margin-top: 2mm; font-size: 10pt; }
   .contact { flex: none; text-align: right; line-height: 1.6; }
   .contact a { color: var(--ink); text-decoration: none; }
-  section { display: grid; grid-template-columns: 34mm 1fr; column-gap: 6mm; padding: 2.5mm 0; border-bottom: 1px solid var(--rule); }
+  section { display: grid; grid-template-columns: 34mm 1fr; column-gap: 6mm; padding: 2.2mm 0; border-bottom: 1px solid var(--rule); }
   section:last-of-type { border-bottom: 0; }
   h2 { font-size: 12pt; line-height: 1.2; }
   .entry { display: grid; grid-template-columns: 1fr auto; column-gap: 4mm; }
@@ -37,7 +37,7 @@
   .entry .tech { margin-top: 0.4mm; }
   .entry .tech a { color: inherit; text-decoration: none; }
   .dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); margin-right: 4px; vertical-align: 1px; }
-  dl { display: grid; grid-template-columns: 52mm 1fr; row-gap: 1.2mm; }
+  dl { display: grid; grid-template-columns: 56mm 1fr; row-gap: 1.2mm; }
   dt { font-weight: 600; }
   .todo { background: #FBF3DB; color: #956400; padding: 0 3px; border-radius: 2px; }
   footer { margin-top: 3mm; }
@@ -103,9 +103,15 @@
     <h2 class="serif">Projekte</h2>
     <div>
       <div class="entry">
+        <h3>Düsen-Offset-Kalibrierung für FDM-3D-Druck (KUKA)</h3>
+        <span class="when mono">2026</span>
+        <p>Mein bisher längstes Projekt. Schon wenige Zehntelmillimeter Abweichung waren in den Bauteilen sichtbar, und der Offset verschob sich mit der Temperatur und nach Düsenwechseln. Ich habe eine zuverlässige, wiederholbare Messung gefunden, echte Offset-Fehler von Bettnivellierung oder Materialverhalten getrennt und daraus einen Ablauf gemacht, den das Team ohne mich wiederholen kann. Für konsistente Ergebnisse brauchte es viele Testdrucke und Messungen.</p>
+        <div class="tech mono">FDM-3D-Druck · Kalibrierung · Messung</div>
+      </div>
+      <div class="entry">
         <h3>Helpy: Expertenwissen bei der Arbeit festhalten (Team)</h3>
         <span class="when mono">10/2026</span>
-        <p>Entstanden beim Hack-Nation 7. Ein Assistent, der einem Experten bei der Arbeit zusieht, zuhört und in natürlichen Pausen nach den Entscheidungen fragt. Daraus entsteht eine Work Map aus Schritten, Regeln und Begründungen, mit der ein neuer Kollege übt. Bildschirmfotos werden im Browser per OCR geprüft und geschwärzt (378 ms bei einfachem Bildschirm).</p>
+        <p>Entstanden beim Hack-Nation 7. Ein Assistent, der einem Experten bei der Arbeit zusieht, zuhört und in Pausen nach den Entscheidungen fragt. Daraus entsteht eine Work Map aus Schritten, Regeln und Begründungen, mit der ein neuer Kollege übt. Bildschirmfotos werden im Browser per OCR geprüft und geschwärzt (378 ms bei einfachem Bildschirm).</p>
         <div class="tech mono">TypeScript · React · TanStack Start · Convex · Claude · ElevenLabs · Tesseract.js</div>
       </div>
       <div class="entry">
@@ -117,13 +123,13 @@
       <div class="entry">
         <h3>Reinforcement Learning: ein Modell, vier Haltungen eines Doppelpendels</h3>
         <span class="when mono"><span class="dot"></span>läuft</span>
-        <p>Eine selbst trainierte TQC-Policy schwingt ein Doppelpendel auf einem Wagen in jede seiner vier Haltungen und wechselt auf Wunsch zwischen ihnen. 100 % Erfolg über alle 4×4 Wechsel nach 1,7 Mio. Schritten auf einer Laptop-CPU. Läuft live auf meiner Website. Davor: PPO für CartPole.</p>
+        <p>Eine selbst trainierte TQC-Policy schwingt ein Doppelpendel auf einem Wagen in jede seiner vier Haltungen und wechselt auf Wunsch zwischen ihnen. 100 % Erfolg über alle 4×4 Wechsel nach 1,7 Mio. Schritten auf einer Laptop-CPU. Läuft live auf meiner Website.</p>
         <div class="tech mono">Python · Gymnasium · MuJoCo · Stable-Baselines3 · sb3-contrib (TQC) · TypeScript</div>
       </div>
       <div class="entry">
         <h3>Developer Island: Statusanzeige für den Windows-Desktop</h3>
         <span class="when mono">10/2026</span>
-        <p>Native App oben am Bildschirmrand für Nutzung von Claude Code und Codex, Musik, Fokus-Timer, Termine und Systemzustand. Liest die lokalen Logs der Tools inkrementell, ohne Polling und ohne Cloud. Im Leerlauf 55 MB und 0,03 % eines CPU-Kerns, 382 Unit-Tests, Open Source.</p>
+        <p>Native App oben am Bildschirmrand für Nutzung von Claude Code und Codex, Musik, Fokus-Timer, Termine und Systemzustand. Liest lokale Logs inkrementell, ohne Polling, ohne Cloud. Im Leerlauf 55 MB und 0,03 % eines CPU-Kerns, 382 Unit-Tests, Open Source.</p>
         <div class="tech mono">C# · .NET 10 · WinUI 3 · SQLite · xUnit · <a href="https://github.com/maximilian467/Developer-Island">github.com/maximilian467/Developer-Island</a></div>
       </div>
     </div>
@@ -132,11 +138,10 @@
   <section>
     <h2 class="serif">Kenntnisse</h2>
     <dl>
-      <dt>Reinforcement Learning &amp; Simulation</dt><dd>Gymnasium, Stable-Baselines3 (PPO, SAC, TQC), MuJoCo, Feder-Masse-Simulation</dd>
+      <dt>Reinforcement Learning &amp; Simulation</dt><dd>Gymnasium, Stable-Baselines3 (PPO, SAC, TQC), MuJoCo</dd>
       <dt>Lokale KI &amp; Sprache</dt><dd>faster-whisper, Piper TTS, Ollama, ONNX / DirectML, LLMs über OpenRouter</dd>
       <dt>Software &amp; Web</dt><dd>Python, TypeScript, JavaScript, Next.js, Astro, PostgreSQL, Drizzle, MapLibre</dd>
       <dt>Automatisierung &amp; Werkzeuge</dt><dd>n8n, Claude Code, Codex, Git</dd>
-      <dt>Hardware</dt><dd>3D-Druck</dd>
       <dt>Sprachen</dt><dd>Deutsch (Muttersprache), Englisch (C1)</dd>
     </dl>
   </section>
