@@ -7,7 +7,7 @@ Schreibregeln für alle Texte:
 - Keine Wörter wie „innovativ", „nahtlos", „revolutionär", „Leidenschaft", „next-level", „cutting-edge", „Synergie".
 - Keine übertriebenen Aussagen. Lieber ein echter Messwert als ein Adjektiv.
 - Keine Emojis.
-- Keine Platzierungen bei Hackathons erwähnen.
+- Keine Platzierungen bei Hackathons erwähnen. Einzige Ausnahme: der Sieg beim Mobile Robotics Hackathon (Oktober 2026), vom Nutzer freigegeben.
 - Kein Foto.
 - Englisch ist die Standardsprache der Website. Studiengang im Englischen: „Automation Engineering“ (großgeschrieben).
 
@@ -170,12 +170,16 @@ Reihenfolge wie unten. Auf der Startseite stehen nur angepinnte Projekte (`"pinn
 
 ## Hackathons
 
+Neueste zuerst.
+
+- **Mobile Robotics Hackathon** · Oktober 2026 · Wir haben mit einem Roboterarm Müll sortiert, über 6D-Pose-Estimation und maschinelles Lernen. Eigene Zeile: 1. Platz.
+- EN: **Mobile Robotics Hackathon** · October 2026 · We sorted waste with a robot arm, using 6D pose estimation and machine learning. Own line: 1st place.
 - **Hack-Nation 7** · Oktober 2026 · Daraus entstand Helpy.
 - EN: **Hack-Nation 7** · October 2026 · This is where Helpy started.
 - **Smart Region Hackathon Offenburg** · Mai 2026 · Daraus entstand Baulify.
 - EN: **Smart Region Hackathon Offenburg** · May 2026 · This is where Baulify started.
 
-(Keine Platzierung erwähnen.)
+(Keine weitere Platzierung erwähnen, nur der Sieg beim Mobile Robotics Hackathon.)
 
 ---
 
@@ -221,6 +225,18 @@ KI-Hinweis, klein und unauffällig auf der Übersicht und unter jedem Artikel. E
 - **Automation & tooling:** n8n, Claude Code, Codex, Git
 - **Hardware:** 3D printing
 - **Languages:** German (native), English (C1)
+
+
+---
+
+## Lebenslauf (PDF)
+
+Eine Seite A4 je Sprache, gleiche URLs wie oben. Nach Änderungen an `docs/cv/*.html` die PDFs neu drucken (Edge/Chrome headless, `--print-to-pdf`, `--no-pdf-header-footer`) und prüfen, dass jedes genau eine Seite hat.
+
+Stand Oktober 2026:
+- Abschnitte: Profil, Ausbildung, Hackathons (alle drei wie oben, 1. Platz beim Mobile Robotics Hackathon hervorgehoben), Projekte, Kenntnisse.
+- Projekte, nur die stärksten: Helpy, Baulify, Doppelpendel mit einer TQC-Policy, Developer Island. Wächter, Planen-Editor, 3D-Drucker, Wispr-Flow-Klon und n8n stehen nur auf der Website.
+- Fakten zu Developer Island stammen aus der Lab Note `developer-island` (06.10.2026), zum Doppelpendel aus `one-policy-four-balance-modes`.
 
 ---
 
