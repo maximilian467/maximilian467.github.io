@@ -173,7 +173,7 @@ Reihenfolge wie unten. Auf der Startseite stehen nur angepinnte Projekte (`"pinn
 
 Neueste zuerst.
 
-- **Mobile Robotics Hackathon** · Oktober 2026 · Wir haben mit einem Roboterarm Müll sortiert, über 6D-Pose-Estimation und maschinelles Lernen. Eigene Zeile: 1. Platz.
+- **Mobile Robotics Hackathon** · Oktober 2026 · Wir haben mit einem Roboterarm Müll sortiert, über 6D-Pose-Estimation und maschinelles Lernen. Eigene Zeile: 1. Platz. Link: Technischer Bericht (Lab Note `mobile-robotics-hackathon`).
 - EN: **Mobile Robotics Hackathon** · October 2026 · We sorted waste with a robot arm, using 6D pose estimation and machine learning. Own line: 1st place.
 - **Hack-Nation 7** · Oktober 2026 · Daraus entstand Helpy.
 - EN: **Hack-Nation 7** · October 2026 · This is where Helpy started.
@@ -198,6 +198,7 @@ Abschnitt direkt nach den Hackathons. Ohne Datum, weil keins vorliegt. Umsetzung
 Technische Berichte zu Projekten und Experimenten. Keine Artikel erfinden. Felder: `src/content.config.ts`.
 
 Veröffentlicht:
+- `mobile-robotics-hackathon` (Englisch, 18.10.2026): „Mobile Robotics Hackathon: sorting waste with a robot arm“. Quelle: Sprachnotiz-Transkript und Antworten des Nutzers vom 18.10.2026. TU Dresden, ROS 2, MoveIt, Python, Claude Code, Kalibrierung mit AprilTags aus 20 Posen. Objekte: Papierbecher und Plastikflaschen in die passenden Eimer, Glasflaschen in den Kasten. Erkennung in der Demo über die Höhe der Objekte, die 6D-Pose-Estimation lief getrennt und wurde aus Zeitgründen nicht mehr eingebunden. Keine Namen, keine Teamgröße, keine Erfolgsquote. Verknüpft beim Hackathon-Eintrag. Überarbeiten, sobald die Zusammenfassungen der anderen Claude-Code-Sessions da sind.
 - `waechter` (Englisch, 14.09.2026): „Wächter: an offline voice-and-vision assistant for my front door". Quelle ist der vom Nutzer gelieferte Artikel, übernommen ohne inhaltliche Änderungen: `src/content/lab-notes/waechter.md`. Verknüpft als Technischer Bericht beim Projekt Wächter.
 - `helpy` (Englisch, 05.10.2026): „Helpy: capturing an expert's judgment while they work". Quelle: README und docs des Repos maxRN/helpy sowie der Screenshot-Benchmark vom 04.10.2026. Verknüpft als Technischer Bericht beim Projekt Helpy.
 - `one-policy-four-balance-modes` (Englisch, 14.09.2026): „One Policy, Four Balance Modes". Quelle ist der vom Nutzer gelieferte Artikel zum Doppelpendel-Training. Ergänzt: Hardware (gleicher Laptop wie Wächter, laut Nutzer) und der Absatz zur Web-Umsetzung aus `README.md`. Motivations-Platzhalter entfernt, weil dazu keine Angaben vorliegen. Verknüpft über die Bildunterschrift der Hero-Demo.
