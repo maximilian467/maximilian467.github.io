@@ -6,6 +6,7 @@ metaTitle: "Developer Island: A Native Windows Status Capsule | Maximilian Köhl
 metaDescription: "A technical write-up of Developer Island: a transparent WinUI 3 window with spring morphs, incremental parsing of Claude Code and Codex logs, a race-safe state machine and idle cost measurements."
 lang: en
 published: 2026-10-06
+project: developer-island
 stack: [C#, .NET 10, WinUI 3, Windows App SDK, SQLite, LibreHardwareMonitor, xUnit, Inno Setup]
 architecture:
   - label: Data

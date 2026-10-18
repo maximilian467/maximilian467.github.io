@@ -1,0 +1,95 @@
+{
+  "order": 1,
+  "running": false,
+  "pinned": true,
+  "de": {
+    "title": "Developer Island",
+    "description": "Eine Dynamic Island für den Windows-Desktop. Eine kleine Kapsel oben am Bildschirm zeigt meine Nutzung von Claude Code und Codex, Musik, einen Fokus-Timer, Termine und den Zustand des Rechners. Sie liest die lokalen Logs der Tools, schickt nichts in die Cloud und braucht im Leerlauf 55 MB und 0,03 % eines CPU-Kerns. Der Code ist öffentlich.",
+    "date": "Oktober 2026",
+    "status": "veröffentlicht",
+    "role": "Allein",
+    "tech": "C# · .NET 10 · WinUI 3 · SQLite · xUnit",
+    "architecture": [
+      {
+        "label": "Daten",
+        "nodes": [
+          "Lokale Logs, Medien und Sensoren",
+          "Provider",
+          "Unveränderliche Snapshots",
+          "SQLite-Verlauf"
+        ]
+      },
+      {
+        "label": "Anzeige",
+        "nodes": [
+          "View-Models",
+          "Zustandsautomat",
+          "Transparentes Fenster fester Größe",
+          "Feder-Animationen"
+        ]
+      }
+    ],
+    "metrics": [
+      {
+        "label": "Leerlauf, kompakt, 60 s",
+        "value": "55 MB Arbeitsspeicher, 16 ms CPU (0,03 % eines Kerns)",
+        "highlight": "0,03 % CPU"
+      },
+      {
+        "label": "Warmstart",
+        "value": "47 ms (nur das geänderte Transkript wird neu gelesen)"
+      },
+      {
+        "label": "Tests",
+        "value": "382 Unit-Tests"
+      }
+    ]
+  },
+  "en": {
+    "title": "Developer Island",
+    "description": "A Dynamic Island for the Windows desktop. A small capsule at the top of the screen shows my Claude Code and Codex usage, music, a focus timer, meetings and system health. It reads the tools' local logs, sends nothing to the cloud and idles at 55 MB and 0.03 % of one CPU core. The code is open source.",
+    "date": "October 2026",
+    "status": "released",
+    "role": "Solo",
+    "tech": "C# · .NET 10 · WinUI 3 · SQLite · xUnit",
+    "architecture": [
+      {
+        "label": "Data",
+        "nodes": [
+          "Local logs, media sessions and sensors",
+          "Providers",
+          "Immutable snapshots",
+          "SQLite history"
+        ]
+      },
+      {
+        "label": "Display",
+        "nodes": [
+          "View models",
+          "State machine",
+          "Fixed-size transparent window",
+          "Composition springs"
+        ]
+      }
+    ],
+    "metrics": [
+      {
+        "label": "Idle, compact, 60 s window",
+        "value": "55 MB working set, 16 ms CPU (0.03 % of one core)",
+        "highlight": "0.03 % CPU"
+      },
+      {
+        "label": "Warm start",
+        "value": "47 ms (only the changed transcript is re-read)"
+      },
+      {
+        "label": "Tests",
+        "value": "382 unit tests"
+      }
+    ]
+  },
+  "links": {
+    "github": "https://github.com/maximilian467/Developer-Island",
+    "writeup": "developer-island"
+  }
+}

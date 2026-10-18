@@ -94,7 +94,7 @@ Kein Intro im Projektabschnitt. Die Arbeitsweise mit KI-Agenten wird unter „KI
 
 Die Projektdateien unter `src/content/projects/` können optional strukturierte Felder haben: Ziel, Was ich gebaut habe, Aufbau (Diagramm), Technische Entscheidungen, Messwerte, Was ich gelernt habe, Grenzen und nächste Schritte, sowie Links (Live-Demo, GitHub, Technischer Bericht). Nur füllen, wenn die Fakten hier stehen. Leere Felder werden nicht angezeigt.
 
-Reihenfolge wie unten. Auf der Startseite stehen nur angepinnte Projekte (`"pinned": true` in der Projektdatei), zurzeit Helpy, Baulify und die n8n-Automationen. Darunter der Link „Alle Projekte (7) →“ / „All projects (7) →“ zur Seite `/de/projekte/` bzw. `/projects/`, auf der alle Projekte vollständig untereinander stehen.
+Reihenfolge wie unten. Auf der Startseite stehen nur angepinnte Projekte (`"pinned": true` in der Projektdatei), zurzeit Helpy, Developer Island, Baulify und die n8n-Automationen. Darunter der Link „Alle Projekte (8) →“ / „All projects (8) →“ zur Seite `/de/projekte/` bzw. `/projects/`, auf der alle Projekte vollständig untereinander stehen.
 
 ### 0. Helpy
 
@@ -105,7 +105,18 @@ Reihenfolge wie unten. Auf der Startseite stehen nur angepinnte Projekte (`"pinn
 - Messwerte: Bildschirmfoto-Pipeline 378 ms (einfacher Bildschirm) bzw. 1.512 ms (dichter Bildschirm), laut Benchmark vom 04.10.2026
 - Links: Technischer Bericht (Lab Note `helpy`)
 
-### 1. Wächter
+### 1. Developer Island
+
+- Status: veröffentlicht · Zeitraum: Oktober 2026 · Allein · angepinnt
+- **DE:** Eine Dynamic Island für den Windows-Desktop. Eine kleine Kapsel oben am Bildschirm zeigt meine Nutzung von Claude Code und Codex, Musik, einen Fokus-Timer, Termine und den Zustand des Rechners. Sie liest die lokalen Logs der Tools, schickt nichts in die Cloud und braucht im Leerlauf 55 MB und 0,03 % eines CPU-Kerns. Der Code ist öffentlich.
+- **EN:** A Dynamic Island for the Windows desktop. A small capsule at the top of the screen shows my Claude Code and Codex usage, music, a focus timer, meetings and system health. It reads the tools' local logs, sends nothing to the cloud and idles at 55 MB and 0.03 % of one CPU core. The code is open source.
+- Aufbau (aus der Lab Note): Daten: Lokale Logs, Medien und Sensoren → Provider → Unveränderliche Snapshots → SQLite-Verlauf. Anzeige: View-Models → Zustandsautomat → Transparentes Fenster fester Größe → Feder-Animationen
+- Messwerte (aus der Lab Note, gemessen am 01.10.2026): Leerlauf 55 MB und 16 ms CPU in 60 s (0,03 % eines Kerns), Warmstart 47 ms, 382 Unit-Tests
+- Tech: C# · .NET 10 · WinUI 3 · SQLite · xUnit
+- Links: https://github.com/maximilian467/Developer-Island (Allowlist), Technischer Bericht (Lab Note `developer-island`)
+- Laut Nutzer (18.10.2026) zurzeit sein stärkstes Projekt auf GitHub. Keine Sternezahl auf der Seite, weil sie sich ständig ändert.
+
+### 2. Wächter
 
 - Status: fertig · Zeitraum: 2026 · Allein
 - **DE:** Ein Assistent, der durch eine Kamera sieht, zuhört und antwortet. Alles läuft offline auf meinem Laptop, ohne Grafikkarte, ohne Cloud. Eine Bewegungserkennung weckt die Personenerkennung erst, wenn sich etwas tut. Die Spracherkennung bekommt nur Abschnitte, in denen wirklich gesprochen wird, weil Whisper bei Stille sonst Sätze erfindet. Ziel war: Er fängt nach weniger als drei Sekunden an zu sprechen.
@@ -121,7 +132,7 @@ Reihenfolge wie unten. Auf der Startseite stehen nur angepinnte Projekte (`"pinn
 - Tech: Python · faster-whisper · Piper TTS · lokales Sprachmodell · ONNX / DirectML
 - Links: keine
 
-### 2. Baulify
+### 3. Baulify
 
 - Status: Prototyp · Zeitraum: seit Mai 2026 · im Team
 - **DE:** Entstanden beim Smart Region Hackathon Offenburg. Eine Plattform, auf der Versorger, Kommunen und Baufirmen ihre Tiefbaumaßnahmen abstimmen. Sie zeigt Konflikte, bevor dieselbe Straße zweimal aufgerissen wird. Nach dem Hackathon habe ich weitergebaut: Eine KI liest Anfragen aus PDFs oder Freitext aus und füllt das Formular vor, Freigaben laufen über einen Link ohne Account, dazu eine Karte und eine eigene Landingpage.
@@ -130,7 +141,7 @@ Reihenfolge wie unten. Auf der Startseite stehen nur angepinnte Projekte (`"pinn
 - Tech: Next.js · TypeScript · PostgreSQL · Drizzle · MapLibre · LLM über OpenRouter
 - Links: keine (privates Team-Repo)
 
-### 3. Planen-Editor
+### 4. Planen-Editor
 
 - Status: fertig · Zeitraum: 2026 · Allein
 - **DE:** Wie spannt man eine Plane so, dass sie keine Falten wirft? Im Editor zeichnet man die Form, setzt Befestigungspunkte und startet die Simulation. Die Plane wird zu einem Feder-Masse-Netz, Falten erscheinen als Linien und werden über einen Faltenindex messbar. Ein Assistent schlägt dann Positionen für die Befestigungspunkte vor, bei denen die Plane glatter liegt.
@@ -139,7 +150,7 @@ Reihenfolge wie unten. Auf der Startseite stehen nur angepinnte Projekte (`"pinn
 - Tech: JavaScript · Canvas · Feder-Masse-Simulation · eine einzige HTML-Datei
 - Links: keine
 
-### 4. 3D-Drucker: Düsen-Offset-Kalibrierung
+### 5. 3D-Drucker: Düsen-Offset-Kalibrierung
 
 - Status: läuft · Zeitraum: 2026 · mit KUKA
 - **DE:** Ich kenne mich mit 3D-Druck gut aus und optimiere gerade zusammen mit KUKA einen Drucker. Dafür habe ich eine Kalibrierung des Düsen-Offsets selbst eingebaut.
@@ -149,7 +160,7 @@ Reihenfolge wie unten. Auf der Startseite stehen nur angepinnte Projekte (`"pinn
 - Links: keine
 - Weitere Fakten vom Nutzer (15.10.2026), bisher nur im Lebenslauf verwendet: mein längstes und größtes Projekt bisher. FDM-3D-Druck bei KUKA. Schon Fehler von wenigen Zehntelmillimetern waren in den Bauteilen sichtbar, und der Offset verschob sich mit der Temperatur und nach Düsenwechseln. Aufgabe: den Offset zuverlässig und wiederholbar messen, echte Offset-Fehler von anderen Ursachen wie Bettnivellierung oder Materialverhalten trennen und daraus einen Ablauf machen, den das Team ohne mich wiederholen kann. Es brauchte viele Runden aus Testdrucken und Messungen, bis die Ergebnisse konsistent waren.
 
-### 5. Mein Wispr-Flow-Klon
+### 6. Mein Wispr-Flow-Klon
 
 - Status: täglich im Einsatz · Zeitraum: 2026 · Allein
 - **DE:** Das Tool, das ich von allen hier am meisten benutze. Tastenkombination drücken, sprechen, nochmal drücken, und der Text steht da, wo der Cursor ist. In Word, im Browser, im Code-Editor. Nachgebaut nach dem Vorbild von Wispr Flow, nur dass alles lokal läuft, nichts kostet und nichts ins Internet schickt.
@@ -158,7 +169,7 @@ Reihenfolge wie unten. Auf der Startseite stehen nur angepinnte Projekte (`"pinn
 - Tech: Python · faster-whisper (small, int8, CPU) · Windows
 - Links: keine
 
-### 6. KI-Automationen mit n8n
+### 7. KI-Automationen mit n8n
 
 - Status: fertig · Zeitraum: 2026 · Allein
 - **DE:** Drei Automationen für kleine Firmen. Rechnungen aus PDFs auslesen und prüfen, ob die Positionen wirklich die Summe ergeben. Eingehende Mails sortieren und Antworten als Entwurf vorbereiten, nie automatisch senden. Preise und Lagerbestand in Onlineshops ohne API beobachten. Wenn die KI unsicher ist, entscheidet ein Mensch.
@@ -199,6 +210,7 @@ Technische Berichte zu Projekten und Experimenten. Keine Artikel erfinden. Felde
 
 Veröffentlicht:
 - `mobile-robotics-hackathon` (Englisch, 18.10.2026): „Mobile Robotics Hackathon: sorting waste with a robot arm“. Quelle: Sprachnotiz-Transkript und Antworten des Nutzers vom 18.10.2026. TU Dresden, ROS 2, MoveIt, Python, Claude Code, Kalibrierung mit AprilTags aus 20 Posen. Objekte: Papierbecher und Plastikflaschen in die passenden Eimer, Glasflaschen in den Kasten. Erkennung in der Demo über die Höhe der Objekte, die 6D-Pose-Estimation lief getrennt und wurde aus Zeitgründen nicht mehr eingebunden. Keine Namen, keine Teamgröße, keine Erfolgsquote. Verknüpft beim Hackathon-Eintrag. Überarbeiten, sobald die Zusammenfassungen der anderen Claude-Code-Sessions da sind.
+- `developer-island` (Englisch, 06.10.2026): „Developer Island: a Dynamic Island for the Windows desktop“. Verknüpft als Technischer Bericht beim Projekt Developer Island.
 - `waechter` (Englisch, 14.09.2026): „Wächter: an offline voice-and-vision assistant for my front door". Quelle ist der vom Nutzer gelieferte Artikel, übernommen ohne inhaltliche Änderungen: `src/content/lab-notes/waechter.md`. Verknüpft als Technischer Bericht beim Projekt Wächter.
 - `helpy` (Englisch, 05.10.2026): „Helpy: capturing an expert's judgment while they work". Quelle: README und docs des Repos maxRN/helpy sowie der Screenshot-Benchmark vom 04.10.2026. Verknüpft als Technischer Bericht beim Projekt Helpy.
 - `one-policy-four-balance-modes` (Englisch, 14.09.2026): „One Policy, Four Balance Modes". Quelle ist der vom Nutzer gelieferte Artikel zum Doppelpendel-Training. Ergänzt: Hardware (gleicher Laptop wie Wächter, laut Nutzer) und der Absatz zur Web-Umsetzung aus `README.md`. Motivations-Platzhalter entfernt, weil dazu keine Angaben vorliegen. Verknüpft über die Bildunterschrift der Hero-Demo.
@@ -215,7 +227,7 @@ KI-Hinweis, klein und unauffällig auf der Übersicht und unter jedem Artikel. E
 **DE** (nach praktischem Einsatz gruppiert, keine Prozentbalken, keine Sterne, nur was in Projekten tatsächlich verwendet wurde)
 - **Reinforcement Learning und Simulation:** Gymnasium, Stable-Baselines3 (PPO, SAC, TQC), MuJoCo, Feder-Masse-Simulation
 - **Lokale KI und Sprache:** faster-whisper, Piper TTS, Ollama, ONNX / DirectML, LLMs über OpenRouter
-- **Software und Web:** Python, TypeScript, JavaScript, Next.js, Astro, PostgreSQL, Drizzle, MapLibre
+- **Software und Web:** Python, TypeScript, JavaScript, C#, .NET, WinUI 3, Next.js, Astro, PostgreSQL, Drizzle, MapLibre
 - **Automatisierung und Werkzeuge:** n8n, Claude Code, Codex, Git
 - **Hardware:** 3D-Druck
 - **Sprachen:** Deutsch (Muttersprache), Englisch (C1)
@@ -223,7 +235,7 @@ KI-Hinweis, klein und unauffällig auf der Übersicht und unter jedem Artikel. E
 **EN**
 - **Reinforcement learning & simulation:** Gymnasium, Stable-Baselines3 (PPO, SAC, TQC), MuJoCo, spring-mass simulation
 - **Local AI & speech:** faster-whisper, Piper TTS, Ollama, ONNX / DirectML, LLMs via OpenRouter
-- **Software & web:** Python, TypeScript, JavaScript, Next.js, Astro, PostgreSQL, Drizzle, MapLibre
+- **Software & web:** Python, TypeScript, JavaScript, C#, .NET, WinUI 3, Next.js, Astro, PostgreSQL, Drizzle, MapLibre
 - **Automation & tooling:** n8n, Claude Code, Codex, Git
 - **Hardware:** 3D printing
 - **Languages:** German (native), English (C1)
