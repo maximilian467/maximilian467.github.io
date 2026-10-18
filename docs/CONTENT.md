@@ -72,19 +72,15 @@ I use coding agents like Claude Code and Codex heavily for implementation. I foc
 
 ---
 
-## Gerade dran (Stand: September 2026)
+## Gerade dran (Stand: Oktober 2026)
 
 **DE**
 
-**KI trainieren statt nur benutzen.** Ich bringe mir gerade bei, wie man Modelle selbst trainiert. Angefangen habe ich mit Reinforcement Learning: erst ein Agent, der einen Stab auf einem Wagen balanciert, dann ein Doppelpendel auf einem Wagen, das mit einem einzigen Modell zwischen vier Haltungen wechselt (das oben auf der Seite). Die Frage, die mich dabei beschäftigt: Wie bringt man einem Modell etwas so bei, dass es auch in Situationen klappt, die es nie gesehen hat?
-
-**3D-Drucker optimieren, zusammen mit KUKA.** Ich optimiere einen 3D-Drucker und habe dafür eine Kalibrierung des Düsen-Offsets selbst eingebaut. Das Projekt läuft noch.
+**Sesame Robot mit Reinforcement Learning.** Ich baue gerade einen Sesame Robot und trainiere ihn mit Reinforcement Learning. Das Doppelpendel oben auf der Seite war der Anfang. Jetzt geht es von der Simulation auf einen echten Roboter.
 
 **EN**
 
-**Training AI instead of just using it.** I'm teaching myself how to train models. I started with reinforcement learning: first an agent that balances a pole on a cart, then a double pendulum on a cart that switches between four poses with a single model (the one at the top of this page). The question on my mind: how do you teach a model something so it also works in situations it has never seen?
-
-**Improving a 3D printer, together with KUKA.** I'm optimizing a 3D printer and built a nozzle offset calibration into it myself. The project is ongoing.
+**Sesame Robot with reinforcement learning.** I'm building a Sesame Robot and training it with reinforcement learning. The double pendulum at the top of this page was the start. Now it moves from simulation to a real robot.
 
 ---
 
@@ -152,13 +148,15 @@ Reihenfolge wie unten. Auf der Startseite stehen nur angepinnte Projekte (`"pinn
 
 ### 5. 3D-Drucker: Düsen-Offset-Kalibrierung
 
-- Status: läuft · Zeitraum: 2026 · mit KUKA
-- **DE:** Ich kenne mich mit 3D-Druck gut aus und optimiere gerade zusammen mit KUKA einen Drucker. Dafür habe ich eine Kalibrierung des Düsen-Offsets selbst eingebaut.
-- **EN:** I know my way around 3D printing and I'm currently optimizing a printer together with KUKA. For that I built a nozzle offset calibration myself.
+- Status: fertig (laut Nutzer abgeschlossen, 18.10.2026) · Zeitraum: 2026 · mit KUKA
+- **DE:** Mein bisher längstes Projekt, zusammen mit KUKA. Beim FDM-3D-Druck waren schon wenige Zehntelmillimeter Abweichung in den Bauteilen sichtbar, und der Düsen-Offset verschob sich mit der Temperatur und nach Düsenwechseln. Ich habe eine Kalibrierung gebaut, die den Offset zuverlässig und wiederholbar misst, echte Offset-Fehler von Bettnivellierung oder Materialverhalten trennt und als Ablauf funktioniert, den das Team ohne mich wiederholen kann.
+- **EN:** My longest project so far, together with KUKA. In FDM 3D printing, errors of a few tenths of a millimeter already showed in the parts, and the nozzle offset shifted with temperature and after nozzle changes. I built a calibration that measures the offset reliably and repeatably, separates real offset errors from causes like bed leveling or material behavior, and works as a process the team can rerun without me.
 - Aufbau: nicht dokumentiert, daher kein Diagramm
-- Tech: 3D-Druck · Kalibrierung
+- Tech: FDM-3D-Druck · Kalibrierung · Messung
+- Was ich gelernt habe: Für konsistente Ergebnisse brauchte es viele Runden aus Testdrucken und Messungen.
+- Lab Note: noch keine, kommt vielleicht.
 - Links: keine
-- Weitere Fakten vom Nutzer (15.10.2026), bisher nur im Lebenslauf verwendet: mein längstes und größtes Projekt bisher. FDM-3D-Druck bei KUKA. Schon Fehler von wenigen Zehntelmillimetern waren in den Bauteilen sichtbar, und der Offset verschob sich mit der Temperatur und nach Düsenwechseln. Aufgabe: den Offset zuverlässig und wiederholbar messen, echte Offset-Fehler von anderen Ursachen wie Bettnivellierung oder Materialverhalten trennen und daraus einen Ablauf machen, den das Team ohne mich wiederholen kann. Es brauchte viele Runden aus Testdrucken und Messungen, bis die Ergebnisse konsistent waren.
+- Weitere Fakten vom Nutzer (15.10.2026), im Lebenslauf und in der Projektbeschreibung verwendet: mein längstes und größtes Projekt bisher. FDM-3D-Druck bei KUKA. Schon Fehler von wenigen Zehntelmillimetern waren in den Bauteilen sichtbar, und der Offset verschob sich mit der Temperatur und nach Düsenwechseln. Aufgabe: den Offset zuverlässig und wiederholbar messen, echte Offset-Fehler von anderen Ursachen wie Bettnivellierung oder Materialverhalten trennen und daraus einen Ablauf machen, den das Team ohne mich wiederholen kann. Es brauchte viele Runden aus Testdrucken und Messungen, bis die Ergebnisse konsistent waren.
 
 ### 6. Mein Wispr-Flow-Klon
 

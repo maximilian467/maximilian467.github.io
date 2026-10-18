@@ -1,20 +1,26 @@
 {
   "order": 5,
-  "running": true,
+  "running": false,
   "de": {
     "title": "3D-Drucker: Düsen-Offset-Kalibrierung",
-    "description": "Ich kenne mich mit 3D-Druck gut aus und optimiere gerade zusammen mit KUKA einen Drucker. Dafür habe ich eine Kalibrierung des Düsen-Offsets selbst eingebaut.",
+    "description": "Mein bisher längstes Projekt, zusammen mit KUKA. Beim FDM-3D-Druck waren schon wenige Zehntelmillimeter Abweichung in den Bauteilen sichtbar, und der Düsen-Offset verschob sich mit der Temperatur und nach Düsenwechseln. Ich habe eine Kalibrierung gebaut, die den Offset zuverlässig und wiederholbar misst, echte Offset-Fehler von Bettnivellierung oder Materialverhalten trennt und als Ablauf funktioniert, den das Team ohne mich wiederholen kann.",
     "date": "2026",
-    "status": "läuft",
+    "status": "fertig",
     "role": "mit KUKA",
-    "tech": "3D-Druck · Kalibrierung"
+    "tech": "FDM-3D-Druck · Kalibrierung · Messung",
+    "learned": [
+      "Für konsistente Ergebnisse brauchte es viele Runden aus Testdrucken und Messungen."
+    ]
   },
   "en": {
     "title": "3D printer: nozzle offset calibration",
-    "description": "I know my way around 3D printing and I'm currently optimizing a printer together with KUKA. For that I built a nozzle offset calibration myself.",
+    "description": "My longest project so far, together with KUKA. In FDM 3D printing, errors of a few tenths of a millimeter already showed in the parts, and the nozzle offset shifted with temperature and after nozzle changes. I built a calibration that measures the offset reliably and repeatably, separates real offset errors from causes like bed leveling or material behavior, and works as a process the team can rerun without me.",
     "date": "2026",
-    "status": "in progress",
+    "status": "completed",
     "role": "With KUKA",
-    "tech": "3D printing · calibration"
+    "tech": "FDM 3D printing · calibration · measurement",
+    "learned": [
+      "Getting consistent results took many rounds of test prints and measurements."
+    ]
   }
 }
