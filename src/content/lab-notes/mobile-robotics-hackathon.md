@@ -1,6 +1,6 @@
 ---
 title: "Mobile Robotics Hackathon: sorting waste with a robot arm"
-summary: "Two days at TU Dresden to make a robot arm pick up paper cups, plastic bottles and glass bottles and put each one where it belongs. Everything rests on a calibration between camera and robot, done with AprilTags. We won first place."
+summary: "Two days at CeTI, TU Dresden, to make a robot arm pick up paper cups, plastic bottles and glass bottles and put each one where it belongs. Everything rests on a calibration between camera and robot, done with AprilTags. We won first place."
 description: "A hackathon write-up: camera-to-robot calibration with AprilTags from 20 poses, grasping with ROS 2 and MoveIt, sorting objects by their height, and the computer vision part that did not make it into the demo."
 metaTitle: "Mobile Robotics Hackathon: Sorting Waste with a Robot Arm | Maximilian Köhlenbeck"
 metaDescription: "A technical write-up of a robot arm that sorts paper cups, plastic bottles and glass bottles: AprilTag calibration from 20 poses, ROS 2 and MoveIt, and object classification by height."
@@ -24,7 +24,7 @@ metrics:
 
 ## What we had to build
 
-The Mobile Robotics Hackathon took place at TU Dresden in October 2026. It felt less like a classic hackathon and more like a hands-on workshop. There was no fixed task. Instead there were paths you could pick, and I ended up in the motion path.
+The Mobile Robotics Hackathon took place in October 2026 at CeTI, the Centre for Tactile Internet with Human-in-the-Loop. CeTI is a Cluster of Excellence at TU Dresden. It felt less like a classic hackathon and more like a hands-on workshop. There was no fixed task. Instead there were paths you could pick, and I ended up in the motion path.
 
 Our goal: a robot arm that sorts waste. Paper cups and plastic bottles go into the matching bin. Glass bottles go back into a crate, each into its own slot.
 

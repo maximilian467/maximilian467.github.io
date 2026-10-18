@@ -182,8 +182,8 @@ Reihenfolge wie unten. Auf der Startseite stehen nur angepinnte Projekte (`"pinn
 
 Neueste zuerst.
 
-- **Mobile Robotics Hackathon** · Oktober 2026 · Wir haben mit einem Roboterarm Müll sortiert, über 6D-Pose-Estimation und maschinelles Lernen. Eigene Zeile: 1. Platz. Link: Technischer Bericht (Lab Note `mobile-robotics-hackathon`).
-- EN: **Mobile Robotics Hackathon** · October 2026 · We sorted waste with a robot arm, using 6D pose estimation and machine learning. Own line: 1st place.
+- **Mobile Robotics Hackathon** · Oktober 2026 · Wir haben mit einem Roboterarm Müll sortiert, über 6D-Pose-Estimation und maschinelles Lernen. „1. Platz“ steht direkt neben dem Namen, mit Mittelpunkt und in Akzentfarbe, wie im Lebenslauf. Link: Technischer Bericht (Lab Note `mobile-robotics-hackathon`).
+- EN: **Mobile Robotics Hackathon** · October 2026 · We sorted waste with a robot arm, using 6D pose estimation and machine learning. "1st place" next to the name, after a middle dot, in the accent color.
 - **Hack-Nation 7** · Oktober 2026 · Daraus entstand Helpy.
 - EN: **Hack-Nation 7** · October 2026 · This is where Helpy started.
 - **Smart Region Hackathon Offenburg** · Mai 2026 · Daraus entstand Baulify.
@@ -207,7 +207,7 @@ Abschnitt direkt nach den Hackathons. Ohne Datum, weil keins vorliegt. Umsetzung
 Technische Berichte zu Projekten und Experimenten. Keine Artikel erfinden. Felder: `src/content.config.ts`.
 
 Veröffentlicht:
-- `mobile-robotics-hackathon` (Englisch, 18.10.2026): „Mobile Robotics Hackathon: sorting waste with a robot arm“. Quelle: Sprachnotiz-Transkript und Antworten des Nutzers vom 18.10.2026. TU Dresden, ROS 2, MoveIt, Python, Claude Code, Kalibrierung mit AprilTags aus 20 Posen. Objekte: Papierbecher und Plastikflaschen in die passenden Eimer, Glasflaschen in den Kasten. Erkennung in der Demo über die Höhe der Objekte, die 6D-Pose-Estimation lief getrennt und wurde aus Zeitgründen nicht mehr eingebunden. Keine Namen, keine Teamgröße, keine Erfolgsquote. Verknüpft beim Hackathon-Eintrag. Überarbeiten, sobald die Zusammenfassungen der anderen Claude-Code-Sessions da sind.
+- `mobile-robotics-hackathon` (Englisch, 18.10.2026): „Mobile Robotics Hackathon: sorting waste with a robot arm“. Quelle: Sprachnotiz-Transkript und Antworten des Nutzers vom 18.10.2026. Ort: CeTI (Centre for Tactile Internet with Human-in-the-Loop), Exzellenzcluster der TU Dresden, vom Nutzer bestätigt. ROS 2, MoveIt, Python, Claude Code, Kalibrierung mit AprilTags aus 20 Posen. Objekte: Papierbecher und Plastikflaschen in die passenden Eimer, Glasflaschen in den Kasten. Erkennung in der Demo über die Höhe der Objekte, die 6D-Pose-Estimation lief getrennt und wurde aus Zeitgründen nicht mehr eingebunden. Keine Namen, keine Teamgröße, keine Erfolgsquote. Verknüpft beim Hackathon-Eintrag. Überarbeiten, sobald die Zusammenfassungen der anderen Claude-Code-Sessions da sind.
 - `developer-island` (Englisch, 06.10.2026): „Developer Island: a Dynamic Island for the Windows desktop“. Verknüpft als Technischer Bericht beim Projekt Developer Island.
 - `waechter` (Englisch, 14.09.2026): „Wächter: an offline voice-and-vision assistant for my front door". Quelle ist der vom Nutzer gelieferte Artikel, übernommen ohne inhaltliche Änderungen: `src/content/lab-notes/waechter.md`. Verknüpft als Technischer Bericht beim Projekt Wächter.
 - `helpy` (Englisch, 05.10.2026): „Helpy: capturing an expert's judgment while they work". Quelle: README und docs des Repos maxRN/helpy sowie der Screenshot-Benchmark vom 04.10.2026. Verknüpft als Technischer Bericht beim Projekt Helpy.
@@ -246,7 +246,7 @@ KI-Hinweis, klein und unauffällig auf der Übersicht und unter jedem Artikel. E
 Eine Seite A4 je Sprache, gleiche URLs wie oben. Nach Änderungen an `docs/cv/*.html` die PDFs neu drucken (Edge/Chrome headless, `--print-to-pdf`, `--no-pdf-header-footer`) und prüfen, dass jedes genau eine Seite hat.
 
 Stand Oktober 2026:
-- Abschnitte: Profil, Ausbildung, Hackathons (alle drei wie oben, beim Mobile Robotics Hackathon „TU Dresden“ und der 1. Platz direkt neben dem Namen), Projekte, Kenntnisse.
+- Abschnitte: Profil, Ausbildung, Hackathons (alle drei wie oben, beim Mobile Robotics Hackathon „CeTI, TU Dresden“ und der 1. Platz direkt neben dem Namen), Projekte, Kenntnisse.
 - Profil endet mit dem Sesame Robot (wie „Gerade dran“).
 - Projekte, nur die stärksten: Düsen-Offset-Kalibrierung bei KUKA (zuerst, längstes Projekt), Developer Island, Sesame Robot (läuft), Doppelpendel mit einer TQC-Policy (09/2026), Helpy. Baulify steht nur noch über die Hackathon-Zeile im Lebenslauf. Wächter, Planen-Editor, Wispr-Flow-Klon und n8n stehen nur auf der Website.
 - Kenntnisse: wie auf der Website (also mit C#, .NET, WinUI 3), ohne Feder-Masse-Simulation (Planen-Editor fehlt im Lebenslauf) und ohne die Zeile Hardware (steckt im Kalibrierungsprojekt).

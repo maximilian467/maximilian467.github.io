@@ -64,6 +64,7 @@ img, svg { max-width: 100%; }
 .issuer svg { flex: 0 0 1.125rem; width: 1.125rem; height: 1.125rem; fill: currentColor; }
 .entry-content { min-width: 0; }
 .entry-content h3 { margin-bottom: 1rem; }
+.entry-content h3 .win { color: var(--accent-ink); }
 .entry-content > p { max-width: 64ch; }
 .entry-content .tech { margin-top: 1.5rem; }
 .project-links { display: flex; flex-wrap: wrap; gap: 0 1.75rem; margin-top: .5rem; font-size: .875rem; }
