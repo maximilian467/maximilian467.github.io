@@ -23,7 +23,7 @@ Schreibregeln für alle Texte:
 
 Links:
 - GitHub: https://github.com/maximilian467
-- LinkedIn: https://www.linkedin.com/in/maximilian-k%C3%B6hlenbeck-06982b330/
+- LinkedIn: https://www.linkedin.com/in/maximilian-koehlenbeck/
 - E-Mail: m.koehlenbeck@koehlenbeck.com
 - CV, je nach Sprache der Seite: EN `/cv/maximilian-koehlenbeck-cv.pdf` (Quelle `docs/cv/cv-en.html`), DE `/cv/maximilian-koehlenbeck-lebenslauf.pdf` (Quelle `docs/cv/lebenslauf.html`)
 
