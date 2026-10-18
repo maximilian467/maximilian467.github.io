@@ -2,7 +2,7 @@
 title: "Helpy: capturing an expert's judgment while they work"
 summary: "A screen-and-voice assistant that watches an expert do a task, asks about decisions during natural pauses, and turns the session into a Work Map of steps, rules and reasons. A new colleague then practices against those rules. Screenshots are OCR'd and redacted in the browser in roughly 0.4–1.5 seconds."
 description: "A hackathon project that records an expert's workflow, asks for the reasoning behind decisions and turns it into a Work Map, with a guided practice mode that catches mistakes before they are saved."
-metaTitle: "Helpy — Capturing Expert Judgment | Maximilian Köhlenbeck"
+metaTitle: "Helpy: Capturing Expert Judgment | Maximilian Köhlenbeck"
 metaDescription: "A technical write-up of Helpy, built at Hack-Nation 7: screen and voice capture, in-browser OCR and PII redaction, question timing and a Work Map with guardrails."
 lang: en
 published: 2026-10-05

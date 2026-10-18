@@ -2,7 +2,7 @@
 title: "Wächter: an offline voice-and-vision assistant for my front door"
 summary: "A camera, a microphone and a 4B multimodal model on a laptop with no dedicated GPU. It gets to the first spoken word in about 2.6–2.9 seconds, and most of the work was finding out where the time actually goes."
 description: "A fully local voice-and-vision assistant running on an ordinary laptop, with a focus on perception, conversational latency, benchmarking and the engineering failures behind a sub-3-second response target."
-metaTitle: "Wächter — Offline Voice & Vision Assistant | Maximilian Köhlenbeck"
+metaTitle: "Wächter: Offline Voice & Vision Assistant | Maximilian Köhlenbeck"
 metaDescription: "A technical write-up on building a fully local voice-and-vision assistant on consumer hardware, including YOLO, Whisper, Gemma, Piper, latency benchmarks and engineering failures."
 lang: en
 published: 2026-09-14

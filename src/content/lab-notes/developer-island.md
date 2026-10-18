@@ -2,7 +2,7 @@
 title: "Developer Island: a Dynamic Island for the Windows desktop"
 summary: "A native WinUI 3 capsule that shows Claude Code and Codex usage, music, focus timer, meetings and machine health. It idles at 55 MB and 0.03 % of one CPU core, and most of the work went into a transparent window that morphs without ever being resized."
 description: "A native Windows status capsule built with .NET 10 and WinUI 3: a fixed-size transparent window, spring morphs, event-driven providers that read local usage logs, and an idle cost measured in milliseconds."
-metaTitle: "Developer Island — A Native Windows Status Capsule | Maximilian Köhlenbeck"
+metaTitle: "Developer Island: A Native Windows Status Capsule | Maximilian Köhlenbeck"
 metaDescription: "A technical write-up of Developer Island: a transparent WinUI 3 window with spring morphs, incremental parsing of Claude Code and Codex logs, a race-safe state machine and idle cost measurements."
 lang: en
 published: 2026-10-06
