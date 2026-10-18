@@ -118,7 +118,7 @@ git commit -m "Describe the change"
 git push origin main
 ```
 
-Progress is visible in the repository's Actions tab. As of the update to Astro 7.3.2, `npm audit` reports no known vulnerabilities (re-checked 15 September 2026).
+Progress is visible in the repository's Actions tab. `npm audit` reports no known vulnerabilities (re-checked 18 October 2026, after `npm audit fix`).
 
 ## Documentation language
 
