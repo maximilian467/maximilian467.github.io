@@ -246,9 +246,10 @@ KI-Hinweis, klein und unauffällig auf der Übersicht und unter jedem Artikel. E
 Eine Seite A4 je Sprache, gleiche URLs wie oben. Nach Änderungen an `docs/cv/*.html` die PDFs neu drucken (Edge/Chrome headless, `--print-to-pdf`, `--no-pdf-header-footer`) und prüfen, dass jedes genau eine Seite hat.
 
 Stand Oktober 2026:
-- Abschnitte: Profil, Ausbildung, Hackathons (alle drei wie oben, 1. Platz beim Mobile Robotics Hackathon hervorgehoben), Projekte, Kenntnisse.
-- Projekte, nur die stärksten: Düsen-Offset-Kalibrierung bei KUKA (zuerst, längstes Projekt), Helpy, Baulify, Doppelpendel mit einer TQC-Policy, Developer Island. Wächter, Planen-Editor, Wispr-Flow-Klon und n8n stehen nur auf der Website.
-- Kenntnisse: wie auf der Website, ohne Feder-Masse-Simulation (Planen-Editor fehlt im Lebenslauf) und ohne die Zeile Hardware (steckt im Kalibrierungsprojekt).
+- Abschnitte: Profil, Ausbildung, Hackathons (alle drei wie oben, beim Mobile Robotics Hackathon „TU Dresden“ und der 1. Platz direkt neben dem Namen), Projekte, Kenntnisse.
+- Profil endet mit dem Sesame Robot (wie „Gerade dran“).
+- Projekte, nur die stärksten: Düsen-Offset-Kalibrierung bei KUKA (zuerst, längstes Projekt), Developer Island, Sesame Robot (läuft), Doppelpendel mit einer TQC-Policy (09/2026), Helpy. Baulify steht nur noch über die Hackathon-Zeile im Lebenslauf. Wächter, Planen-Editor, Wispr-Flow-Klon und n8n stehen nur auf der Website.
+- Kenntnisse: wie auf der Website (also mit C#, .NET, WinUI 3), ohne Feder-Masse-Simulation (Planen-Editor fehlt im Lebenslauf) und ohne die Zeile Hardware (steckt im Kalibrierungsprojekt).
 - Fakten zu Developer Island stammen aus der Lab Note `developer-island` (06.10.2026), zum Doppelpendel aus `one-policy-four-balance-modes`.
 
 ---

@@ -30,7 +30,7 @@
   .entry + .entry { margin-top: 2mm; }
   .entry h3 { font-size: 9.8pt; font-weight: 600; }
   .entry .note { font-weight: 400; }
-  .entry .win { color: var(--accent); font-weight: 600; margin-top: 0.2mm; }
+  .entry .win { color: var(--accent); font-weight: 600; }
   .entry .when { text-align: right; white-space: nowrap; }
   .entry p, .entry .tech { grid-column: 1 / -1; }
   .entry p { margin-top: 0.6mm; }
@@ -60,7 +60,7 @@
 
   <section>
     <h2 class="serif">Profil</h2>
-    <p class="intro">Ich studiere dual Automatisierungstechnik und baue nebenbei Dinge mit KI-Agenten, meistens schnell und meistens, weil mich ein Problem nicht loslässt. Am meisten interessiert mich Robotik, Automatisierung und Physical AI. Gerade bringe ich mir bei, wie man Modelle selbst trainiert.</p>
+    <p class="intro">Ich studiere dual Automatisierungstechnik und baue nebenbei Dinge mit KI-Agenten, meistens schnell und meistens, weil mich ein Problem nicht loslässt. Am meisten interessiert mich Robotik, Automatisierung und Physical AI. Gerade baue ich einen Sesame Robot und trainiere ihn mit Reinforcement Learning.</p>
   </section>
 
   <section>
@@ -83,10 +83,9 @@
     <h2 class="serif">Hackathons</h2>
     <div>
       <div class="entry">
-        <h3>Mobile Robotics Hackathon</h3>
+        <h3>Mobile Robotics Hackathon, TU Dresden <span class="win">· 1. Platz</span></h3>
         <span class="when mono">10/2026</span>
         <p>Wir haben mit einem Roboterarm Müll sortiert, über 6D-Pose-Estimation und maschinelles Lernen.</p>
-        <p class="win">1. Platz</p>
       </div>
       <div class="entry">
         <h3>Hack-Nation 7 <span class="note">· Daraus entstand Helpy</span></h3>
@@ -109,28 +108,28 @@
         <div class="tech mono">FDM-3D-Druck · Kalibrierung · Messung</div>
       </div>
       <div class="entry">
-        <h3>Helpy: Expertenwissen bei der Arbeit festhalten (Team)</h3>
-        <span class="when mono">10/2026</span>
-        <p>Entstanden beim Hack-Nation 7. Ein Assistent, der einem Experten bei der Arbeit zusieht, zuhört und in Pausen nach den Entscheidungen fragt. Daraus entsteht eine Work Map aus Schritten, Regeln und Begründungen, mit der ein neuer Kollege übt. Bildschirmfotos werden im Browser per OCR geprüft und geschwärzt (378 ms bei einfachem Bildschirm).</p>
-        <div class="tech mono">TypeScript · React · TanStack Start · Convex · Claude · ElevenLabs · Tesseract.js</div>
-      </div>
-      <div class="entry">
-        <h3>Baulify: Koordination von Tiefbaumaßnahmen (Team)</h3>
-        <span class="when mono">seit 05/2026</span>
-        <p>Entstanden beim Smart Region Hackathon Offenburg, danach weiterentwickelt: Konflikterkennung auf der Karte, KI-Erfassung aus PDFs und Freitext, Freigaben per Link ohne Account.</p>
-        <div class="tech mono">Next.js · TypeScript · PostgreSQL · Drizzle · MapLibre · LLM über OpenRouter</div>
-      </div>
-      <div class="entry">
-        <h3>Reinforcement Learning: ein Modell, vier Haltungen eines Doppelpendels</h3>
-        <span class="when mono"><span class="dot"></span>läuft</span>
-        <p>Eine selbst trainierte TQC-Policy schwingt ein Doppelpendel auf einem Wagen in jede seiner vier Haltungen und wechselt auf Wunsch zwischen ihnen. 100 % Erfolg über alle 4×4 Wechsel nach 1,7 Mio. Schritten auf einer Laptop-CPU. Läuft live auf meiner Website.</p>
-        <div class="tech mono">Python · Gymnasium · MuJoCo · Stable-Baselines3 · sb3-contrib (TQC) · TypeScript</div>
-      </div>
-      <div class="entry">
         <h3>Developer Island: Statusanzeige für den Windows-Desktop</h3>
         <span class="when mono">10/2026</span>
         <p>Native App oben am Bildschirmrand für Nutzung von Claude Code und Codex, Musik, Fokus-Timer, Termine und Systemzustand. Liest lokale Logs inkrementell, ohne Polling, ohne Cloud. Im Leerlauf 55 MB und 0,03 % eines CPU-Kerns, 382 Unit-Tests, Open Source.</p>
         <div class="tech mono">C# · .NET 10 · WinUI 3 · SQLite · xUnit · <a href="https://github.com/maximilian467/Developer-Island">github.com/maximilian467/Developer-Island</a></div>
+      </div>
+      <div class="entry">
+        <h3>Sesame Robot: Reinforcement Learning auf echter Hardware</h3>
+        <span class="when mono"><span class="dot"></span>läuft</span>
+        <p>Ich baue gerade einen Sesame Robot und trainiere ihn mit Reinforcement Learning. Nach dem Doppelpendel in der Simulation ist das der Schritt zu einem echten Roboter.</p>
+        <div class="tech mono">Reinforcement Learning · Robotik</div>
+      </div>
+      <div class="entry">
+        <h3>Reinforcement Learning: ein Modell, vier Haltungen eines Doppelpendels</h3>
+        <span class="when mono">09/2026</span>
+        <p>Eine selbst trainierte TQC-Policy schwingt ein Doppelpendel auf einem Wagen in jede seiner vier Haltungen und wechselt auf Wunsch zwischen ihnen. 100 % Erfolg über alle 4×4 Wechsel nach 1,7 Mio. Schritten auf einer Laptop-CPU. Läuft live auf meiner Website.</p>
+        <div class="tech mono">Python · Gymnasium · MuJoCo · Stable-Baselines3 · sb3-contrib (TQC) · TypeScript</div>
+      </div>
+      <div class="entry">
+        <h3>Helpy: Expertenwissen bei der Arbeit festhalten (Team)</h3>
+        <span class="when mono">10/2026</span>
+        <p>Entstanden beim Hack-Nation 7. Ein Assistent, der einem Experten bei der Arbeit zusieht, zuhört und in Pausen nach den Entscheidungen fragt. Daraus entsteht eine Work Map aus Schritten, Regeln und Begründungen, mit der ein neuer Kollege übt. Bildschirmfotos werden im Browser per OCR geprüft und geschwärzt (378 ms bei einfachem Bildschirm).</p>
+        <div class="tech mono">TypeScript · React · TanStack Start · Convex · Claude · ElevenLabs · Tesseract.js</div>
       </div>
     </div>
   </section>
@@ -140,7 +139,7 @@
     <dl>
       <dt>Reinforcement Learning &amp; Simulation</dt><dd>Gymnasium, Stable-Baselines3 (PPO, SAC, TQC), MuJoCo</dd>
       <dt>Lokale KI &amp; Sprache</dt><dd>faster-whisper, Piper TTS, Ollama, ONNX / DirectML, LLMs über OpenRouter</dd>
-      <dt>Software &amp; Web</dt><dd>Python, TypeScript, JavaScript, Next.js, Astro, PostgreSQL, Drizzle, MapLibre</dd>
+      <dt>Software &amp; Web</dt><dd>Python, TypeScript, JavaScript, C#, .NET, WinUI 3, Next.js, Astro, PostgreSQL, Drizzle, MapLibre</dd>
       <dt>Automatisierung &amp; Werkzeuge</dt><dd>n8n, Claude Code, Codex, Git</dd>
       <dt>Sprachen</dt><dd>Deutsch (Muttersprache), Englisch (C1)</dd>
     </dl>
