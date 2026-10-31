@@ -9,7 +9,7 @@ Schreibregeln für alle Texte:
 - Keine Emojis.
 - Keine Platzierungen bei Hackathons erwähnen. Einzige Ausnahme: der Sieg beim Mobile Robotics Hackathon (Oktober 2026), vom Nutzer freigegeben.
 - Kein Foto.
-- Englisch ist die Standardsprache der Website. Studiengang im Englischen: „Automation Engineering“ (großgeschrieben).
+- Englisch ist die Standardsprache der Website. Studiengang im Englischen: „Automation Engineering“ (großgeschrieben). Abschluss: Bachelor, B.Eng. (laut Nutzer, 31.10.2026).
 
 ---
 
@@ -74,13 +74,19 @@ I use coding agents like Claude Code and Codex heavily for implementation. I foc
 
 ## Gerade dran (Stand: Oktober 2026)
 
+Laut Nutzer (31.10.2026): Das aktuelle Projekt ist das Training des reBot Arm B601-RS (Computer Vision, Pfadplanung, ROS 2, RViz2, MoveIt, Real2Sim und Sim2Real, Physical AI). Der Sesame Robot läuft parallel weiter und bleibt drin.
+
 **DE**
 
-**Sesame Robot mit Reinforcement Learning.** Ich baue gerade einen Sesame Robot und trainiere ihn mit Reinforcement Learning. Das Doppelpendel oben auf der Seite war der Anfang. Jetzt geht es von der Simulation auf einen echten Roboter.
+**Roboterarm reBot Arm B601-RS.** Mein aktuelles Projekt. Ich trainiere den Arm auf Aufgaben aus der Physical AI: Computer Vision und Pfadplanung, umgesetzt mit ROS 2, MoveIt und RViz2. Dazu gehört der Weg vom echten Arm in die Simulation und zurück: Real2Sim und Sim2Real.
+
+**Sesame Robot mit Reinforcement Learning.** Ich baue gerade einen Sesame Robot und trainiere ihn mit Reinforcement Learning. Das Doppelpendel oben auf der Seite war der Anfang. Jetzt geht es von der Simulation auf einen echten Roboter. Das läuft parallel zum Roboterarm weiter.
 
 **EN**
 
-**Sesame Robot with reinforcement learning.** I'm building a Sesame Robot and training it with reinforcement learning. The double pendulum at the top of this page was the start. Now it moves from simulation to a real robot.
+**reBot Arm B601-RS robot arm.** My current project. I'm training the arm on physical AI tasks: computer vision and path planning, built with ROS 2, MoveIt and RViz2. That includes getting from the real arm into simulation and back again: Real2Sim and Sim2Real.
+
+**Sesame Robot with reinforcement learning.** I'm building a Sesame Robot and training it with reinforcement learning. The double pendulum at the top of this page was the start. Now it moves from simulation to a real robot. This keeps running alongside the robot arm.
 
 ---
 
@@ -224,6 +230,7 @@ KI-Hinweis, klein und unauffällig auf der Übersicht und unter jedem Artikel. E
 
 **DE** (nach praktischem Einsatz gruppiert, keine Prozentbalken, keine Sterne, nur was in Projekten tatsächlich verwendet wurde)
 - **Reinforcement Learning und Simulation:** Gymnasium, Stable-Baselines3 (PPO, SAC, TQC), MuJoCo, Feder-Masse-Simulation
+- **Robotik:** ROS 2, MoveIt, RViz2, Computer Vision, Pfadplanung
 - **Lokale KI und Sprache:** faster-whisper, Piper TTS, Ollama, ONNX / DirectML, LLMs über OpenRouter
 - **Software und Web:** Python, TypeScript, JavaScript, C#, .NET, WinUI 3, Next.js, Astro, PostgreSQL, Drizzle, MapLibre
 - **Automatisierung und Werkzeuge:** n8n, Claude Code, Codex, Git
@@ -232,6 +239,7 @@ KI-Hinweis, klein und unauffällig auf der Übersicht und unter jedem Artikel. E
 
 **EN**
 - **Reinforcement learning & simulation:** Gymnasium, Stable-Baselines3 (PPO, SAC, TQC), MuJoCo, spring-mass simulation
+- **Robotics:** ROS 2, MoveIt, RViz2, computer vision, path planning
 - **Local AI & speech:** faster-whisper, Piper TTS, Ollama, ONNX / DirectML, LLMs via OpenRouter
 - **Software & web:** Python, TypeScript, JavaScript, C#, .NET, WinUI 3, Next.js, Astro, PostgreSQL, Drizzle, MapLibre
 - **Automation & tooling:** n8n, Claude Code, Codex, Git
@@ -245,11 +253,13 @@ KI-Hinweis, klein und unauffällig auf der Übersicht und unter jedem Artikel. E
 
 Eine Seite A4 je Sprache, gleiche URLs wie oben. Nach Änderungen an `docs/cv/*.html` die PDFs neu drucken (Edge/Chrome headless, `--print-to-pdf`, `--no-pdf-header-footer`) und prüfen, dass jedes genau eine Seite hat.
 
-Stand Oktober 2026:
-- Abschnitte: Profil, Ausbildung, Hackathons (alle drei wie oben, beim Mobile Robotics Hackathon „CeTI, TU Dresden“ und der 1. Platz direkt neben dem Namen), Projekte, Kenntnisse.
-- Profil endet mit dem Sesame Robot (wie „Gerade dran“).
-- Projekte, nur die stärksten: Düsen-Offset-Kalibrierung bei KUKA (zuerst, längstes Projekt), Developer Island, Sesame Robot (läuft), Doppelpendel mit einer TQC-Policy (09/2026), Helpy. Baulify steht nur noch über die Hackathon-Zeile im Lebenslauf. Wächter, Planen-Editor, Wispr-Flow-Klon und n8n stehen nur auf der Website.
-- Kenntnisse: wie auf der Website (also mit C#, .NET, WinUI 3), ohne Feder-Masse-Simulation (Planen-Editor fehlt im Lebenslauf) und ohne die Zeile Hardware (steckt im Kalibrierungsprojekt).
+Stand Oktober 2026 (Layout vom Nutzer am 31.10.2026 freigegeben):
+- Layout: zwei Spalten. Links eine dunkle Seitenleiste (Tinte #1C1B18) mit Name, Rolle, Kontakt, Schwerpunkte (Physical AI, Reinforcement Learning, Computer Vision, Sim2Real), Kenntnisse (gekürzt), Ausbildung (B.Eng.), Sprachen, Stand. Rechts ein Leitsatz und die Abschnitte Gerade dran, Projekte, Hackathons, Arbeitsweise. Akzentfarbe nur für Abschnittslabels, Messwerte, den 1. Platz und die Statuspunkte. Pro Projekt ein bis zwei Sätze, keine Stichpunkte.
+- Leitsatz: EN „I build AI and robotics systems that have to work in the real world.“, DE „Ich baue Systeme mit KI und Robotik, die in der echten Welt funktionieren müssen.“
+- Gerade dran: Roboterarm reBot Arm B601-RS, dann Sesame Robot (beide wie oben).
+- Projekte, nur die stärksten: Düsen-Offset-Kalibrierung bei KUKA, Doppelpendel mit einer TQC-Policy (09/2026), Developer Island. Helpy und Baulify stehen nur noch als Name in der Hackathon-Zeile. Wächter, Planen-Editor, Wispr-Flow-Klon und n8n stehen nur auf der Website.
+- Hackathons: alle drei wie oben, beim Mobile Robotics Hackathon „CeTI, TU Dresden“ und der 1. Platz direkt neben dem Namen.
+- Kenntnisse: Robotik, Reinforcement Learning, Lokale KI, Software, Werkzeuge, jeweils nur die wichtigsten Einträge aus der Website-Liste.
 - Fakten zu Developer Island stammen aus der Lab Note `developer-island` (06.10.2026), zum Doppelpendel aus `one-policy-four-balance-modes`.
 
 ---

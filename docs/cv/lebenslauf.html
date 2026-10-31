@@ -6,145 +6,165 @@
 <style>
   @page { size: A4; margin: 0; }
   :root {
-    --ink: #1C1B18; --muted: #6A665E; --rule: #DEDAD1; --accent: #B4471D;
+    --ink: #1C1B18; --muted: #6A665E; --rule: #DEDAD1; --accent: #B4471D; --accent-ink: #8F3614;
+    --side: #1C1B18; --side-text: #ECE8DF; --side-muted: #9C978C; --side-rule: #34312C; --side-accent: #E0703F;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { background: #fff; }
   body {
-    width: 210mm; height: 297mm; overflow: hidden; padding: 11mm 16mm 9mm;
-    font-family: "Segoe UI", system-ui, sans-serif; font-size: 8.8pt; line-height: 1.36; color: var(--ink);
+    width: 210mm; height: 297mm; overflow: hidden; display: grid; grid-template-columns: 64mm 1fr;
+    font-family: "Segoe UI", system-ui, sans-serif; font-size: 9.3pt; line-height: 1.45; color: var(--ink);
     -webkit-print-color-adjust: exact; print-color-adjust: exact;
   }
   .serif { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
-  .mono { font-family: Consolas, "Cascadia Mono", ui-monospace, monospace; font-size: 8pt; color: var(--muted); }
-  header { display: flex; justify-content: space-between; align-items: flex-end; gap: 10mm; padding-bottom: 4mm; border-bottom: 1px solid var(--ink); }
-  header > div:first-child { flex: 1; min-width: 0; }
-  h1 { font-size: 26pt; line-height: 1; letter-spacing: -0.01em; }
-  .role { margin-top: 2mm; font-size: 10pt; }
-  .contact { flex: none; text-align: right; line-height: 1.6; }
-  .contact a { color: var(--ink); text-decoration: none; }
-  section { display: grid; grid-template-columns: 34mm 1fr; column-gap: 6mm; padding: 2.2mm 0; border-bottom: 1px solid var(--rule); }
-  section:last-of-type { border-bottom: 0; }
-  h2 { font-size: 12pt; line-height: 1.2; }
-  .entry { display: grid; grid-template-columns: 1fr auto; column-gap: 4mm; }
-  .entry + .entry { margin-top: 2mm; }
-  .entry h3 { font-size: 9.8pt; font-weight: 600; }
-  .entry .note { font-weight: 400; }
-  .entry .win { color: var(--accent); font-weight: 600; }
-  .entry .when { text-align: right; white-space: nowrap; }
-  .entry p, .entry .tech { grid-column: 1 / -1; }
-  .entry p { margin-top: 0.6mm; }
-  .entry .tech { margin-top: 0.4mm; }
-  .entry .tech a { color: inherit; text-decoration: none; }
+  .mono { font-family: Consolas, "Cascadia Mono", ui-monospace, monospace; }
+  a { color: inherit; text-decoration: none; }
+
+  /* Sidebar */
+  aside { background: var(--side); color: var(--side-text); padding: 15mm 7mm 10mm 9mm; display: flex; flex-direction: column; gap: 7mm; }
+  aside h1 { font-size: 23pt; line-height: 1.05; }
+  aside .role { margin-top: 2.5mm; color: var(--side-muted); font-size: 8.6pt; }
+  aside h2 { font-family: Consolas, "Cascadia Mono", ui-monospace, monospace; font-size: 7.4pt; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--side-accent); margin-bottom: 2mm; }
+  aside .contact { font-size: 7.8pt; line-height: 1.75; word-break: break-word; }
+  aside ul { list-style: none; }
+  aside .focus li { font-size: 9.4pt; line-height: 1.6; }
+  aside .skills > div + div { margin-top: 2mm; }
+  aside .skills strong { display: block; font-weight: 600; font-size: 8.4pt; }
+  aside .skills span { color: var(--side-muted); font-size: 8pt; }
+  aside .edu div + div { margin-top: 2mm; }
+  aside .edu strong { display: block; font-weight: 600; font-size: 8.6pt; }
+  aside .edu span { color: var(--side-muted); font-size: 8pt; }
+  aside .foot { margin-top: auto; color: var(--side-muted); font-size: 7.4pt; }
+
+  /* Main */
+  main { padding: 15mm 13mm 10mm 10mm; display: flex; flex-direction: column; gap: 10mm; }
+  .lead { font-size: 15pt; line-height: 1.3; }
+  .lead em { font-style: normal; color: var(--accent-ink); }
+  main h2 { font-family: Consolas, "Cascadia Mono", ui-monospace, monospace; font-size: 7.4pt; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-ink); padding-bottom: 1.6mm; border-bottom: 1px solid var(--rule); margin-bottom: 3mm; }
+  .item { display: grid; grid-template-columns: 1fr auto; column-gap: 4mm; }
+  .item + .item { margin-top: 4.6mm; }
+  .item h3 { font-size: 10pt; font-weight: 600; }
+  .item h3 .at { font-weight: 400; color: var(--muted); }
+  .item .when { font-size: 7.6pt; color: var(--muted); white-space: nowrap; padding-top: 0.6mm; }
+  .item p { grid-column: 1 / -1; margin-top: 0.6mm; }
+  .item .fig { color: var(--accent-ink); font-weight: 600; }
+  .item .tech { grid-column: 1 / -1; margin-top: 0.8mm; font-size: 7.6pt; color: var(--muted); }
   .dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); margin-right: 4px; vertical-align: 1px; }
-  dl { display: grid; grid-template-columns: 56mm 1fr; row-gap: 1.2mm; }
-  dt { font-weight: 600; }
-  .todo { background: #FBF3DB; color: #956400; padding: 0 3px; border-radius: 2px; }
-  footer { margin-top: 3mm; }
+  .win { color: var(--accent-ink); font-weight: 600; }
+  .rows .item + .item { margin-top: 2.2mm; }
 </style>
 </head>
 <body>
-  <header>
+  <aside>
     <div>
       <h1 class="serif">Maximilian Köhlenbeck</h1>
-      <div class="role">Dualer Student Automatisierungstechnik · KUKA &amp; Hochschule Bremen</div>
+      <div class="role">Dualer Student der Automatisierungstechnik bei KUKA und an der Hochschule Bremen</div>
     </div>
+
     <div class="contact mono">
       Bremen<br>
       <a href="mailto:m.koehlenbeck@koehlenbeck.com">m.koehlenbeck@koehlenbeck.com</a><br>
       <a href="https://maximilian467.github.io">maximilian467.github.io</a><br>
       <a href="https://github.com/maximilian467">github.com/maximilian467</a><br>
-      <a href="https://www.linkedin.com/in/maximilian-koehlenbeck/">linkedin.com/in/maximilian-koehlenbeck</a>
+      <a href="https://www.linkedin.com/in/maximilian-koehlenbeck/">linkedin.com/in/<br>maximilian-koehlenbeck</a>
     </div>
-  </header>
 
-  <section>
-    <h2 class="serif">Profil</h2>
-    <p class="intro">Ich studiere dual Automatisierungstechnik und baue nebenbei Dinge mit KI-Agenten, meistens schnell und meistens, weil mich ein Problem nicht loslässt. Am meisten interessiert mich Robotik, Automatisierung und Physical AI. Gerade baue ich einen Sesame Robot und trainiere ihn mit Reinforcement Learning.</p>
-  </section>
-
-  <section>
-    <h2 class="serif">Ausbildung &amp; Praxis</h2>
-    <div>
-      <div class="entry">
-        <h3>Duales Studium Automatisierungstechnik</h3>
-        <span class="when mono">10/2024 bis 12/2027 (voraussichtlich)</span>
-        <p>Hochschule Bremen (Theorie) und KUKA (Praxisphasen)</p>
-      </div>
-      <div class="entry">
-        <h3>Abitur</h3>
-        <span class="when mono">2024</span>
-        <p>Gymnasium Vegesack, Bremen</p>
-      </div>
+    <div class="focus">
+      <h2>Schwerpunkte</h2>
+      <ul>
+        <li>Physical AI</li>
+        <li>Reinforcement Learning</li>
+        <li>Computer Vision</li>
+        <li>Sim2Real</li>
+      </ul>
     </div>
-  </section>
 
-  <section>
-    <h2 class="serif">Hackathons</h2>
-    <div>
-      <div class="entry">
-        <h3>Mobile Robotics Hackathon, CeTI, TU Dresden <span class="win">· 1. Platz</span></h3>
-        <span class="when mono">10/2026</span>
-        <p>Wir haben mit einem Roboterarm Müll sortiert, über 6D-Pose-Estimation und maschinelles Lernen.</p>
-      </div>
-      <div class="entry">
-        <h3>Hack-Nation 7 <span class="note">· Daraus entstand Helpy</span></h3>
-        <span class="when mono">10/2026</span>
-      </div>
-      <div class="entry">
-        <h3>Smart Region Hackathon Offenburg <span class="note">· Daraus entstand Baulify</span></h3>
-        <span class="when mono">05/2026</span>
-      </div>
+    <div class="skills">
+      <h2>Kenntnisse</h2>
+      <div><strong>Robotik</strong><span>ROS 2, MoveIt, RViz2, Pfadplanung</span></div>
+      <div><strong>Reinforcement Learning</strong><span>Gymnasium, Stable-Baselines3, MuJoCo</span></div>
+      <div><strong>Lokale KI</strong><span>faster-whisper, Piper TTS, Ollama, ONNX</span></div>
+      <div><strong>Software</strong><span>Python, TypeScript, C#, .NET, Next.js</span></div>
+      <div><strong>Werkzeuge</strong><span>Claude Code, Codex, n8n, Git</span></div>
     </div>
-  </section>
 
-  <section>
-    <h2 class="serif">Projekte</h2>
-    <div>
-      <div class="entry">
-        <h3>Düsen-Offset-Kalibrierung für FDM-3D-Druck (KUKA)</h3>
+    <div class="edu">
+      <h2>Ausbildung</h2>
+      <div><strong>B.Eng. Automatisierungstechnik</strong><span>Dual, Hochschule Bremen und KUKA<br>10/2024 bis 12/2027 (voraussichtlich)</span></div>
+      <div><strong>Abitur</strong><span>Gymnasium Vegesack, Bremen, 2024</span></div>
+    </div>
+
+    <div class="edu">
+      <h2>Sprachen</h2>
+      <div><span>Deutsch (Muttersprache), Englisch (C1)</span></div>
+    </div>
+
+    <div class="foot mono">Stand: Oktober 2026</div>
+  </aside>
+
+  <main>
+    <p class="lead serif">Ich baue Systeme mit KI und Robotik, die <em>in der echten Welt</em> funktionieren müssen.</p>
+
+    <section>
+      <h2>Gerade dran</h2>
+      <div class="item">
+        <h3>Roboterarm reBot Arm B601-RS</h3>
+        <span class="when mono"><span class="dot"></span>läuft</span>
+        <p>Ich trainiere den Arm auf Computer Vision und Pfadplanung. Real2Sim und Sim2Real.</p>
+        <div class="tech mono">ROS 2 · MoveIt · RViz2</div>
+      </div>
+      <div class="item">
+        <h3>Sesame Robot</h3>
+        <span class="when mono"><span class="dot"></span>läuft</span>
+        <p>Ich baue ihn und trainiere ihn mit Reinforcement Learning. Von der Simulation auf echte Hardware.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Projekte</h2>
+      <div class="item">
+        <h3>Düsen-Offset-Kalibrierung <span class="at">· KUKA</span></h3>
         <span class="when mono">2026</span>
-        <p>Mein bisher längstes Projekt. Schon wenige Zehntelmillimeter Abweichung waren in den Bauteilen sichtbar, und der Offset verschob sich mit der Temperatur und nach Düsenwechseln. Ich habe eine zuverlässige, wiederholbare Messung gefunden, echte Offset-Fehler von Bettnivellierung oder Materialverhalten getrennt und daraus einen Ablauf gemacht, den das Team ohne mich wiederholen kann. Für konsistente Ergebnisse brauchte es viele Testdrucke und Messungen.</p>
+        <p>Schon <span class="fig">wenige Zehntelmillimeter</span> Abweichung waren in den Bauteilen sichtbar. Ich habe den Offset zuverlässig messbar gemacht und daraus einen Ablauf gebaut, den das Team ohne mich wiederholen kann.</p>
         <div class="tech mono">FDM-3D-Druck · Kalibrierung · Messung</div>
       </div>
-      <div class="entry">
-        <h3>Developer Island: Statusanzeige für den Windows-Desktop</h3>
-        <span class="when mono">10/2026</span>
-        <p>Native App oben am Bildschirmrand für Nutzung von Claude Code und Codex, Musik, Fokus-Timer, Termine und Systemzustand. Liest lokale Logs inkrementell, ohne Polling, ohne Cloud. Im Leerlauf 55 MB und 0,03 % eines CPU-Kerns, 382 Unit-Tests, Open Source.</p>
-        <div class="tech mono">C# · .NET 10 · WinUI 3 · SQLite · xUnit · <a href="https://github.com/maximilian467/Developer-Island">github.com/maximilian467/Developer-Island</a></div>
-      </div>
-      <div class="entry">
-        <h3>Sesame Robot: Reinforcement Learning auf echter Hardware</h3>
-        <span class="when mono"><span class="dot"></span>läuft</span>
-        <p>Ich baue gerade einen Sesame Robot und trainiere ihn mit Reinforcement Learning. Nach dem Doppelpendel in der Simulation ist das der Schritt zu einem echten Roboter.</p>
-        <div class="tech mono">Reinforcement Learning · Robotik</div>
-      </div>
-      <div class="entry">
-        <h3>Reinforcement Learning: ein Modell, vier Haltungen eines Doppelpendels</h3>
+      <div class="item">
+        <h3>Ein Modell, vier Haltungen eines Doppelpendels</h3>
         <span class="when mono">09/2026</span>
-        <p>Eine selbst trainierte TQC-Policy schwingt ein Doppelpendel auf einem Wagen in jede seiner vier Haltungen und wechselt auf Wunsch zwischen ihnen. 100 % Erfolg über alle 4×4 Wechsel nach 1,7 Mio. Schritten auf einer Laptop-CPU. Läuft live auf meiner Website.</p>
-        <div class="tech mono">Python · Gymnasium · MuJoCo · Stable-Baselines3 · sb3-contrib (TQC) · TypeScript</div>
+        <p>Eine selbst trainierte TQC-Policy wechselt ein Doppelpendel zwischen allen vier Haltungen. <span class="fig">100&nbsp;% Erfolg</span> über alle 4×4 Wechsel. Läuft live auf meiner Website.</p>
+        <div class="tech mono">MuJoCo · Stable-Baselines3 · TQC · TypeScript</div>
       </div>
-      <div class="entry">
-        <h3>Helpy: Expertenwissen bei der Arbeit festhalten (Team)</h3>
+      <div class="item">
+        <h3>Developer Island <span class="at">· Open Source</span></h3>
         <span class="when mono">10/2026</span>
-        <p>Entstanden beim Hack-Nation 7. Ein Assistent, der einem Experten bei der Arbeit zusieht, zuhört und in Pausen nach den Entscheidungen fragt. Daraus entsteht eine Work Map aus Schritten, Regeln und Begründungen, mit der ein neuer Kollege übt. Bildschirmfotos werden im Browser per OCR geprüft und geschwärzt (378 ms bei einfachem Bildschirm).</p>
-        <div class="tech mono">TypeScript · React · TanStack Start · Convex · Claude · ElevenLabs · Tesseract.js</div>
+        <p>Eine Statusanzeige für den Windows-Desktop. Im Leerlauf <span class="fig">55 MB</span> und 0,03&nbsp;% eines CPU-Kerns, 382 Unit-Tests.</p>
+        <div class="tech mono">C# · .NET 10 · WinUI 3 · <a href="https://github.com/maximilian467/Developer-Island">github.com/maximilian467/Developer-Island</a></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section>
-    <h2 class="serif">Kenntnisse</h2>
-    <dl>
-      <dt>Reinforcement Learning &amp; Simulation</dt><dd>Gymnasium, Stable-Baselines3 (PPO, SAC, TQC), MuJoCo</dd>
-      <dt>Lokale KI &amp; Sprache</dt><dd>faster-whisper, Piper TTS, Ollama, ONNX / DirectML, LLMs über OpenRouter</dd>
-      <dt>Software &amp; Web</dt><dd>Python, TypeScript, JavaScript, C#, .NET, WinUI 3, Next.js, Astro, PostgreSQL, Drizzle, MapLibre</dd>
-      <dt>Automatisierung &amp; Werkzeuge</dt><dd>n8n, Claude Code, Codex, Git</dd>
-      <dt>Sprachen</dt><dd>Deutsch (Muttersprache), Englisch (C1)</dd>
-    </dl>
-  </section>
+    <section>
+      <h2>Hackathons</h2>
+      <div class="rows">
+        <div class="item">
+          <h3>Mobile Robotics Hackathon <span class="win">· 1. Platz</span></h3>
+          <span class="when mono">10/2026</span>
+          <p>CeTI, TU Dresden. Müll sortieren mit einem Roboterarm und 6D-Pose-Estimation.</p>
+        </div>
+        <div class="item">
+          <h3>Hack-Nation 7 <span class="at">· Helpy</span></h3>
+          <span class="when mono">10/2026</span>
+        </div>
+        <div class="item">
+          <h3>Smart Region Hackathon Offenburg <span class="at">· Baulify</span></h3>
+          <span class="when mono">05/2026</span>
+        </div>
+      </div>
+    </section>
 
-  <footer class="mono">Stand: Oktober 2026</footer>
+    <section>
+      <h2>Arbeitsweise</h2>
+      <p>Ich nutze Coding-Agenten wie Claude Code und Codex für die Implementierung. Mein Teil ist die Arbeit drumherum: Anforderungen, Systemdesign, Experimente, Fehlersuche und die Prüfung, ob das System tatsächlich funktioniert.</p>
+    </section>
+  </main>
 </body>
 </html>
